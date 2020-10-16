@@ -1,0 +1,129 @@
+<!--
+  Generated template for the MarriedRegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Divorse Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="login-box-section">
+    <div class="login-box">
+    <div class="logo-box">
+            <img src="assets/imgs/logo-1.jpg">
+        </div>
+
+        <form (ngSubmit)="submitDetails(register.value)" [formGroup]="register">
+          <ion-list class="login-user-info">
+    <!--        
+         <ion-row>
+             <img class="img" [src]="url">
+           </ion-row>
+      <ion-row> 
+        <input type="file" name="file" id="profilepic" (change)="UploadprofileImage($event)" class="inputfile" >
+            <label for="profilepic" class="upload">
+          <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
+        </label>
+      </ion-row>
+         <ion-row>
+             <img class="img" [src]="url">
+           </ion-row>
+      <ion-row> 
+        <input type="file" name="file" id="otherpic" class="inputfile" (change)="UploadOtherImage($event)" >
+            <label for="otherpic" class="upload">
+          <ion-icon ios="ios-cloud-upload" md="md-cloud-upload"></ion-icon>
+        </label>
+      </ion-row>
+    -->
+    
+
+		<ion-item>
+			<ion-label>
+				<ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+			</ion-label>
+			<ion-input type="text"  placeholder="Gotra" formControlName="gotra" required></ion-input>
+		  </ion-item>
+		  
+  
+		  <ion-item>
+			<ion-label>
+				<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+			</ion-label>
+			<ion-select interface="popover" placeholder="Height" formControlName="height">
+				<ion-option value="belowft">Below 4ft</ion-option>
+				<ion-option value="avrageft">Avrage 5-6ft</ion-option>
+				<ion-option value="aboveft">Above 6 fit</ion-option>
+			</ion-select>
+		  </ion-item>
+	  
+  
+  
+		  <ion-item>
+			<ion-label>
+				<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+			</ion-label>
+			<ion-select interface="popover" placeholder="Weight" formControlName="weight" required>
+				<ion-option value="belowft">Below 40kg</ion-option>
+				<ion-option value="avrageft">Avrage 40-70kg</ion-option>
+				<ion-option value="aboveft">Above 70kg</ion-option>
+			</ion-select>
+		  </ion-item>
+		  
+  
+  
+		  <ion-item>
+			<ion-label>
+				<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+			</ion-label>
+			<ion-select interface="popover" placeholder="Skin Tone" formControlName="skin" required>
+				<ion-option value="whiteskin">white</ion-option>
+				<ion-option value="avgskin">Average </ion-option>
+				<ion-option value="darkskin">Dark</ion-option>
+			</ion-select>
+		  </ion-item>
+	  
+  
+  
+			  <ion-item>
+				<ion-label>
+					<ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+				</ion-label>
+				<ion-textarea type="text"  placeholder="About" formControlName="about" required></ion-textarea>
+			  </ion-item>
+  
+		  <ion-item>
+			<ion-label>
+				<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+			</ion-label>
+			<ion-select interface="popover" placeholder="No of Children" formControlName="noofChildren">
+			  <ion-input type="text"  placeholder="Children Name" formControlName="noofChildren_name" required></ion-input>
+			  <ion-input type="date" placeholder="Children DOB"  formControlName="noofChildren_dob" required></ion-input>
+			  <ion-input type="number"  placeholder="Children Age auto" formControlName="noofChildren_age" readonly></ion-input>
+			  <ion-select interface="popover" placeholder="Children Marital Status" formControlName="noofChildren_marital_status" required>
+				<ion-option value="NeverMarried">Never Married				
+				</ion-option>
+				<ion-option value="Married">Married				
+				</ion-option>
+				<ion-option value="Divorse">Divorse / Vidows				
+				</ion-option>
+			</ion-select>
+			<ion-select interface="popover" placeholder="Gender" formControlName="noofChildren_gender">
+			  <ion-option value="M">Male</ion-option>
+			  <ion-option value="F">Female</ion-option>
+			  <ion-option value="O">Other</ion-option>
+		  </ion-select>
+			</ion-select>
+		  </ion-item>
+  
+
+      </ion-list> 
+        <button ion-button round center class="login-btn" type="submit">Register</button>
+    </form>
+</div>
+</div>
+
+</ion-content>

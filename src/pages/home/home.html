@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+<p *ngIf="data">Welcome {{data.firstname}}</p>
+<button ion-button (click)="logout()" >Logout</button>
+</ion-content>
