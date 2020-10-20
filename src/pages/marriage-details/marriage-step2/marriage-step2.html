@@ -14,35 +14,19 @@
 
       <form (ngSubmit)="submitDetails(marriageForm.value)" [formGroup]="marriageForm">
         <ion-list class="login-user-info">
-  
+
           <ion-item>
             <ion-label>
-              <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
             </ion-label>
-            <ion-select interface="popover" placeholder="Mother Occupasion" formControlName="motheroccupation">
-              <ion-option value="PE">Private emloye</ion-option>
-              <ion-option value="Bu">Bussiness</ion-option>
-              <ion-option value="O">Other</ion-option>
-            </ion-select>
+            <ion-input type="text"  placeholder="Kul Devi" formControlName="kuldevi" required></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label>
-              <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
             </ion-label>
-            <ion-select interface="popover" placeholder="No of Brothers" formControlName="brothers">
-              <ion-option value="1">1</ion-option>
-            </ion-select>
-          </ion-item>
-
-
-          <ion-item>
-            <ion-label>
-              <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
-            </ion-label>
-            <ion-select interface="popover" placeholder="No of Sister" formControlName="sisters">
-              <ion-option value="1">1</ion-option>
-            </ion-select>
+            <ion-input type="text"  placeholder="Gotra" formControlName="gotra" required></ion-input>
           </ion-item>
 
           <div formControlName="manglik" radio-group>
@@ -61,13 +45,51 @@
             </ion-row>           
           </div>
 
-          <ion-item>
-            <ion-label>
-              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
-            </ion-label>
-            <ion-input type="text"  placeholder="Kul Devi" formControlName="kuldevi" required></ion-input>
-          </ion-item>
+          <span *ngIf='brothersArray == undefined'>
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Select No of brothers" formControlName="noOfBrothers" (ionChange)="haveBrothers($event)">
+                <ion-option value="0">0</ion-option>
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+              </ion-select>
+            </ion-item>
+          </span>
+          <!-- <span *ngIf="isBrothers == 'Yes';">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Select No of brothers">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+              </ion-select>
+            </ion-item>
+          </span> -->
 
+          <span *ngIf="sistersArray == undefined">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Select No of Sisters" formControlName="noOfSisters" (ionChange)="haveSisters($event)">
+                <ion-option value="0">0</ion-option>
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+              </ion-select>
+            </ion-item>
+          </span>
         </ion-list> 
         <button ion-button round center class="login-btn" type="submit">Register</button>
       </form>

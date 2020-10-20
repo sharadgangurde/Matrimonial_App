@@ -25,11 +25,11 @@ export class MarriageStep1Page {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.marriageForm = new FormGroup({
-      profilepic: new FormControl('', [Validators.required]),
       otherpics: new FormControl('', [Validators.required]),
       mothername: new FormControl('', [Validators.required]),
       fathermobileno: new FormControl('', [Validators.required]),
-      fatheroccupation: new FormControl('', [Validators.required]),
+      fatherOccupation: new FormControl('', [Validators.required]),
+      motherOccupation: new FormControl('', [Validators.required])
     })
   }
 

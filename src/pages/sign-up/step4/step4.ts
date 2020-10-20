@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
 import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
+import { DivorcedStep1Page } from '../../divorse-details/divorced-step1/divorced-step1';
 import { MarriageStep1Page } from '../../marriage-details/marriage-step1/marriage-step1';
 
 /**
@@ -68,10 +69,14 @@ export class Step4Page {
         this.navCtrl.push(MarriageStep1Page, {
           step1data: this.step1data, step2data: this.step2data, step3data: this.step3data, step4data: data
         })
-      } 
-      
-    }
-    else {
+      } else if(data.marital_status == 'Married') {
+        console.log('----------------Married--------------')
+      } else if(data.marital_status == 'Divorced/Widowed') {
+        this.navCtrl.push(DivorcedStep1Page, {
+          step1data: this.step1data, step2data: this.step2data, step3data: this.step3data, step4data: data
+        })
+      }
+    } else {
       console.log('form errr');
 
       Object.keys(this.signUpForm.controls).forEach(field => {

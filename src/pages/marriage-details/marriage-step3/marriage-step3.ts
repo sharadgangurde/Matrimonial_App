@@ -32,4 +32,11 @@ export class MarriageStep3Page {
     console.log('ionViewDidLoad MarriageStep3Page');
   }
 
+  submitDetails(data) {
+    if(this.marriageForm.valid) {
+      console.log('---------Go to business/job profile');
+      
+    }
+  }
+
 }

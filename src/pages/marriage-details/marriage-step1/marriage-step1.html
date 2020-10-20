@@ -34,12 +34,6 @@
             </label>
           </ion-row>
         -->
-            <ion-item>
-              <ion-label>
-                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
-              </ion-label>
-              <ion-input type="text"  placeholder="Upload profile pic" formControlName="profilepic" required></ion-input>
-            </ion-item>
 
             <ion-item>
               <ion-label>
@@ -66,12 +60,24 @@
               <ion-label>
                 <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-              <ion-select interface="popover" placeholder="Father Occupasion" formControlName="fatheroccupation">
+              <ion-select interface="popover" placeholder="Father Occupasion" formControlName="fatherOccupation">
                 <ion-option value="PE">Private emloye</ion-option>
                 <ion-option value="Bu">Bussiness</ion-option>
                 <ion-option value="O">Other</ion-option>
               </ion-select>
             </ion-item>
+
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Mother Occupasion" formControlName="motherOccupation">
+                <ion-option value="PE">Private emloye</ion-option>
+                <ion-option value="Bu">Bussiness</ion-option>
+                <ion-option value="O">Other</ion-option>
+              </ion-select>
+            </ion-item>
+            
           </ion-list>
             <button ion-button round center class="login-btn" type="submit">Register</button>
         </form>
