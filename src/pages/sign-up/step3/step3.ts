@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import * as moment from 'moment';
+import { ServiceProvider } from '../../../providers/service/service';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { Step4Page } from '../step4/step4';
 
 /**
@@ -18,31 +21,61 @@ import { Step4Page } from '../step4/step4';
 export class Step3Page {
 
   signUpForm: FormGroup;
-  step1data: any;
   step2data: any;
+  dataArray = {};
+  validation_messages: any;
+  calculatedAge: any
+  languages: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public validation: ValidationMessageProvider, public api: ServiceProvider) {
     this.signUpForm = new FormGroup({
       date_of_birth: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       religion: new FormControl('', [Validators.required]),
       caste: new FormControl('', [Validators.required])
-    })
+    });
+
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Step3Page');
-    this.step1data = this.navParams.get('step1data');
-    this.step2data = this.navParams.get('step2data');
-    //let formdata = new FormData()
-    console.log('==========Data Step1=========== ', this.step1data)
-    console.log('==========Data Step2=========== ', this.step2data)
+    this.dataArray = this.navParams.get('dataArray');
+    console.log('==========Data Step2=========== ', this.dataArray)
+    this.api.getLanguages().subscribe(res => {
+      if(res.flag == 8) {
+        this.languages = res.data;
+      }
+    })
   }
 
+  public ageFromDateOfBirthday(birthdate: any): number {
+    return moment().diff(birthdate, 'years');
+  }
+
+  goBack() {
+    this.navCtrl.pop()
+  }
+
+  public age(data){
+    console.log(data);
+    var timeDiff = Math.abs(Date.now() - data);
+    console.log(timeDiff);
+    this.calculatedAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
+    console.log(this.calculatedAge);
+  }
+  
   signUp(data) {
     if(this.signUpForm.valid) {
-      this.navCtrl.push(Step4Page, {step3data: data, step2data: this.step2data, step1data: this.step1data})
+      //this.dataArray.push(data)
+      this.dataArray['dob'] = data.date_of_birth,
+      this.dataArray['age'] = data.age,
+      this.dataArray['gender'] = data.gender,
+      this.dataArray['religion'] = data.religion,
+      this.dataArray['caste'] = data.caste,
+
+      this.navCtrl.push(Step4Page, {dataArray: this.dataArray, language: this.languages})
     }
     else {
       console.log('form errr');

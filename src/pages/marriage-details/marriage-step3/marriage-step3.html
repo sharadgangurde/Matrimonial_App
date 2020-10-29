@@ -4,18 +4,10 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-  <ion-navbar>
-    <ion-title>Married Register</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
   <div class="login-box-section">
     <div class="login-box">
-      <div class="logo-box">
-              <img src="assets/imgs/logo-1.jpg">
-          </div>
 
           <form (ngSubmit)="submitDetails(marriageForm.value)" [formGroup]="marriageForm">
             <ion-list class="login-user-info">
@@ -25,9 +17,9 @@
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
                 <ion-select interface="popover" placeholder="Height" formControlName="height">
-                  <ion-option value="belowft">Below 4ft</ion-option>
-                  <ion-option value="avrageft">Avrage 5-6ft</ion-option>
-                  <ion-option value="aboveft">Above 6 fit</ion-option>
+                  <ion-option value="below 4ft">Below 4ft</ion-option>
+                  <ion-option value="avrage 5-6ft">Avrage 5-6ft</ion-option>
+                  <ion-option value="above 6ft">Above 6 fit</ion-option>
                 </ion-select>
               </ion-item>
   
@@ -36,9 +28,9 @@
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
                 <ion-select interface="popover" placeholder="Weight" formControlName="weight" required>
-                  <ion-option value="belowft">Below 40kg</ion-option>
-                  <ion-option value="avrageft">Avrage 40-70kg</ion-option>
-                  <ion-option value="aboveft">Above 70kg</ion-option>
+                  <ion-option value="below 55kg">Below 55kg</ion-option>
+                  <ion-option value="avrage 40-70kg">Avrage 40-70kg</ion-option>
+                  <ion-option value="above 70kg">Above 70kg</ion-option>
                 </ion-select>
               </ion-item>
   
@@ -61,7 +53,14 @@
               </ion-item>
   
             </ion-list> 
-          <button ion-button round center class="login-btn" type="submit">Register</button>
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn">Next</button>
+              </ion-col>
+            </ion-row>
       </form>
     </div>
   </div>

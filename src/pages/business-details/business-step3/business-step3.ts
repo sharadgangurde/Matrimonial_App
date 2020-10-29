@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../../home/home';
 
 /**
  * Generated class for the BusinessStep3Page page.
@@ -9,14 +10,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-business-step3',
   templateUrl: 'business-step3.html',
 })
 export class BusinessStep3Page {
   businessForm: FormGroup;
-
+  dataArray = {};
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.businessForm = new FormGroup({
       website: new FormControl('', [Validators.required]),
@@ -28,6 +29,26 @@ export class BusinessStep3Page {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BusinessStep3Page');
+    this.dataArray = this.navParams.get('dataArray')
+    console.log('------- Business Data -------', this.dataArray)
+  }
+
+  goBack() {
+    this.navCtrl.pop()
+  }
+
+  submitDetails(data) {
+    if(this.businessForm.valid) {
+      this.dataArray['website'] = data.website,
+      this.dataArray['linkedin'] = data.linkedin,
+      this.dataArray['facebook'] = data.facebook,
+      this.dataArray['instagram'] = data.instagram,
+
+      this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+    } else {
+      console.log('------ Form err------');
+      
+    }
   }
 
 }

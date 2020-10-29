@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { MarriageStep2Page } from '../../marriage-details/marriage-step2/marriage-step2';
 import { Brother4Page } from '../brother4/brother4';
 
@@ -11,7 +11,7 @@ import { Brother4Page } from '../brother4/brother4';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-brother3',
   templateUrl: 'brother3.html',

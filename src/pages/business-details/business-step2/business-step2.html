@@ -41,11 +41,7 @@
                 <ion-label>
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
-                <ion-select interface="popover" placeholder="Products/Services" ([ngModel])="products" formControlName="products">
-                  <ion-option value="less than 1 Year">Less than 1 year</ion-option>
-                  <ion-option value="1 year">1 Year</ion-option>
-                  <ion-option value="2 year">2 Year</ion-option>
-                </ion-select>
+                <ion-input type="text" placeholder="Enter Products/Services" ([ngModel])="products" formControlName="products"></ion-input>
               </ion-item>
 
                 <ion-item>
@@ -63,7 +59,14 @@
                 </ion-item>
               </ion-list>
 
-            <button ion-button round center class="login-btn">Sign Up</button>
+              <ion-row>
+                <ion-col>
+                  <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button round center class="login-btn">Next</button>
+                </ion-col>
+              </ion-row>
           </form>
         </div>
       </div>

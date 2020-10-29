@@ -4,13 +4,16 @@ page-brothers {
     }
     .login-box-section {}
     .login-box {
-        z-index: 99;
-        position: absolute;
-        right: 0;
-        left: 0;
-        width: 100%;
-        top: 50%;
-        transform: translate(0%, -50%);
+        // z-index: 99;
+        // position: absolute;
+        // right: 0;
+        // left: 0;
+        // width: 100%;
+        // top: 40%;              
+        // transform: translate(0%, -50%);
+    }
+    ion-slide {
+        margin-top:  20%;
     }
     .login-user-info ion-item {
         background-color: transparent;
@@ -84,5 +87,11 @@ page-brothers {
         border-radius: 10px;
         background-color: #fff;
     }
-
+    //added by sharad
+    .btnPrev {
+        margin-top: 0%;
+    }
+    .btnNext {
+        margin-top: 0%;
+    }
 }

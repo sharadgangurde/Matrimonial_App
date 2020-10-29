@@ -4,7 +4,7 @@ import { NavController, NavParams, Slides, ViewController } from 'ionic-angular'
 import moment from 'moment';
 
 /**
- * Generated class for the SistersPage page.
+ * Generated class for the ChildrensPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,17 +12,18 @@ import moment from 'moment';
 
 //@IonicPage()
 @Component({
-  selector: 'page-sisters',
-  templateUrl: 'sisters.html',
+  selector: 'page-childrens',
+  templateUrl: 'childrens.html',
 })
-export class SistersPage {
-  sistersArray = [];
-  noOfSisters: any;
-  calculateAge: any;
+export class ChildrensPage {
+  childrensForm: FormGroup;
+  childrensArray = [];
+  noOfChildrens: any;
+  calculatedAge: any
   @ViewChild('slides') slides: Slides;
-  sistersForm: FormGroup;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
-    this.sistersForm = new FormGroup({
+    this.childrensForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
@@ -32,18 +33,17 @@ export class SistersPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SistersPage');
-    this.noOfSisters = this.navParams.get('value');
+    console.log('ionViewDidLoad ChildrensPage');
+    this.noOfChildrens = this.navParams.get('value');
   }
 
-  
   public ageFromDateOfBirthday(birthdate: any): number {
     return moment().diff(birthdate, 'years');
   }
 
   next(data) {
     if(data) {
-      this.sistersArray.push(data)
+      this.childrensArray.push(data)
     }
     
     this.slides.slideNext();
@@ -55,10 +55,10 @@ export class SistersPage {
 
   close(data) {
     if(data) {
-      this.sistersArray.push(data)
+      this.childrensArray.push(data)
     }
-    console.log('-------------Data-------------', this.sistersArray);
-    this.viewCtrl.dismiss(this.sistersArray)
+    console.log('-------------Data-------------', this.childrensArray);
+    this.viewCtrl.dismiss(this.childrensArray)
     this.navCtrl.pop()
   }
 

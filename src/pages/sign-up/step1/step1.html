@@ -15,18 +15,36 @@
 
   <div class="login-box-section">
       <div class="login-box">
-          <div class="logo-box">
-              <img src="assets/imgs/logo-1.jpg">
-          </div>
 
-          <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
+          <form (ngSubmit)="signUp(signUpForm.value)" [formGroup]="signUpForm">
             <ion-list class="login-user-info">
+              
+              <ion-row class="gender-box">
+                <ion-col (click)="getPhoto('selfie')" *ngIf="selfie" col-4>
+                    <div class="document-img-box">
+                        <img [src]="selfie">
+                    </div>
+                </ion-col>
+                <ion-col *ngIf="!selfie" (click)="getPhoto('selfie')" col-4>
+                    <div class="document-img-box dotted-border">
+                        <ion-icon ios="ios-add-circle" md="md-add-circle" class="add-img-icon"></ion-icon>
+                    </div>
+                </ion-col>
+            </ion-row>
+  
+            <ion-input formControlName="selfie" [(ngModel)]="selfie" type="text" hidden></ion-input>
+
                 <ion-item>
                     <ion-label>
                         <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                     </ion-label>
                     <ion-input type="text" placeholder="First Name" ([ngModel])="firstName" formControlName="firstName"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.firstName" >
+                    <div *ngIf="signUpForm.get('firstName').hasError(validation.type) && signUpForm.get('firstName').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -34,6 +52,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Middle Name" ([ngModel])="middleName" formControlName="middleName"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.middleName" >
+                    <div *ngIf="signUpForm.get('middleName').hasError(validation.type) && signUpForm.get('middleName').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -41,6 +64,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Last Name" ([ngModel])="lastName" formControlName="lastName"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.lastName" >
+                    <div *ngIf="signUpForm.get('lastName').hasError(validation.type) && signUpForm.get('lastName').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -48,6 +76,12 @@
                     </ion-label>
                     <ion-input type="email" placeholder="Email" value="{{email}}" ([ngModel])="email" formControlName="email"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.email" >
+                    <div *ngIf="signUpForm.get('email').hasError(validation.type) && signUpForm.get('email').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
+                
 
                 <ion-item>
                     <ion-label>
@@ -55,6 +89,11 @@
                     </ion-label>
                     <ion-input type="number" placeholder="Mobile No 1" ([ngModel])="phone1" formControlName="phone1"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.phone1" >
+                    <div *ngIf="signUpForm.get('phone1').hasError(validation.type) && signUpForm.get('phone1').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -62,6 +101,11 @@
                     </ion-label>
                     <ion-input type="number" placeholder="Mobile No 2" ([ngModel])="phone2" formControlName="phone2"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.phone2" >
+                    <div *ngIf="signUpForm.get('phone2').hasError(validation.type) && signUpForm.get('phone2').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
             </ion-list>
 

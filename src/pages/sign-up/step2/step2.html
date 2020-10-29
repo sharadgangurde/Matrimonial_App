@@ -15,9 +15,6 @@
 
   <div class="login-box-section">
       <div class="login-box">
-          <div class="logo-box">
-              <img src="assets/imgs/logo-1.jpg">
-          </div>
 
           <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
             <ion-list class="login-user-info">
@@ -26,27 +23,42 @@
                         <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                     </ion-label>
                     <ion-select interface="popover" placeholder="--Select Country--"  formControlName="country" [(ngModel)] ="selectedCountry" (ionChange)="onSelectCountry($event)">
-                        <ion-option *ngFor="let country of countries" [value]="country">{{country.name}}</ion-option>
+                        <ion-option *ngFor="let country of countries" [value]="country.id">{{country.name}}</ion-option>
                     </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.country" >
+                    <div *ngIf="signUpForm.get('country').hasError(validation.type) && signUpForm.get('country').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
                         <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                     </ion-label>
                     <ion-select interface="popover" placeholder="--Select State--"  formControlName="state" [(ngModel)] ="selectedState" (ionChange)="onSelectState($event)">
-                        <ion-option *ngFor="let state of states" [value]="state">{{state.name}}</ion-option>
+                        <ion-option *ngFor="let state of states" [value]="state.id">{{state.name}}</ion-option>
                     </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.state" >
+                    <div *ngIf="signUpForm.get('state').hasError(validation.type) && signUpForm.get('state').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
                         <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                     </ion-label>
                     <ion-select interface="popover" placeholder="--Select City--"  formControlName="city" [(ngModel)] ="selectedCity" (ionChange)="onSelectCity($event)">
-                        <ion-option *ngFor="let city of cities" [value]="city">{{city.name}}</ion-option>
+                        <ion-option *ngFor="let city of cities" [value]="city.id">{{city.name}}</ion-option>
                     </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.city" >
+                    <div *ngIf="signUpForm.get('city').hasError(validation.type) && signUpForm.get('city').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
                 
                 <ion-item>
                     <ion-label>
@@ -54,6 +66,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Present Address" ([ngModel])="present_address" formControlName="present_address"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.present_address" >
+                    <div *ngIf="signUpForm.get('present_address').hasError(validation.type) && signUpForm.get('present_address').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -61,10 +78,22 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Permanent Address" ([ngModel])="permanent_address" formControlName="permanent_address"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.permanent_address" >
+                    <div *ngIf="signUpForm.get('permanent_address').hasError(validation.type) && signUpForm.get('permanent_address').touched">
+                      <div class="error-message">{{validation.message}}</div>
+                    </div>
+                </div>
 
               </ion-list>
-
-          <button ion-button round center class="login-btn">Next</button>
+              <ion-row>
+                <ion-col>
+                  <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button round center class="login-btn">Next</button>
+                </ion-col>
+              </ion-row>
+          
         </form>
       </div>
   </div>

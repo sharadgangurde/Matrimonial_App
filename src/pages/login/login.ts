@@ -5,6 +5,7 @@ import { DefineProvider } from '../../providers/define/define';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
+import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
 import { OtpPage } from '../otp/otp';
 import { Step1Page } from '../sign-up/step1/step1';
 
@@ -21,20 +22,23 @@ import { Step1Page } from '../sign-up/step1/step1';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  validation_messages: any;
   loginForm: FormGroup;
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public DefineProvider: DefineProvider, public global: GlobalServiceProvider, public events: Events,
-    public splash: SplashProvider
+    public splash: SplashProvider, public validation: ValidationMessageProvider
     ) {
       this.loginForm = new FormGroup({
-        email: new FormControl('', [Validators.required,]),
+        email: new FormControl('', [Validators.required, Validators.email]),
       });
+
+      this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+
   }
 
   public signUp() {
@@ -45,16 +49,17 @@ export class LoginPage {
     if (this.loginForm.valid) {
       let formdata = new FormData();
       formdata.append('email', data.email);
-
+      this.splash.presentLoading()
       this.api.emailVerify(formdata).subscribe(res => {
         console.log(res)
         let user_id = res.user_id;
         if(res.flag == 0) {
+          
           this.splash.toast(res.data);
         }
         
         if(res.flag == 1) {
-
+          this.splash.dismiss()
           this.splash.toast(res.messsage);
 
           let formdata = new FormData();
@@ -70,8 +75,22 @@ export class LoginPage {
         }
 
         if (res.flag == 2) {
-         this.splash.toast(res.message);
-         this.navCtrl.push(Step1Page, {email: data.email})
+          this.splash.dismiss()
+          this.splash.toast(res.message);
+
+          let formdata = new FormData();
+          formdata.append('email', data.email);
+
+          this.api.generateOtp(formdata).subscribe(res => {
+            if(res.flag == 3) {
+              this.navCtrl.push(OtpPage, {
+                email: data.email,
+                otp: res.otp,
+                nonExistingUser: res.flag
+              })
+            }            
+          })
+          //this.navCtrl.push(Step1Page, {email: data.email})
         }
         
         if (res.status == 2) {

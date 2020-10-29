@@ -5,6 +5,7 @@ import { GlobalServiceProvider } from '../../providers/global-service/global-ser
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { JobDetailsPage } from '../job-details/job-details';
+import { Step1Page } from '../sign-up/step1/step1';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -26,6 +27,7 @@ export class OtpPage {
   serverOtp: any;
   email: any;
   id: any;
+  nonExistingUser: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -43,6 +45,7 @@ export class OtpPage {
   ionViewDidLoad() {
    console.log('ionViewDidLoad OtpPage');
    this.email = this.navParams.get('email');
+   this.nonExistingUser = this.navParams.get('nonExistingUser');
    this.id = this.navParams.get('id');
    this.userData =  this.navParams.get('data');
    this.serverOtp =  this.navParams.get('otp');
@@ -113,16 +116,24 @@ export class OtpPage {
     console.log('server otp', this.serverOtp, ' ', data.otp)
     if(this.otpForm.valid) {
       if(this.serverOtp == data.otp) {
-        let formdata = new FormData();
-        console.log(this.id);
-        formdata.append('user_id', this.id)
-        this.api.getAccountDetails(formdata).subscribe(res => {
-          console.log(res)
-          if(res) {
-            this.global.setUser(res.data);
-            this.navCtrl.push(TabsPage)
-          }
-        })
+        if(this.nonExistingUser) {
+          this.navCtrl.push(Step1Page, {
+            email: this.email,
+          })
+        } else {
+          let formdata = new FormData();
+          console.log(this.id);
+          formdata.append('user_id', this.id)
+          this.api.getAccountDetails(formdata).subscribe(res => {
+            console.log(res)
+            if(res) {
+              this.global.setUser(res.data);
+              this.navCtrl.push(TabsPage)
+            }
+          })
+        }
+      } else {
+        this.splash.toast('Invalid Otp');
       }
     }
   }

@@ -52,7 +52,14 @@
 
             </ion-list>
 
-          <button ion-button round center class="login-btn">Sign Up</button>
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn">Next</button>
+              </ion-col>
+            </ion-row>
         </form>
       </div>
   </div>

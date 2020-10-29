@@ -8,9 +8,6 @@
 <ion-content padding>
   <div class="login-box-section">
     <div class="login-box">
-      <div class="logo-box">
-        <img src="assets/imgs/logo-1.jpg">
-      </div>
 
       <form (ngSubmit)="submitDetails(marriageForm.value)" [formGroup]="marriageForm">
         <ion-list class="login-user-info">
@@ -45,22 +42,21 @@
             </ion-row>           
           </div>
 
-          <span *ngIf='brothersArray == undefined'>
-            <ion-item>
-              <ion-label>
-                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
-              </ion-label>
-              <ion-select interface="popover" placeholder="Select No of brothers" formControlName="noOfBrothers" (ionChange)="haveBrothers($event)">
-                <ion-option value="0">0</ion-option>
-                <ion-option value="1">1</ion-option>
-                <ion-option value="2">2</ion-option>
-                <ion-option value="3">3</ion-option>
-                <ion-option value="4">4</ion-option>
-                <ion-option value="5">5</ion-option>
-                <ion-option value="6">6</ion-option>
-              </ion-select>
-            </ion-item>
-          </span>
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-select interface="popover" placeholder="Select No of brothers" formControlName="noOfBrothers" (ionChange)="haveBrothers($event)">
+              <ion-option value="0">0</ion-option>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
+         
           <!-- <span *ngIf="isBrothers == 'Yes';">
             <ion-item>
               <ion-label>
@@ -74,24 +70,29 @@
             </ion-item>
           </span> -->
 
-          <span *ngIf="sistersArray == undefined">
-            <ion-item>
-              <ion-label>
-                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
-              </ion-label>
-              <ion-select interface="popover" placeholder="Select No of Sisters" formControlName="noOfSisters" (ionChange)="haveSisters($event)">
-                <ion-option value="0">0</ion-option>
-                <ion-option value="1">1</ion-option>
-                <ion-option value="2">2</ion-option>
-                <ion-option value="3">3</ion-option>
-                <ion-option value="4">4</ion-option>
-                <ion-option value="5">5</ion-option>
-                <ion-option value="6">6</ion-option>
-              </ion-select>
-            </ion-item>
-          </span>
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-select interface="popover" placeholder="Select No of Sisters" formControlName="noOfSisters" (ionChange)="haveSisters($event)">
+              <ion-option value="0">0</ion-option>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
         </ion-list> 
-        <button ion-button round center class="login-btn" type="submit">Register</button>
+        <ion-row>
+          <ion-col>
+            <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button round center class="login-btn">Next</button>
+          </ion-col>
+        </ion-row>
       </form>
     </div>
   </div>

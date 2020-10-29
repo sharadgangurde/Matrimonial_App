@@ -15,26 +15,36 @@
 
   <div class="login-box-section">
       <div class="login-box">
-          <div class="logo-box">
-              <img src="assets/imgs/logo-1.jpg">
-          </div>
 
           <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
             <ion-list class="login-user-info">
 
               <ion-item>
-                  <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
-                  </ion-label>
-                  <ion-input type="date" placeholder="Date of Birth" ([ngModel])="date_of_birth" formControlName="date_of_birth"></ion-input>
+                <ion-label>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
+                  onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
+                  formControlName="date_of_birth" displayFormat="DD-MM-YYYY"></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.date_of_birth" >
+                <div *ngIf="signUpForm.get('date_of_birth').hasError(validation.type) && signUpForm.get('date_of_birth').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>  
 
-              <ion-item>
-                  <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
-                  </ion-label>
-                  <ion-input type="number" placeholder="Age" ([ngModel])="age" formControlName="age"></ion-input>
+              <ion-item *ngIf="birthdate">
+                <ion-label>
+                  <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder="Age" formControlName="age"
+                  value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.age" >
+                <div *ngIf="signUpForm.get('age').hasError(validation.type) && signUpForm.get('age').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div> 
 
               <ion-item>
                   <ion-label>
@@ -46,6 +56,11 @@
 
                   </ion-select>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.gender" >
+                <div *ngIf="signUpForm.get('gender').hasError(validation.type) && signUpForm.get('gender').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div> 
 
               <ion-item>
                   <ion-label>
@@ -60,20 +75,34 @@
                       <ion-option value="Sikh">Sikh</ion-option>
                   </ion-select>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.religion" >
+                <div *ngIf="signUpForm.get('religion').hasError(validation.type) && signUpForm.get('religion').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div> 
               
               <ion-item>
                   <ion-label>
                       <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                   </ion-label>
-                  <ion-select interface="popover" placeholder="caste" ([ngModel])="caste" formControlName="caste">
-                      <ion-option value="Maratha">Maratha</ion-option>
-                      <ion-option value="Teli">Teli</ion-option>
-                  </ion-select>
+                  <ion-input type="text" placeholder="caste" ([ngModel])="caste" formControlName="caste"></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.caste" >
+                <div *ngIf="signUpForm.get('caste').hasError(validation.type) && signUpForm.get('caste').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div> 
 
             </ion-list>
 
-          <button ion-button round center class="login-btn">Next</button>
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn">Next</button>
+              </ion-col>
+            </ion-row>
         </form>
       </div>
   </div>

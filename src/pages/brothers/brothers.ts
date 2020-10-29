@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MarriageStep2Page } from '../marriage-details/marriage-step2/marriage-step2';
+import { NavController, NavParams, Slides, ViewController } from 'ionic-angular';
+import moment from 'moment';
 
 /**
  * Generated class for the BrothersPage page.
@@ -10,18 +10,24 @@ import { MarriageStep2Page } from '../marriage-details/marriage-step2/marriage-s
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-brothers',
   templateUrl: 'brothers.html',
 })
+
+
 export class BrothersPage {
 
   totalBrothers = [];
   brothersForm: FormGroup;
   brotherDetailsForm: FormGroup;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  brothersArray = [];
+  noOfBrothers: any;
+  calculateAge: any;
+  @ViewChild('slides') slides: Slides;
+  
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.brothersForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
@@ -29,28 +35,40 @@ export class BrothersPage {
       marital_status: new FormControl('', [Validators.required]),
       mobile: new FormControl('', [Validators.required]),
     });
-
-    this.brotherDetailsForm = new FormGroup({
-      noofbrothers: new FormControl('', [Validators.required])
-    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BrothersPage');
+    this.noOfBrothers = this.navParams.get('value');
   }
 
-  selectedNumber(value) {
-    console.log('-----------No of brothers are ', value)
-    for(let i = 1; i <= value; i++) {
-      this.totalBrothers.push({
-        value: i
-      })     
+  public ageFromDateOfBirthday(birthdate: any): number {
+    return moment().diff(birthdate, 'years');
+  }
+  
+  next(data) {
+    if(data) {
+      this.brothersArray.push(data)
     }
-    console.log('-----------Brothers Array------------ ', this.totalBrothers);
+    
+    this.slides.slideNext();
   }
 
-  submitDetails(data) {
-    console.log('----------------- Brothers --------------', data);
-    this.navCtrl.push(MarriageStep2Page)
+  prev() {
+    this.slides.slidePrev();
   }
+
+  close(data) {
+    if(data) {
+      this.brothersArray.push(data)
+    }
+    console.log('-------------Data-------------', this.brothersArray);
+    this.viewCtrl.dismiss(this.brothersArray)
+    this.navCtrl.pop()
+  }
+  
+  // submitDetails(data) {
+  //   console.log('----------------- Brothers --------------', data);
+  //   this.navCtrl.push(MarriageStep2Page)
+  // }
 }

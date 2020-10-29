@@ -1,4 +1,4 @@
-page-business-step2 {
+page-childrens {
     ion-content.content {
         background-color: #003466;
     }
@@ -9,7 +9,7 @@ page-business-step2 {
         right: 0;
         left: 0;
         width: 100%;
-        top: 50%;
+        top: 40%;               //top margin changed by sharad
         transform: translate(0%, -50%);
     }
     .login-user-info ion-item {
@@ -72,9 +72,9 @@ page-business-step2 {
         display: block;
         font-size: 16px;
         background-color: #003466;
-        width: 100px;
+        width: 160px;
         border: 1px solid #fff;
-        height: 35px;
+        height: 46px;
     }
     .logo-box {
         width: 100px;
@@ -84,5 +84,14 @@ page-business-step2 {
         border-radius: 10px;
         background-color: #fff;
     }
-
+    ion-slide {
+        margin-top:  20%;
+    }
+    //added by sharad
+    .btnPrev {
+        margin-top: 0%;
+    }
+    .btnNext {
+        margin-top: 0%;
+    }
 }

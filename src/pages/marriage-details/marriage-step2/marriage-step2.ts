@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Brother1Page } from '../../brothers/brother1/brother1';
-import { Sister1Page } from '../../sisters/sister1/sister1';
+import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { BrothersPage } from '../../brothers/brothers';
+import { SistersPage } from '../../sisters/sisters';
 import { MarriageStep3Page } from '../marriage-step3/marriage-step3';
 
 /**
@@ -12,26 +12,28 @@ import { MarriageStep3Page } from '../marriage-step3/marriage-step3';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-marriage-step2',
   templateUrl: 'marriage-step2.html',
 })
 export class MarriageStep2Page {
 
-  step1data: any;
-  step2data: any;
-  step3data: any;
-  step4data: any;
-  step5data: any;
+  dataArray = {};
   isChecked: any;
   marriageForm: FormGroup;
   brothers: any;
   sisters: any;
   brothersArray = [];
   sistersArray = [];
+  modal: any;
+  dataFromModal: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+    ) {
     this.marriageForm = new FormGroup({
       noOfBrothers: new FormControl('', [Validators.required]),
       noOfSisters: new FormControl('', [Validators.required]),
@@ -43,44 +45,18 @@ export class MarriageStep2Page {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MarriageStep2Page');
-    this.step1data = this.navParams.get('step1data')
-    this.step2data = this.navParams.get('step2data')
-    this.step3data = this.navParams.get('step3data')
-    this.step4data = this.navParams.get('step4data')
-    this.step5data = this.navParams.get('step5data')
+    this.dataArray = this.navParams.get('dataArray')
     
-
     //total Brothers Arary
     this.brothersArray = this.navParams.get('brothersArray');
 
     //total sisters array
     this.sistersArray  = this.navParams.get('sistersArray');
 
-    console.log('--------------------step 1----------------- ', this.step1data);
-    console.log('--------------------step 2----------------- ', this.step2data);
-    console.log('--------------------step 3----------------- ', this.step3data);
-    console.log('--------------------step 4----------------- ', this.step4data);
-    console.log('--------------------step 5----------------- ', this.step5data);
-    console.log('------------------------------------------- ');
-    console.log('--------------------Brothers Array----------------- ', this.brothersArray);
-    console.log('--------------------Sisters Array----------------- ', this.sistersArray);
+    console.log('--------------------Data at marriageStep2----------------- ', this.dataArray);
 
     //let formdata = new FormData()
     //formdata.append('brothers', this.brothersArray[0]);
-  }
-
-  submitDetails(data) {
-    console.log('-----------data-----------', data);
-    if(this.marriageForm.valid) {
-      this.navCtrl.push(MarriageStep3Page, {
-        step1data: this.step1data, 
-        step2data: this.step2data, 
-        step3data: this.step3data,
-        step4data: this.step4data,
-        step5data: this.step5data,
-        step6data: data
-      })
-    }
   }
 
   haveBrothers(value) {
@@ -88,16 +64,49 @@ export class MarriageStep2Page {
     if(value == 0) {
      // this.navCtrl.push(BrothersPage)
     } else if(value > 0) {
-      this.navCtrl.push(Brother1Page, {data: value})
+      //this.navCtrl.push(Brother1Page, {data: value})
+      this.presentModal(value)
     }
   }
 
+  presentModal(value) {
+    this.modal = this.modalCtrl.create(BrothersPage, {value: value});
+    this.modal.onDidDismiss((data) => {
+      // This is going to be executed when the modal is closed, so
+      // you can get the data here
+      this.brothersArray = data
+      console.log('---------------_Modal from Data------------ ', this.brothersArray);
+      
+    });
+    this.modal.present();
+  }
+
   haveSisters(value) {
-    console.log('------------have Sisters------------', value)
-    if(value == 0) {
-     // this.navCtrl.push(BrothersPage)
-    } else if(value > 0) {
-      this.navCtrl.push(Sister1Page, {sisters: value})
+    this.modal = this.modalCtrl.create(SistersPage, {value: value});
+    this.modal.onDidDismiss((data) => {
+      // This is going to be executed when the modal is closed, so
+      // you can get the data here
+      this.sistersArray = data;
+      console.log('---------------Data from modal------------ ', this.dataFromModal);
+      
+    });
+    this.modal.present();
+  }
+
+  submitDetails(data) {
+    console.log('-----------data-----------', data);
+    if(this.marriageForm.valid) {
+      
+      this.dataArray['manglik'] = data.manglik,
+      this.dataArray['kuldevi'] = data.kuldevi,
+      this.dataArray['gotra'] = data.gotra,
+      this.dataArray['totalBrothers'] = data.noOfBrothers,
+      this.dataArray['totalSisters'] = data.noOfSisters,
+      this.dataArray['brothers'] = this.brothersArray,
+      this.dataArray['siters'] = this.sistersArray,
+      this.navCtrl.push(MarriageStep3Page, {
+        dataArray: this.dataArray
+      })
     }
   }
 

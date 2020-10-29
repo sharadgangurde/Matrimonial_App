@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -11,13 +12,17 @@ export class HomePage {
 
   user_id: any;
   data: any;
+  dataArray = []
 
-  constructor(public navCtrl: NavController, public api: ServiceProvider, public global: GlobalServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  public api: ServiceProvider, public global: GlobalServiceProvider) {
 
   }
 
   ionViewWillEnter() {
    
+    this.dataArray = this.navParams.get('dataArray')
+    console.log('------- All Data --------', this.dataArray)
+
     if (window.localStorage.getItem('id')) {
       this.user_id = window.localStorage.getItem('id');
 
@@ -32,7 +37,8 @@ export class HomePage {
   logout() {
     this.global.logout().subscribe(res => {
       console.log(res)
-    })
+    });
+    this.navCtrl.push(LoginPage)
     }
 
 }

@@ -29,12 +29,11 @@
                   </ion-label>
                   <ion-input type="text" placeholder="Email" [(ngModel)]="email" formControlName="email"></ion-input>
               </ion-item>
-              <ion-item no-lines
-              *ngIf="( loginForm.get('email').hasError('required') ) && loginForm.get('email').touched">
-              <div class="error">
-                Please input your Email
+              <div *ngFor="let validation of validation_messages.email" >
+                <div *ngIf="loginForm.get('email').hasError(validation.type) && loginForm.get('email').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
               </div>
-            </ion-item>
               <!-- <ion-item>
                   <ion-label>
                       <ion-icon item-left name="mail"></ion-icon>
@@ -42,8 +41,6 @@
                   <ion-input type="password" placeholder="Username"></ion-input>
               </ion-item> -->
           </ion-list>
-
-
 
           <button ion-button round center class="login-btn">Login</button>
 

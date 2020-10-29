@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { App, Events, MenuController, Platform } from 'ionic-angular';
-import { MarriageStep2Page } from '../pages/marriage-details/marriage-step2/marriage-step2';
+import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GlobalServiceProvider } from '../providers/global-service/global-service';
 
@@ -13,7 +13,7 @@ import { GlobalServiceProvider } from '../providers/global-service/global-servic
 export class MyApp {
   rootPage: any;
   user_id: any;
-  constructor(platform: Platform, public events: Events, statusBar: StatusBar, splashScreen: SplashScreen, 
+  constructor(platform: Platform, public events: Events, statusBar: StatusBar, splashScreen: SplashScreen,
     public global: GlobalServiceProvider, public menu: MenuController, public app: App) {
     platform.ready().then(() => {
       statusBar.overlaysWebView(false);
@@ -28,7 +28,7 @@ export class MyApp {
       }
       else {
         window.localStorage.clear();
-        this.rootPage = MarriageStep2Page;
+        this.rootPage = LoginPage;
       }
     });
   }  

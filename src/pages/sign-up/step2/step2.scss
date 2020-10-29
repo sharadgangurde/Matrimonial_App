@@ -72,9 +72,9 @@ page-step2 {
         display: block;
         font-size: 16px;
         background-color: #003466;
-        width: 160px;
+        width: 100px;
         border: 1px solid #fff;
-        height: 46px;
+        height: 35px;
     }
     .logo-box {
         width: 100px;
@@ -83,5 +83,11 @@ page-step2 {
         overflow: hidden;
         border-radius: 10px;
         background-color: #fff;
+    }
+    .error-message {
+        font-size: 1em;
+        color: rgb(255, 1, 1);
+        margin-left: 20px;
+        margin-top: 2px;
     }
 }

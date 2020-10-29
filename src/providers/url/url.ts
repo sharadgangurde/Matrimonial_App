@@ -13,8 +13,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UrlProvider {
-  serverUrl: string = 'http://moderni-projects.in/projects/codeigniter/portfolio/api/'
-  // serverUrl: string = 'http://192.168.1.214/sandip/dotcomMay/'
+  serverUrl: string = 'https://moderni-projects.in/projects/codeigniter/portfolio/api/'
   loginUrl: string;
   emailVerify: any;
   generateOtp: any;
@@ -23,6 +22,7 @@ export class UrlProvider {
   getCountries: any;
   getStatesByCountry: any;
   getCitiesByState: any;
+  getLanguages: any;
   constructor(public http: HttpClient) {
 
     this.loginUrl = 'mobile/login';
@@ -33,6 +33,7 @@ export class UrlProvider {
     this.getCountries = 'authentication/get_countries';
     this.getStatesByCountry = 'authentication/get_state';
     this.getCitiesByState = 'authentication/get_city';
+    this.getLanguages = 'authentication/get_languages';
   }
 
 }

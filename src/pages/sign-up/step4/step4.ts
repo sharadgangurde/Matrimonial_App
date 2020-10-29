@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
 import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
+import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { DivorcedStep1Page } from '../../divorse-details/divorced-step1/divorced-step1';
+import { HomePage } from '../../home/home';
+import { JobDetailsPage } from '../../job-details/job-details';
 import { MarriageStep1Page } from '../../marriage-details/marriage-step1/marriage-step1';
 
 /**
@@ -13,7 +16,7 @@ import { MarriageStep1Page } from '../../marriage-details/marriage-step1/marriag
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-step4',
   templateUrl: 'step4.html',
@@ -22,15 +25,16 @@ export class Step4Page {
 
   signUpForm: FormGroup;
   step3data: any;
-  step2data: any;
-  step1data: any;
-  languages: any = ['Hindi', 'English'];
+  dataArray = {};
+  languages: any;
+  listHobby :any = [];
+  selecteHobby='';
   validation_messages: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public alertCtrl: AlertController, public validation: ValidationMessageProvider) {
     this.signUpForm = new FormGroup({
-      selectedLang: new FormControl('', [Validators.required]),
+      langKnown: new FormControl('', [Validators.required]),
       education: new FormControl('', [Validators.required]),
       annual_income: new FormControl('', [Validators.required]),
       hobbies: new FormControl('', [Validators.required]),
@@ -43,14 +47,14 @@ export class Step4Page {
   
   ionViewDidLoad() {
     console.log('ionViewDidLoad Step4Page');
-    this.step3data = this.navParams.get('step3data'),
-    this.step2data = this.navParams.get('step2data'),
-    this.step1data = this.navParams.get('step1data')
-    // this.languages = this.lang.languages();
-    
-    console.log('----------Page1----------',this.step1data)
-    console.log('----------Page2----------',this.step2data)
-    console.log('----------Page3----------',this.step3data)
+    this.dataArray = this.navParams.get('dataArray'),
+    this.languages = this.navParams.get('language')
+    console.log('----------Page3----------',this.dataArray)
+    console.log('----------language----------',this.languages)
+  }
+
+  goBack() {
+    this.navCtrl.pop()
   }
 
   public signUp(data) {
@@ -65,15 +69,37 @@ export class Step4Page {
       //    this.navCtrl.push(MarriageStep1Page, {data: data, otp: res.otp});
       //   }
       // });
+      
+      this.dataArray['languages'] = data.langKnown,
+      this.dataArray['education'] = data.education,
+      this.dataArray['hobbies'] = data.hobbies,
+      this.dataArray['annual_income'] = data.annual_income,
+      this.dataArray['marital_status'] = data.marital_status,
+      this.dataArray['profession'] = data.profession,
+
+      console.log('--------------------data till--------------- ', this.dataArray)
       if(data.marital_status == 'Unmarried') {
         this.navCtrl.push(MarriageStep1Page, {
-          step1data: this.step1data, step2data: this.step2data, step3data: this.step3data, step4data: data
+          dataArray: this.dataArray
         })
       } else if(data.marital_status == 'Married') {
         console.log('----------------Married--------------')
-      } else if(data.marital_status == 'Divorced/Widowed') {
+        if(data.profession == 'Job') {
+          this.navCtrl.push(JobDetailsPage, {
+            dataArray: this.dataArray,
+          })
+        } else if(data.profession == 'Unemployeed') {
+          this.navCtrl.push(HomePage, {
+            dataArray: this.dataArray
+          })
+        } else if(data.profession == 'Business') {
+          this.navCtrl.push(BusinessStep1Page, {
+            dataArray: this.dataArray
+          })
+        }
+      } else if(data.marital_status == 'Divorced') {
         this.navCtrl.push(DivorcedStep1Page, {
-          step1data: this.step1data, step2data: this.step2data, step3data: this.step3data, step4data: data
+          dataArray: this.dataArray
         })
       }
     } else {
@@ -84,6 +110,43 @@ export class Step4Page {
         control.markAsTouched({ onlySelf: true });
       })
     }
+  }
+
+  public addHobby() {
+    let alert = this.alertCtrl.create({
+      title: 'Add Hobby',
+      inputs: [
+        {
+          name: 'hobby',
+          placeholder: 'Enter Hobby'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+         //   console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Add TO List',
+          handler: data => {
+            if (!data) {
+              console.log('we have data',data.hobby)
+            } else {
+              // invalid login
+              console.log('add hobby',data.hobby)
+              this.selecteHobby = data.hobby;
+              data.hobby = ''
+             this.listHobby.push(this.selecteHobby);
+              return false;
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

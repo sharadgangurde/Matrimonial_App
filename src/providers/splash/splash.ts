@@ -18,23 +18,26 @@ export class SplashProvider {
     toast.present();
   }
   presentLoading() {
-    let loading = this.loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       spinner: 'hide',
       content: `
         <div class="custom-spinner-container">
           <div class="custom-spinner-box">
-             <img src="assets/imgs/loader.gif" />
+            <img src="assets/imgs/loader.gif" />
           </div>
         </div>`,
-      duration: 1000
+      //duration: 1000
     });
 
-    loading.onDidDismiss(() => {
+    this.loading.onDidDismiss(() => {
     });
 
-    loading.present();
+    this.loading.present();
   }
 
+  dismiss() {
+    this.loading.dismiss();
+  }
   loadingShow() {
     this.loading = this.loadingCtrl.create({
       spinner: 'hide',
