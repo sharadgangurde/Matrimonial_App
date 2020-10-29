@@ -10,7 +10,8 @@ import { NewsPage } from '../news/news';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  tabsEnabled = true;
+  
   tab1Root = HomePage;
   tab2Root = AboutPage;
   tab3Root = ContactPage;
@@ -19,5 +20,9 @@ export class TabsPage {
 
   constructor() {
 
+  }
+        
+  enableTabs(enable: boolean): void {
+    this.tabsEnabled = enable;
   }
 }

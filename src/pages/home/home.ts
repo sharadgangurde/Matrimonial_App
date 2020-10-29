@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { LoginPage } from '../login/login';
@@ -14,7 +14,10 @@ export class HomePage {
   data: any;
   dataArray = []
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,  public api: ServiceProvider, public global: GlobalServiceProvider) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,  
+    public app:App, 
+    public api: ServiceProvider, public global: GlobalServiceProvider) {
 
   }
 
@@ -38,7 +41,7 @@ export class HomePage {
     this.global.logout().subscribe(res => {
       console.log(res)
     });
-    this.navCtrl.push(LoginPage)
+    this.app.getRootNav().setRoot(LoginPage);
     }
 
 }
