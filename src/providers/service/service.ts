@@ -81,6 +81,7 @@ export class ServiceProvider {
   public registration(formdata) {
     var result;
     console.log(formdata);
+    
     result = this.http.post(this.serverURl + this.registrationUrl, (formdata)).map(this.checkApi());
     return result;
   }

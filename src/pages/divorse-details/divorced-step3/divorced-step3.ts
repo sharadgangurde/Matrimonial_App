@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ServiceProvider } from '../../../providers/service/service';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { ChildrensPage } from '../../childrens/childrens';
 import { HomePage } from '../../home/home';
@@ -25,7 +26,8 @@ export class DivorcedStep3Page {
   modal: any;
   divorcedForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public modalCtrl: ModalController, public api: ServiceProvider) {
     this.divorcedForm = new FormGroup({
       height: new FormControl(),
       weight: new FormControl(),
@@ -64,8 +66,11 @@ export class DivorcedStep3Page {
         this.navCtrl.push(JobDetailsPage, {dataArray: this.dataArray})
       } else if(this.dataArray['profession'] == 'Business') {
         this.navCtrl.push(BusinessStep1Page, {dataArray: this.dataArray})
-      } else {
-        this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+      } else if(this.dataArray['profession'] == 'Unemployed') {
+        this.api.registration(this.dataArray).subscribe(res => {
+          console.log(res)
+          this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+        });
       }      
     }
   }

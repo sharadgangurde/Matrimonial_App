@@ -80,7 +80,7 @@ export class LoginPage {
 
           let formdata = new FormData();
           formdata.append('email', data.email);
-
+          console.log('---email----', formdata)
           this.api.generateOtp(formdata).subscribe(res => {
             if(res.flag == 3) {
               this.navCtrl.push(OtpPage, {

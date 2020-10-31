@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
+import { SplashProvider } from '../../providers/splash/splash';
 import { HomePage } from '../home/home';
 
 /**
@@ -20,9 +21,9 @@ export class JobDetailsPage {
 
   jobDetailsForm: FormGroup;
   dataArray = {};
-  formdata: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: ServiceProvider, public splash: SplashProvider) {
     this.jobDetailsForm = new FormGroup({
       experience: new FormControl('', [Validators.required]),
       company: new FormControl('', [Validators.required]),
@@ -52,8 +53,14 @@ export class JobDetailsPage {
       this.dataArray['awards'] = data.awards;
       
       this.api.registration(this.dataArray).subscribe(res => {
-        console.log(res)
-        this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+        if(res.flag == 0) {
+          this.splash.toast(res.message)        
+        } else if(res.status == "true") {
+          this.splash.toast(res.message)
+          this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+        } else if(res.flag == 7) {
+          this.splash.toast('Registration failed')
+        }
       })
     }
   }

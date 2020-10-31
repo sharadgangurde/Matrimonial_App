@@ -31,21 +31,20 @@
             </label>
           </ion-row>
         -->
-
+        <button item-end clear ion-button (click)="getPhoto()"><ion-icon name="add">Upload Images</ion-icon></button>
         <ion-row class="gender-box">
-          <ion-col (click)="getPhoto('otherpics')" *ngIf="otherpics" col-4>
-              <div class="document-img-box">
-                  <img [src]="otherpics">
-              </div>
-          </ion-col>
-          <ion-col *ngIf="!otherpics" (click)="getPhoto('otherpics')" col-4>
+          <div *ngFor="let pics of allImages">
+            <ion-icon name="md-close" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+            <ion-col>
+              
               <div class="document-img-box dotted-border">
-                  <ion-icon ios="ios-add-circle" md="md-add-circle" class="add-img-icon"></ion-icon>
+                <img [src]="pics">
               </div>
-          </ion-col>
-      </ion-row>
+            </ion-col>
+          </div>
+        </ion-row>
 
-      <ion-input formControlName="otherpics" [(ngModel)]="otherpics" type="text" hidden></ion-input>
+      <ion-input formControlName="allImages" [(ngModel)]="allImages" type="text" hidden></ion-input>
 
             <ion-item>
               <ion-label>
@@ -65,7 +64,7 @@
               <ion-label>
                 <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-              <ion-select interface="popover" placeholder="Father Occupasion" formControlName="fatherOccupation">
+              <ion-select interface="popover" placeholder="Father Occupation" formControlName="fatherOccupation">
                 <ion-option value="PE">Private emloye</ion-option>
                 <ion-option value="Bu">Bussiness</ion-option>
                 <ion-option value="O">Other</ion-option>
@@ -76,7 +75,7 @@
               <ion-label>
                 <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-              <ion-select interface="popover" placeholder="Mother Occupasion" formControlName="motherOccupation">
+              <ion-select interface="popover" placeholder="Mother Occupation" formControlName="motherOccupation">
                 <ion-option value="PE">Private emloye</ion-option>
                 <ion-option value="Bu">Bussiness</ion-option>
                 <ion-option value="O">Other</ion-option>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
+import { SplashProvider } from '../../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { DivorcedStep1Page } from '../../divorse-details/divorced-step1/divorced-step1';
@@ -32,7 +33,7 @@ export class Step4Page {
   validation_messages: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
-    public alertCtrl: AlertController, public validation: ValidationMessageProvider) {
+    public alertCtrl: AlertController, public validation: ValidationMessageProvider, public splash: SplashProvider) {
     this.signUpForm = new FormGroup({
       langKnown: new FormControl('', [Validators.required]),
       education: new FormControl('', [Validators.required]),
@@ -88,9 +89,16 @@ export class Step4Page {
           this.navCtrl.push(JobDetailsPage, {
             dataArray: this.dataArray,
           })
-        } else if(data.profession == 'Unemployeed') {
-          this.navCtrl.push(HomePage, {
-            dataArray: this.dataArray
+        } else if(data.profession == 'Unemployed') {
+          this.api.registration(this.dataArray).subscribe(res => {
+            if(res.flag == 0) {
+              this.splash.toast(res.message)        
+            } else if(res.status == "true") {
+              this.splash.toast(res.message)
+              this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+            } else if(res.flag == 7) {
+              this.splash.toast('Registration failed')
+            }
           })
         } else if(data.profession == 'Business') {
           this.navCtrl.push(BusinessStep1Page, {

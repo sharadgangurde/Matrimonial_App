@@ -140,7 +140,8 @@ export class Step1Page {
       this.dataArray['lastname'] = data.lastName,
       this.dataArray['phone1'] = data.phone1,
       this.dataArray['phone2'] = data.phone2,
-      this.dataArray['photo'] = this.selfie,
+      this.dataArray['email'] = data.email,
+      this.dataArray['photo'] = this.selfie.changingThisBreaksApplicationSecurity,
 
       this.navCtrl.push(Step2Page, {dataArray: this.dataArray, country: this.countries})
     }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { ServiceProvider } from '../../../providers/service/service';
+import { SplashProvider } from '../../../providers/splash/splash';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { HomePage } from '../../home/home';
 import { JobDetailsPage } from '../../job-details/job-details';
@@ -21,7 +23,8 @@ export class MarriageStep3Page {
 
   marriageForm: FormGroup;
   dataArray = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
+    public splash: SplashProvider) {
     this.marriageForm = new FormGroup({
       height: new FormControl('', [Validators.required]),
       weight: new FormControl('', [Validators.required]),
@@ -44,12 +47,21 @@ export class MarriageStep3Page {
       this.dataArray['skin'] = data.skin,
       this.dataArray['about'] = data.about;
       
-      if(this.dataArray['profession'] == 'Job') { 
+      if(this.dataArray['profession'] == 'Job') {
         this.navCtrl.push(JobDetailsPage, {dataArray: this.dataArray})
       } else if(this.dataArray['profession'] == 'Business') {
         this.navCtrl.push(BusinessStep1Page, {dataArray: this.dataArray})
-      } else {
-        this.navCtrl.push(HomePage)
+      } else if(this.dataArray['profession'] == 'Unemployed'){
+        this.api.registration(this.dataArray).subscribe(res => {
+          if(res.flag == 0) {
+            this.splash.toast(res.message)
+          } else if(res.status == "true") {
+            this.splash.toast(res.message)
+            this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+          } else if(res.flag == 7) {
+            this.splash.toast('Registration failed')
+          }
+        })
       }    
       
     }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { ServiceProvider } from '../../../providers/service/service';
+import { SplashProvider } from '../../../providers/splash/splash';
 import { HomePage } from '../../home/home';
 
 /**
@@ -18,7 +20,8 @@ import { HomePage } from '../../home/home';
 export class BusinessStep3Page {
   businessForm: FormGroup;
   dataArray = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
+    public splash: SplashProvider) {
     this.businessForm = new FormGroup({
       website: new FormControl('', [Validators.required]),
       linkedin: new FormControl('', [Validators.required]),
@@ -44,10 +47,17 @@ export class BusinessStep3Page {
       this.dataArray['facebook'] = data.facebook,
       this.dataArray['instagram'] = data.instagram,
 
-      this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+      this.api.registration(this.dataArray).subscribe(res => {
+        if(res.flag == 0) {
+          this.splash.toast(res.message)
+        } else if(res.status == "true") {
+          this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+        } else if(res.flag == 7) {
+          this.splash.toast('Registration failed')
+        }
+      })
     } else {
       console.log('------ Form err------');
-      
     }
   }
 

@@ -7,6 +7,7 @@ import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { FilePath } from '@ionic-native/file-path';
+import { ImagePicker } from '@ionic-native/image-picker';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -170,7 +171,8 @@ import { MyApp } from './app.component';
     Camera,
     Base64,
     FileChooser,
-    FilePath
+    FilePath,
+    ImagePicker
   ]
 })
 export class AppModule{ }

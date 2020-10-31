@@ -3,10 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Base64 } from '@ionic-native/base64';
 import { Camera } from '@ionic-native/camera';
-import { File, FileEntry } from '@ionic-native/file';
+import { File } from '@ionic-native/file';
+import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { ActionSheetController, NavController, NavParams } from 'ionic-angular';
 import { SplashProvider } from '../../../providers/splash/splash';
 import { MarriageStep2Page } from '../marriage-step2/marriage-step2';
+
 
 /**
  * Generated class for the MarriageStep1Page page.
@@ -25,6 +27,7 @@ export class MarriageStep1Page {
   dataArray = {};
   marriageForm: FormGroup;
   otherpics: any;
+  allImages = [];
 
   constructor(
     public navCtrl: NavController,
@@ -32,12 +35,13 @@ export class MarriageStep1Page {
     public actionSheetCtrl: ActionSheetController,
     public splash: SplashProvider,
     public sanitizer: DomSanitizer,
+    private imagePicker: ImagePicker,
     public base64: Base64,
     public camera: Camera,
     public file: File
     ) {
     this.marriageForm = new FormGroup({
-      otherpics: new FormControl('', [Validators.required]),
+      allImages: new FormControl(),
       fathername: new FormControl('', [Validators.required]),
       fathermobileno: new FormControl('', [Validators.required]),
       fatherOccupation: new FormControl('', [Validators.required]),
@@ -52,15 +56,14 @@ export class MarriageStep1Page {
     console.log('---------------Data at Marriage Step1----------------- ',this.dataArray)
   }
 
-  public getPhoto(side) {
+  public getPhoto() {
     let actionSheet = this.actionSheetCtrl.create({
       buttons: [{
         text: 'File Manager',
         icon: 'folder-open',
         cssClass: 'actionSheetButon',
         handler: () => {
-          this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY, side);
-        // this.fileChoose(side)
+          this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       },
       {
@@ -69,63 +72,57 @@ export class MarriageStep1Page {
         cssClass: 'actionSheetButon',
         handler: () => {
 
-          this.takePicture(this.camera.PictureSourceType.CAMERA, side);
+          this.takePicture(this.camera.PictureSourceType.CAMERA);
         }
       },]
     });
     actionSheet.present();
   }
   
-  public takePicture(sourceType, side) {
-    // Create options for the Camera Dialog
-    
-    var options = {
-      quality: 100,
-      sourceType: sourceType,
-      saveToPhotoAlbum: true,
-      correctOrientation: true,
-      DestinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      maxiImagesCount: 4 // defaults to 1
-    };
-    this.camera.getPicture(options).then((imagePath) => {
-      this.file.resolveLocalFilesystemUrl(imagePath).then(fileInfo => {
-        let files = fileInfo as FileEntry;
-        files.file(() => {
-          // this.fileName = success.name
-          this.convertImageToBase64(imagePath, side);
-
-        });
-      }, err => {
-        console.log(err);
-        throw err;
-      });
-    });
+  takePicture(sourceType: number) {
+    var options:ImagePickerOptions = {
+      maximumImagesCount:3,
+      width:100,
+      height:100,
+    }
+      this.imagePicker.getPictures(options).then((results) => {
+        for (var i = 0; i < results.length; i++) {
+          let filename = results[i].substring(results[i].lastIndexOf('/')+1);
+          let path = results[i].substring(0,results[i].lastIndexOf('/')+1);
+          this.file.readAsDataURL(path,filename).then((base64string)=>{
+            this.allImages.push(base64string)
+            console.log('Image URI: ' + results[i]);
+          })
+        }
+      }, (err) => {})
+            
   }
+
+  deletePhoto(index){
+    this.allImages.splice(index, 1);
+ }
   
-  private convertImageToBase64(base64: string, side) {
-    this.splash.presentLoading();
-    this.base64.encodeFile(base64).then((base64File: string) => {
+  // private convertImageToBase64(base64: string) {
+  //   this.splash.presentLoading();
+  //   this.base64.encodeFile(base64).then((base64File: string) => {
 
-      if (side == 'otherpics') {
-        this.otherpics = this.sanitizer.bypassSecurityTrustResourceUrl(base64File);
-        this.splash.dismiss();
-      }
-    }, (err) => {
-      this.splash.dismiss()
-      console.log(err);
-    });
-  }
+  //       this.allImages.push(this.sanitizer.bypassSecurityTrustResourceUrl(base64File));
+  //       this.splash.dismiss();
+ 
+  //   }, (err) => {
+  //     this.splash.dismiss()
+  //     console.log(err);
+  //   });
+  
 
   submitDetails(data) {
     if(this.marriageForm.valid) {
 
-      this.dataArray['otherpics'] = 'pending',
+      this.dataArray['otherpics'] = this.allImages,
       this.dataArray['fathername'] = data.fathername,
       this.dataArray['fatherMobileNo'] = data.fathermobileno,
       this.dataArray['fatherOccupation'] = data.fatherOccupation,
-      this.dataArray['motherOccupaion'] = data.motherOccupation,
+      this.dataArray['motherOccupation'] = data.motherOccupation,
 
       this.navCtrl.push(MarriageStep2Page, {
         dataArray: this.dataArray
