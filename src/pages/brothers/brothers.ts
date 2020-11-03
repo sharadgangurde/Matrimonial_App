@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams, Slides, ViewController } from 'ionic-angular';
 import moment from 'moment';
+import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
+
 
 /**
  * Generated class for the BrothersPage page.
@@ -25,9 +27,11 @@ export class BrothersPage {
   brothersArray = [];
   noOfBrothers: any;
   calculateAge: any;
+  validation_messages: any;
   @ViewChild('slides') slides: Slides;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+    public validation: ValidationMessageProvider) {
     this.brothersForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
@@ -35,12 +39,20 @@ export class BrothersPage {
       marital_status: new FormControl('', [Validators.required]),
       mobile: new FormControl('', [Validators.required]),
     });
+    
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BrothersPage');
     this.noOfBrothers = this.navParams.get('value');
   }
+
+  
+  dragging(){
+    $("#contenitore").addClass("no-scroll")
+   }
+   
 
   public ageFromDateOfBirthday(birthdate: any): number {
     return moment().diff(birthdate, 'years');

@@ -57,14 +57,6 @@ export class Step3Page {
   goBack() {
     this.navCtrl.pop()
   }
-
-  public age(data){
-    console.log(data);
-    var timeDiff = Math.abs(Date.now() - data);
-    console.log(timeDiff);
-    this.calculatedAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
-    console.log(this.calculatedAge);
-  }
   
   signUp(data) {
     if(this.signUpForm.valid) {
@@ -83,7 +75,8 @@ export class Step3Page {
       Object.keys(this.signUpForm.controls).forEach(field => {
         const control = this.signUpForm.get(field);
         control.markAsTouched({ onlySelf: true });
-      })
+      });
+      return;
     }
   }
 }

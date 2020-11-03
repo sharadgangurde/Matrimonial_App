@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BrothersPage } from '../../brothers/brothers';
 import { SistersPage } from '../../sisters/sisters';
 import { DivorcedStep3Page } from '../divorced-step3/divorced-step3';
@@ -24,18 +25,22 @@ export class DivorcedStep2Page {
   brothersArray = [];
   sistesArray = [];
   modal: any;
+  validation_messages: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public validation: ValidationMessageProvider
     ) {
     this.divorcedForm = new FormGroup({
-      kuldevi: new FormControl(),
-      gotra: new FormControl(),
-      manglik: new FormControl(),
-      noOfBrothers: new FormControl(),
-      noOfSisters: new FormControl()
-    })
+      kuldevi: new FormControl('', [Validators.required]),
+      gotra: new FormControl('', [Validators.required]),
+      manglik: new FormControl('', [Validators.required]),
+      noOfBrothers: new FormControl('', [Validators.required]),
+      noOfSisters: new FormControl('', [Validators.required])
+    });
+
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
@@ -43,6 +48,10 @@ export class DivorcedStep2Page {
     this.dataArray = this.navParams.get('dataArray')
   }
 
+  goBack() {
+    this.navCtrl.pop()
+  }
+  
   haveBrother(value) {
     this.modal = this.modalCtrl.create(BrothersPage, {value: value});
     this.modal.onDidDismiss((data) => {
@@ -73,6 +82,14 @@ export class DivorcedStep2Page {
         dataArray: this.dataArray
       });
       
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.divorcedForm.controls).forEach(field => {
+        const control = this.divorcedForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 }

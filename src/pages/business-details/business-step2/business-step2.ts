@@ -48,8 +48,13 @@ export class BusinessStep2Page {
 
       this.navCtrl.push(BusinessStep3Page, {dataArray: this.dataArray})
     } else {
-      console.log('-------- form err -------');
-      
+      console.log('form errr');
+
+      Object.keys(this.businessForm.controls).forEach(field => {
+        const control = this.businessForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 

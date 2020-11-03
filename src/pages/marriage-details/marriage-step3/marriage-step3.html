@@ -16,41 +16,53 @@
                 <ion-label>
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
-                <ion-select interface="popover" placeholder="Height" formControlName="height">
-                  <ion-option value="below 4ft">Below 4ft</ion-option>
-                  <ion-option value="avrage 5-6ft">Avrage 5-6ft</ion-option>
-                  <ion-option value="above 6ft">Above 6 fit</ion-option>
-                </ion-select>
+                <ion-input type="number"  placeholder="Height in cm" formControlName="height"></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="marriageForm.get('height').hasError(validation.type) && marriageForm.get('height').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
   
               <ion-item>
                 <ion-label>
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
-                <ion-select interface="popover" placeholder="Weight" formControlName="weight" required>
-                  <ion-option value="below 55kg">Below 55kg</ion-option>
-                  <ion-option value="avrage 40-70kg">Avrage 40-70kg</ion-option>
-                  <ion-option value="above 70kg">Above 70kg</ion-option>
-                </ion-select>
+                <ion-input type="number"  placeholder="Weight in Kg" formControlName="weight"></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="marriageForm.get('weight').hasError(validation.type) && marriageForm.get('weight').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
   
               <ion-item>
                 <ion-label>
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
-                <ion-select interface="popover" placeholder="Skin Tone" formControlName="skin" required>
+                <ion-select interface="popover" placeholder="Skin Tone" formControlName="skin">
                   <ion-option value="whiteskin">white</ion-option>
                   <ion-option value="avgskin">Average </ion-option>
                   <ion-option value="darkskin">Dark</ion-option>
                 </ion-select>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="marriageForm.get('skin').hasError(validation.type) && marriageForm.get('skin').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
     
               <ion-item>
                 <ion-label>
                   <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                 </ion-label>
-                <ion-textarea type="text"  placeholder="About" formControlName="about" required></ion-textarea>
+                <ion-textarea type="text"  placeholder="About" formControlName="about"></ion-textarea>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="marriageForm.get('about').hasError(validation.type) && marriageForm.get('about').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
   
             </ion-list> 
             <ion-row>

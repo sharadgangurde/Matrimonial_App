@@ -15,6 +15,9 @@ export class ValidationMessageProvider {
   }
   validationMessage() {
     this.validation_messages = {
+      'commonmessage': [
+        {type: 'required', message: 'This field should not be empty'}
+      ],
       'firstName': [
         {type: 'required', message: 'Enter a name'},
         {type: 'pattern', message: 'Enter a valid name'}
@@ -33,11 +36,13 @@ export class ValidationMessageProvider {
       ],
       'mobile': [
         {type: 'required', message: 'Enter mobile number'},
-        {type: 'minlength', message: 'Enter a valid Number'}
+        {type: 'minlength', message: 'Enter a valid Mobile Number'},
+        {type: 'maxlength', message: 'Enter a valid mobile Number'}
       ],
       'phone1': [
         {type: 'required', message: 'Enter mobile number'},
-        {type: 'minlength', message: 'Enter a valid Number'}
+        {type: 'minlength', message: 'Enter a valid Number'},
+        {type: 'maxlength', message: 'Enter a valid mobile Number'}
       ],
       'phone2': [
         {type: 'required', message: 'Enter mobile number'},
@@ -105,6 +110,9 @@ export class ValidationMessageProvider {
       ],
       'profession': [
         {type: 'required', message: 'Select profession status'},
+      ],
+      'fatherOccupation': [
+        {type: 'required', message: 'Select occipation'},
       ],
     }
     return this.validation_messages;

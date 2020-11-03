@@ -94,4 +94,15 @@ page-brothers {
     .btnNext {
         margin-top: 0%;
     }
+    .no-scroll {
+        div.scroll-content {
+            overflow-y: hidden;
+        }
+    }
+    .error-message {
+        font-size: 1em;
+        color: rgb(255, 1, 1);
+        margin-left: 20px;
+        margin-top: 2px;
+    }
 }

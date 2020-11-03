@@ -106,7 +106,8 @@ export class Step2Page {
       Object.keys(this.signUpForm.controls).forEach(field => {
         const control = this.signUpForm.get(field);
         control.markAsTouched({ onlySelf: true });
-      })
+      });
+      return;
     }
   }
 

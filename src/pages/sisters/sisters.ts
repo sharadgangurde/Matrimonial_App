@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams, Slides, ViewController } from 'ionic-angular';
 import moment from 'moment';
+import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
 
 /**
  * Generated class for the SistersPage page.
@@ -19,16 +20,21 @@ export class SistersPage {
   sistersArray = [];
   noOfSisters: any;
   calculateAge: any;
+  validation_messages: any;
   @ViewChild('slides') slides: Slides;
   sistersForm: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+   validation: ValidationMessageProvider) {
     this.sistersForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       dob: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
       marital_status: new FormControl('', [Validators.required]),
+      sisteroccupation: new FormControl('', [Validators.required]),
       mobile: new FormControl('', [Validators.required]),
     });
+
+    this.validation_messages = validation.validationMessage();
   }
 
   ionViewDidLoad() {

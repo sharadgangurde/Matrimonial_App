@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
 import { SplashProvider } from '../../../providers/splash/splash';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { HomePage } from '../../home/home';
 import { JobDetailsPage } from '../../job-details/job-details';
@@ -23,14 +24,18 @@ export class MarriageStep3Page {
 
   marriageForm: FormGroup;
   dataArray = {};
+  validation_messages: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
-    public splash: SplashProvider) {
+    public splash: SplashProvider, public validation: ValidationMessageProvider) {
     this.marriageForm = new FormGroup({
       height: new FormControl('', [Validators.required]),
       weight: new FormControl('', [Validators.required]),
       skin: new FormControl('', [Validators.required]),
       about: new FormControl('', [Validators.required]),
-    })
+    });
+
+    this.validation_messages = this.validation.validationMessage();
   }
 
   ionViewDidLoad() {
@@ -39,6 +44,10 @@ export class MarriageStep3Page {
     console.log('--------------data at marriage step3----------- ', this.dataArray)
   }
 
+  goBack() {
+    this.navCtrl.pop()
+  }
+  
   submitDetails(data) {
     if(this.marriageForm.valid) {
 
@@ -64,6 +73,14 @@ export class MarriageStep3Page {
         })
       }    
       
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.marriageForm.controls).forEach(field => {
+        const control = this.marriageForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 

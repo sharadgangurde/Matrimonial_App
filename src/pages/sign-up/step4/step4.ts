@@ -83,7 +83,7 @@ export class Step4Page {
         this.navCtrl.push(MarriageStep1Page, {
           dataArray: this.dataArray
         })
-      } else if(data.marital_status == 'Married') {
+      } else if(data.marital_status == 'Married' || data.marital_status == 'Never_Married') {
         console.log('----------------Married--------------')
         if(data.profession == 'Job') {
           this.navCtrl.push(JobDetailsPage, {
@@ -116,7 +116,8 @@ export class Step4Page {
       Object.keys(this.signUpForm.controls).forEach(field => {
         const control = this.signUpForm.get(field);
         control.markAsTouched({ onlySelf: true });
-      })
+      });
+      return;
     }
   }
 

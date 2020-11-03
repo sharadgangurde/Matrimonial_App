@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
+import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
 import { HomePage } from '../home/home';
 
 /**
@@ -21,9 +22,10 @@ export class JobDetailsPage {
 
   jobDetailsForm: FormGroup;
   dataArray = {};
+  validation_messages: this;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public api: ServiceProvider, public splash: SplashProvider) {
+    public api: ServiceProvider, public splash: SplashProvider, public validation: ValidationMessageProvider) {
     this.jobDetailsForm = new FormGroup({
       experience: new FormControl('', [Validators.required]),
       company: new FormControl('', [Validators.required]),
@@ -33,12 +35,18 @@ export class JobDetailsPage {
       totalExperience: new FormControl('', [Validators.required]),
       currentSalary: new FormControl('', [Validators.required]),
       expectedSalary: new FormControl('', [Validators.required])
-    })
+    });
+
+    this.validation_messages = this.validation.validationMessage();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobDetailsPage');
     this.dataArray = this.navParams.get('dataArray')
+  }
+
+  goBack() {
+    this.navCtrl.pop()
   }
 
   submitDetails(data) {
@@ -62,6 +70,14 @@ export class JobDetailsPage {
           this.splash.toast('Registration failed')
         }
       })
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.jobDetailsForm.controls).forEach(field => {
+        const control = this.jobDetailsForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 }

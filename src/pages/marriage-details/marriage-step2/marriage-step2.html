@@ -18,6 +18,11 @@
             </ion-label>
             <ion-input type="text"  placeholder="Kul Devi" formControlName="kuldevi" required></ion-input>
           </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('kuldevi').hasError(validation.type) && marriageForm.get('kuldevi').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
 
           <ion-item>
             <ion-label>
@@ -25,6 +30,11 @@
             </ion-label>
             <ion-input type="text"  placeholder="Gotra" formControlName="gotra" required></ion-input>
           </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('gotra').hasError(validation.type) && marriageForm.get('gotra').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
 
           <div formControlName="manglik" radio-group>
             <p>Manglik</p>
@@ -41,6 +51,11 @@
               </ion-col>
             </ion-row>           
           </div>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('manglik').hasError(validation.type) && marriageForm.get('manglik').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
 
           <ion-item>
             <ion-label>
@@ -56,6 +71,11 @@
               <ion-option value="6">6</ion-option>
             </ion-select>
           </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('noOfBrothers').hasError(validation.type) && marriageForm.get('noOfBrothers').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
          
           <!-- <span *ngIf="isBrothers == 'Yes';">
             <ion-item>
@@ -84,6 +104,12 @@
               <ion-option value="6">6</ion-option>
             </ion-select>
           </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('noOfSisters').hasError(validation.type) && marriageForm.get('noOfSisters').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+          
         </ion-list> 
         <ion-row>
           <ion-col>

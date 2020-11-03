@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BrothersPage } from '../../brothers/brothers';
 import { SistersPage } from '../../sisters/sisters';
 import { MarriageStep3Page } from '../marriage-step3/marriage-step3';
@@ -28,11 +29,13 @@ export class MarriageStep2Page {
   sistersArray = [];
   modal: any;
   dataFromModal: any;
+  validation_messages: any;
   
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public validation: ValidationMessageProvider
     ) {
     this.marriageForm = new FormGroup({
       noOfBrothers: new FormControl('', [Validators.required]),
@@ -40,7 +43,9 @@ export class MarriageStep2Page {
       manglik: new FormControl('', [Validators.required]),
       kuldevi: new FormControl('', [Validators.required]),
       gotra: new FormControl('', [Validators.required])
-    })
+    });
+
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
@@ -57,6 +62,10 @@ export class MarriageStep2Page {
 
     //let formdata = new FormData()
     //formdata.append('brothers', this.brothersArray[0]);
+  }
+
+  goBack() {
+    this.navCtrl.pop()
   }
 
   haveBrothers(value) {
@@ -107,6 +116,14 @@ export class MarriageStep2Page {
       this.navCtrl.push(MarriageStep3Page, {
         dataArray: this.dataArray
       })
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.marriageForm.controls).forEach(field => {
+        const control = this.marriageForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 

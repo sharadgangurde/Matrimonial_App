@@ -20,6 +20,11 @@
                   </ion-label>
                   <ion-input type="text"  placeholder="Enter Sisters Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="sistersForm.get('name').hasError(validation.type) && sistersForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -29,6 +34,11 @@
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="sistersForm.get('dob').hasError(validation.type) && sistersForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -48,6 +58,29 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('marital_status').hasError(validation.type) && sistersForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+                <ion-item>
+                  <ion-label>
+                    <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  </ion-label>
+                  <ion-select interface="popover" placeholder="Occupation" formControlName="sisteroccupation">
+                    <ion-option value="Business">Business</ion-option>
+                    <ion-option value="private_job">Private Job</ion-option>
+                    <ion-option value="government_job">Government Job</ion-option>
+                    <ion-option value="housewife">House wife</ion-option>
+                    <ion-option value="other">other</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('sisteroccupation').hasError(validation.type) && sistersForm.get('sisteroccupation').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -55,7 +88,12 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
-                
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="sistersForm.get('mobile').hasError(validation.type) && sistersForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
               <span *ngIf="noOfSisters > 1; else elseBlock">
@@ -80,8 +118,13 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 2nd sisters Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter Sisters Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="sistersForm.get('name').hasError(validation.type) && sistersForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -91,6 +134,11 @@
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="sistersForm.get('dob').hasError(validation.type) && sistersForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -99,7 +147,7 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-
+    
                 <ion-item>
                   <ion-label>
                     <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
@@ -110,6 +158,29 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('marital_status').hasError(validation.type) && sistersForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+                <ion-item>
+                  <ion-label>
+                    <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  </ion-label>
+                  <ion-select interface="popover" placeholder="Occupation" formControlName="sisteroccupation">
+                    <ion-option value="Business">Business</ion-option>
+                    <ion-option value="private_job">Private Job</ion-option>
+                    <ion-option value="government_job">Government Job</ion-option>
+                    <ion-option value="housewife">House wife</ion-option>
+                    <ion-option value="other">other</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('sisteroccupation').hasError(validation.type) && sistersForm.get('sisteroccupation').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -117,7 +188,12 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
-                
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="sistersForm.get('mobile').hasError(validation.type) && sistersForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
               <span *ngIf="noOfSisters > 2; else elseBlock">
@@ -144,8 +220,13 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 3rd sisters Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter Sisters Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="sistersForm.get('name').hasError(validation.type) && sistersForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -155,6 +236,11 @@
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="sistersForm.get('dob').hasError(validation.type) && sistersForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -174,6 +260,29 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('marital_status').hasError(validation.type) && sistersForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+                <ion-item>
+                  <ion-label>
+                    <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  </ion-label>
+                  <ion-select interface="popover" placeholder="Occupation" formControlName="sisteroccupation">
+                    <ion-option value="Business">Business</ion-option>
+                    <ion-option value="private_job">Private Job</ion-option>
+                    <ion-option value="government_job">Government Job</ion-option>
+                    <ion-option value="housewife">House wife</ion-option>
+                    <ion-option value="other">other</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('sisteroccupation').hasError(validation.type) && sistersForm.get('sisteroccupation').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -181,7 +290,12 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
-                
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="sistersForm.get('mobile').hasError(validation.type) && sistersForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
               <span *ngIf="noOfSisters > 3; else elseBlock">
@@ -208,8 +322,13 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 4th sisters Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter Sisters Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="sistersForm.get('name').hasError(validation.type) && sistersForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -218,7 +337,12 @@
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
-                </ion-item> 
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="sistersForm.get('dob').hasError(validation.type) && sistersForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -238,6 +362,29 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('marital_status').hasError(validation.type) && sistersForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+                <ion-item>
+                  <ion-label>
+                    <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  </ion-label>
+                  <ion-select interface="popover" placeholder="Occupation" formControlName="sisteroccupation">
+                    <ion-option value="Business">Business</ion-option>
+                    <ion-option value="private_job">Private Job</ion-option>
+                    <ion-option value="government_job">Government Job</ion-option>
+                    <ion-option value="housewife">House wife</ion-option>
+                    <ion-option value="other">other</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('sisteroccupation').hasError(validation.type) && sistersForm.get('sisteroccupation').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -245,7 +392,12 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
-                
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="sistersForm.get('mobile').hasError(validation.type) && sistersForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
               <span *ngIf="noOfSisters > 4; else elseBlock">
@@ -272,8 +424,13 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 5th sisters Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter Sisters Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="sistersForm.get('name').hasError(validation.type) && sistersForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -283,6 +440,11 @@
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="sistersForm.get('dob').hasError(validation.type) && sistersForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -302,6 +464,29 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('marital_status').hasError(validation.type) && sistersForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+                <ion-item>
+                  <ion-label>
+                    <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  </ion-label>
+                  <ion-select interface="popover" placeholder="Occupation" formControlName="sisteroccupation">
+                    <ion-option value="Business">Business</ion-option>
+                    <ion-option value="private_job">Private Job</ion-option>
+                    <ion-option value="government_job">Government Job</ion-option>
+                    <ion-option value="housewife">House wife</ion-option>
+                    <ion-option value="other">other</ion-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="sistersForm.get('sisteroccupation').hasError(validation.type) && sistersForm.get('sisteroccupation').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -309,9 +494,13 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
-                
-              </ion-list>
-              <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="sistersForm.get('mobile').hasError(validation.type) && sistersForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
+
+              </ion-list>              <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
               <span *ngIf="noOfSisters > 5; else elseBlock">
                 <button type="submit" float-right ion-button color="primary" class="btnNext" (click)="close(sistersForm.value)">Save & Next</button>
                 <button type="submit" float-left ion-button  color="primary" class="btnPrev" (click)="prev()">Prev</button>

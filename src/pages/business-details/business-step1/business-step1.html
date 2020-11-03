@@ -18,6 +18,39 @@
 
           <form [formGroup]="businessForm" (ngSubmit)="submitDetails(businessForm.value)">
             <ion-list class="login-user-info">
+              <ion-row class="gender-box">
+                <span *ngIf="selfie; else elseBlock">
+                  <ion-col  col-4>
+                    <div class="document-img-box">
+                        <img [src]="selfie">
+                    </div>
+                  </ion-col>
+                </span>
+                <ng-template #elseBlock>
+                  <ion-col col-4>
+                    <div class="document-img-box dotted-border">
+                      <button item-end clear ion-button (click)="getLogo('selfie')"><ion-icon name="add">Upload Logo</ion-icon></button>
+                    </div>
+                  </ion-col>
+                </ng-template>
+                
+            </ion-row>
+  
+            <ion-input formControlName="selfie" [(ngModel)]="selfie" type="text" hidden></ion-input>
+
+              <button item-end clear ion-button (click)="getPhoto()"><ion-icon name="add">Upload Other Pics</ion-icon></button>
+                <ion-row class="gender-box">
+                  <div *ngFor="let pics of allImages">
+                    <ion-icon name="md-close" class="deleteIcon" (click)="deletePhoto(id)"></ion-icon>
+                    <ion-col>
+                      
+                      <div class="document-img-box dotted-border">
+                        <img [src]="pics">
+                      </div>
+                    </ion-col>
+                  </div>
+                </ion-row>
+
                 <ion-item>
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>

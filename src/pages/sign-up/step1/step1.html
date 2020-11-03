@@ -99,7 +99,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                     </ion-label>
-                    <ion-input type="number" placeholder="Mobile No 2" ([ngModel])="phone2" formControlName="phone2"></ion-input>
+                    <ion-input type="number" placeholder="Mobile No 2(Optional)" ([ngModel])="phone2" formControlName="phone2"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.phone2" >
                     <div *ngIf="signUpForm.get('phone2').hasError(validation.type) && signUpForm.get('phone2').touched">

@@ -52,6 +52,23 @@
               </ion-label>
               <ion-input type="text"  placeholder="Father Name" formControlName="fathername" required></ion-input>
             </ion-item>
+            <div *ngFor="let validation of validation_messages.name" >
+              <div *ngIf="marriageForm.get('fathername').hasError(validation.type) && marriageForm.get('fathername').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+              </ion-label>
+              <ion-input type="text"  placeholder="Mother Name" formControlName="mothername" required></ion-input>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.name" >
+              <div *ngIf="marriageForm.get('mothername').hasError(validation.type) && marriageForm.get('mothername').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
           
             <ion-item>
               <ion-label>
@@ -59,28 +76,46 @@
               </ion-label>
               <ion-input type="number"  placeholder="Father Mobile No" formControlName="fathermobileno" required></ion-input>
             </ion-item>
+            <div *ngFor="let validation of validation_messages.mobile" >
+              <div *ngIf="marriageForm.get('fathermobileno').hasError(validation.type) && marriageForm.get('fathermobileno').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
 
             <ion-item>
               <ion-label>
                 <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-              <ion-select interface="popover" placeholder="Father Occupation" formControlName="fatherOccupation">
-                <ion-option value="PE">Private emloye</ion-option>
-                <ion-option value="Bu">Bussiness</ion-option>
-                <ion-option value="O">Other</ion-option>
+              <ion-select interface="popover" placeholder="Father occupation" formControlName="fatherOccupation">
+                <ion-option value="Business">Business</ion-option>
+                <ion-option value="private_job">Private Job</ion-option>
+                <ion-option value="government_job">Government Job</ion-option>
+                <ion-option value="other">other</ion-option>
               </ion-select>
             </ion-item>
+            <div *ngFor="let validation of validation_messages.fatherOccupation" >
+              <div *ngIf="marriageForm.get('fatherOccupation').hasError(validation.type) && marriageForm.get('fatherOccupation').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
 
             <ion-item>
               <ion-label>
                 <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-              <ion-select interface="popover" placeholder="Mother Occupation" formControlName="motherOccupation">
-                <ion-option value="PE">Private emloye</ion-option>
-                <ion-option value="Bu">Bussiness</ion-option>
-                <ion-option value="O">Other</ion-option>
+              <ion-select interface="popover" placeholder="Mother occupation" formControlName="motherOccupation">
+                <ion-option value="Business">Business</ion-option>
+                <ion-option value="private_job">Private Job</ion-option>
+                <ion-option value="government_job">Government Job</ion-option>
+                <ion-option value="housewife">House wife</ion-option>
+                <ion-option value="other">other</ion-option>
               </ion-select>
             </ion-item>
+            <div *ngFor="let validation of validation_messages.fatherOccupation" >
+              <div *ngIf="marriageForm.get('motherOccupation').hasError(validation.type) && marriageForm.get('motherOccupation').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
             
           </ion-list>
           <ion-row>

@@ -27,6 +27,11 @@
             </ion-label>
             <ion-input type="text"  placeholder="Fatehr Name" formControlName="fatherName"></ion-input>
         </ion-item>
+        <div *ngFor="let validation of validation_messages.name" >
+          <div *ngIf="divorcedForm.get('fatherName').hasError(validation.type) && divorcedForm.get('fatherName').touched">
+            <div class="error-message">{{validation.message}}</div>
+          </div>
+        </div>
 
         <ion-item>
           <ion-label>
@@ -34,28 +39,45 @@
           </ion-label>
           <ion-input type="number"  placeholder="Father Mobile No" formControlName="fatherMobileNo"></ion-input>
         </ion-item>
+        <div *ngFor="let validation of validation_messages.mobile" >
+          <div *ngIf="divorcedForm.get('fatherMobileNo').hasError(validation.type) && divorcedForm.get('fatherMobileNo').touched">
+            <div class="error-message">{{validation.message}}</div>
+          </div>
+        </div>
 
         <ion-item>
           <ion-label>
             <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
           </ion-label>
-          <ion-select interface="popover" placeholder="Father Occupasion" formControlName="fatherOccupation">
+          <ion-select interface="popover" placeholder="Father occupation" formControlName="fatherOccupation">
             <ion-option value="PE">Private emloye</ion-option>
             <ion-option value="Bu">Bussiness</ion-option>
             <ion-option value="O">Other</ion-option>
           </ion-select>
         </ion-item>
+        <div *ngFor="let validation of validation_messages.fatherOccupation" >
+          <div *ngIf="divorcedForm.get('fatherOccupation').hasError(validation.type) && divorcedForm.get('fatherOccupation').touched">
+            <div class="error-message">{{validation.message}}</div>
+          </div>
+        </div>
 
         <ion-item>
           <ion-label>
             <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
           </ion-label>
-          <ion-select interface="popover" placeholder="Mother Occupasion" formControlName="motherOccupation">
-            <ion-option value="PE">Private emloye</ion-option>
-            <ion-option value="Bu">Bussiness</ion-option>
-            <ion-option value="O">Other</ion-option>
+          <ion-select interface="popover" placeholder="Mother occupation" formControlName="motherOccupation">
+            <ion-option value="private_job">Private Job</ion-option>
+            <ion-option value="government_job">Government Job</ion-option>
+            <ion-option value="business">Business</ion-option>
+            <ion-option value="housewife">House wife</ion-option>
+            <ion-option value="other">other</ion-option>
           </ion-select>
         </ion-item>
+        <div *ngFor="let validation of validation_messages.fatherOccupation" >
+          <div *ngIf="divorcedForm.get('motherOccupation').hasError(validation.type) && divorcedForm.get('motherOccupation').touched">
+            <div class="error-message">{{validation.message}}</div>
+          </div>
+        </div>
 
       </ion-list> 
       <ion-row>

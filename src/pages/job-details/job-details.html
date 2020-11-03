@@ -23,6 +23,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Experience" ([ngModel])="experience" formControlName="experience"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('experience').hasError(validation.type) && jobDetailsForm.get('experience').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -30,6 +35,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder=" Current company details" ([ngModel])="company" formControlName="company"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('company').hasError(validation.type) && jobDetailsForm.get('company').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -37,6 +47,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Achievements" ([ngModel])="achievements" formControlName="achievements"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('achievements').hasError(validation.type) && jobDetailsForm.get('achievements').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -44,6 +59,11 @@
                     </ion-label>
                     <ion-input type="text" placeholder="Awards" ([ngModel])="awards" formControlName="awards"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('awards').hasError(validation.type) && jobDetailsForm.get('awards').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                     <ion-label>
@@ -59,6 +79,11 @@
 
                     </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('noticePeriod').hasError(validation.type) && jobDetailsForm.get('noticePeriod').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -74,6 +99,11 @@
 
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('totalExperience').hasError(validation.type) && jobDetailsForm.get('totalExperience').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -85,6 +115,11 @@
 
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('currentSalary').hasError(validation.type) && jobDetailsForm.get('currentSalary').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -96,6 +131,11 @@
 
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="jobDetailsForm.get('expectedSalary').hasError(validation.type) && jobDetailsForm.get('expectedSalary').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
             </ion-list>
 

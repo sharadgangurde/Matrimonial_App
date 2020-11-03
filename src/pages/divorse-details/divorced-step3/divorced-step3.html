@@ -19,23 +19,25 @@
 				<ion-label>
 					<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
 				</ion-label>
-				<ion-select interface="popover" placeholder="Height" formControlName="height">
-					<ion-option value="belowft">Below 4ft</ion-option>
-					<ion-option value="avrageft">Avrage 5-6ft</ion-option>
-					<ion-option value="aboveft">Above 6 fit</ion-option>
-				</ion-select>
+				<ion-input type="number"  placeholder="Height in cm" formControlName="height"></ion-input>
 			</ion-item>
+			<div *ngFor="let validation of validation_messages.commonmessage" >
+				<div *ngIf="divorcedForm.get('height').hasError(validation.type) && divorcedForm.get('height').touched">
+				  <div class="error-message">{{validation.message}}</div>
+				</div>
+			</div>
 		
 			<ion-item>
 				<ion-label>
 					<ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
 				</ion-label>
-				<ion-select interface="popover" placeholder="Weight" formControlName="weight">
-					<ion-option value="belowft">Below 40kg</ion-option>
-					<ion-option value="avrageft">Avrage 40-70kg</ion-option>
-					<ion-option value="aboveft">Above 70kg</ion-option>
-				</ion-select>
+				<ion-input type="number"  placeholder="Weight in kg" formControlName="weight"></ion-input>
 			</ion-item>
+			<div *ngFor="let validation of validation_messages.commonmessage" >
+				<div *ngIf="divorcedForm.get('weight').hasError(validation.type) && divorcedForm.get('weight').touched">
+				  <div class="error-message">{{validation.message}}</div>
+				</div>
+			</div>
 		  
 			<ion-item>
 				<ion-label>
@@ -47,6 +49,11 @@
 					<ion-option value="darkskin">Dark</ion-option>
 				</ion-select>
 			</ion-item>
+			<div *ngFor="let validation of validation_messages.commonmessage" >
+				<div *ngIf="divorcedForm.get('skin').hasError(validation.type) && divorcedForm.get('skin').touched">
+				  <div class="error-message">{{validation.message}}</div>
+				</div>
+			</div>
 	  
 			<ion-item>
 				<ion-label>
@@ -54,6 +61,11 @@
 				</ion-label>
 				<ion-textarea type="text"  placeholder="About" formControlName="about"></ion-textarea>
 			</ion-item>
+			<div *ngFor="let validation of validation_messages.commonmessage" >
+				<div *ngIf="divorcedForm.get('about').hasError(validation.type) && divorcedForm.get('about').touched">
+				  <div class="error-message">{{validation.message}}</div>
+				</div>
+			</div>
 
 			<ion-item>
 				<ion-label>
@@ -68,6 +80,11 @@
 					<ion-option value="5">5</ion-option>
 				</ion-select>
 			</ion-item>
+			<div *ngFor="let validation of validation_messages.commonmessage" >
+				<div *ngIf="divorcedForm.get('noOfChildrens').hasError(validation.type) && divorcedForm.get('noOfChildrens').touched">
+				  <div class="error-message">{{validation.message}}</div>
+				</div>
+			</div>
 		
 
       	</ion-list> 

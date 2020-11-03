@@ -45,8 +45,8 @@ export class Step1Page {
         middleName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
         email: new FormControl('', [Validators.required, Validators.pattern(EMAILPATTERN) ]),
-        phone1: new FormControl('', [Validators.required, ]),
-        phone2: new FormControl('', [Validators.required]),
+        phone1: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
+        phone2: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
         selfie: new FormControl(),
       });
     this.validation_messages = this.validation.validationMessage()
@@ -141,7 +141,7 @@ export class Step1Page {
       this.dataArray['phone1'] = data.phone1,
       this.dataArray['phone2'] = data.phone2,
       this.dataArray['email'] = data.email,
-      this.dataArray['photo'] = this.selfie.changingThisBreaksApplicationSecurity,
+      // this.dataArray['photo'] = this.selfie.changingThisBreaksApplicationSecurity,
 
       this.navCtrl.push(Step2Page, {dataArray: this.dataArray, country: this.countries})
     }
@@ -151,7 +151,8 @@ export class Step1Page {
       Object.keys(this.signUpForm.controls).forEach(field => {
         const control = this.signUpForm.get(field);
         control.markAsTouched({ onlySelf: true });
-      })
+      });
+      return;
     }
   }
 

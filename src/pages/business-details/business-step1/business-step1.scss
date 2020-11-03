@@ -84,5 +84,24 @@ page-business-step1 {
         border-radius: 10px;
         background-color: #fff;
     }
-       
+    .deleteIcon {
+        position: absolute !important;
+        color: #f81212 !important;
+        margin-left: 10% !important;
+        font-size: 20px !important;
+      }
+      .deleteIcon:before {
+        font-size: 20px !important;
+      }
+      .document-img-box {
+          padding: 2px;
+          height: 100px;
+          width: 75px;
+      }
+      .error-message {
+        font-size: 1em;
+        color: rgb(255, 1, 1);
+        margin-left: 20px;
+        margin-top: 2px;
+    }
 }

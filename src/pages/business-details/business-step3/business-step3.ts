@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
 import { SplashProvider } from '../../../providers/splash/splash';
@@ -23,10 +23,10 @@ export class BusinessStep3Page {
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public splash: SplashProvider) {
     this.businessForm = new FormGroup({
-      website: new FormControl('', [Validators.required]),
-      linkedin: new FormControl('', [Validators.required]),
-      facebook: new FormControl('', [Validators.required]),
-      instagram: new FormControl('', [Validators.required])
+      website: new FormControl(),
+      linkedin: new FormControl(),
+      facebook: new FormControl(),
+      instagram: new FormControl()
     })
   }
 
@@ -57,7 +57,13 @@ export class BusinessStep3Page {
         }
       })
     } else {
-      console.log('------ Form err------');
+      console.log('form errr');
+
+      Object.keys(this.businessForm.controls).forEach(field => {
+        const control = this.businessForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 

@@ -21,6 +21,11 @@
 					</ion-label>
 					<ion-input type="text"  placeholder="Kul Devi" formControlName="kuldevi"></ion-input>
 				</ion-item>
+				<div *ngFor="let validation of validation_messages.commonmessage" >
+					<div *ngIf="divorcedForm.get('kuldevi').hasError(validation.type) && divorcedForm.get('kuldevi').touched">
+					  <div class="error-message">{{validation.message}}</div>
+					</div>
+				  </div>
 
 				<ion-item>
 					<ion-label>
@@ -28,6 +33,11 @@
 					</ion-label>
 					<ion-input type="text"  placeholder="Gotra" formControlName="gotra"></ion-input>
 				</ion-item>
+				<div *ngFor="let validation of validation_messages.commonmessage" >
+					<div *ngIf="divorcedForm.get('gotra').hasError(validation.type) && divorcedForm.get('gotra').touched">
+					  <div class="error-message">{{validation.message}}</div>
+					</div>
+				  </div>
 
 				<div formControlName="manglik" radio-group>
 					<p>Manglik</p>
@@ -44,6 +54,11 @@
 						</ion-col>
 					</ion-row>           
 				</div>
+				<div *ngFor="let validation of validation_messages.commonmessage" >
+					<div *ngIf="divorcedForm.get('manglik').hasError(validation.type) && divorcedForm.get('manglik').touched">
+					  <div class="error-message">{{validation.message}}</div>
+					</div>
+				  </div>
 
 				<ion-item>
 					<ion-label>
@@ -58,6 +73,11 @@
 						<ion-option value="5">5</ion-option>
 					</ion-select>
 				</ion-item>
+				<div *ngFor="let validation of validation_messages.commonmessage" >
+					<div *ngIf="divorcedForm.get('noOfBrothers').hasError(validation.type) && divorcedForm.get('noOfBrothers').touched">
+					  <div class="error-message">{{validation.message}}</div>
+					</div>
+				  </div>
 
 				<ion-item>
 					<ion-label>
@@ -72,6 +92,11 @@
 						<ion-option value="5">5</ion-option>
 					</ion-select>
 				</ion-item>
+				<div *ngFor="let validation of validation_messages.commonmessage" >
+					<div *ngIf="divorcedForm.get('noOfSisters').hasError(validation.type) && divorcedForm.get('noOfSisters').touched">
+					  <div class="error-message">{{validation.message}}</div>
+					</div>
+				</div>
 
 			</ion-list> 
 			<ion-row>

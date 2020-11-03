@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { DivorcedStep2Page } from '../divorced-step2/divorced-step2';
 
 /**
@@ -19,20 +20,28 @@ export class DivorcedStep1Page {
 
   divorcedForm: FormGroup;
   dataArray = {};
+  validation_messages: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public validation: ValidationMessageProvider) {
     this.divorcedForm = new FormGroup({
       otherpics: new FormControl(),
-      fatherName: new FormControl(),
-      fatherMobileNo: new FormControl(),
-      fatherOccupation: new FormControl(),
-      motherOccupation: new FormControl()
-    })
+      fatherName: new FormControl('', [Validators.required]),
+      fatherMobileNo: new FormControl('', [Validators.required]),
+      fatherOccupation: new FormControl('', [Validators.required]),
+      motherOccupation: new FormControl('', [Validators.required])
+    });
+
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DivorcedStep1Page');
     this.dataArray = this.navParams.get('dataArray');
+  }
+
+  goBack() {
+    this.navCtrl.pop()
   }
 
   submitDetails(data) {
@@ -45,7 +54,15 @@ export class DivorcedStep1Page {
       this.navCtrl.push(DivorcedStep2Page, {
         dataArray: this.dataArray,
       })
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.divorcedForm.controls).forEach(field => {
+        const control = this.divorcedForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
-  }
+  } 
 
 }

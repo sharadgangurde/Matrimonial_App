@@ -43,6 +43,10 @@ export class DivorcedStep3Page {
     console.log('---------------Divorced form 3 --------', this.dataArray);
   }
 
+  goBack() {
+    this.navCtrl.pop()
+  }
+  
   haveChildrens(value) {
     this.modal = this.modalCtrl.create(ChildrensPage, {value: value});
     this.modal.onDidDismiss((data) => {
@@ -72,6 +76,14 @@ export class DivorcedStep3Page {
           this.navCtrl.push(HomePage, {dataArray: this.dataArray})
         });
       }      
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.divorcedForm.controls).forEach(field => {
+        const control = this.divorcedForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
   }
 }

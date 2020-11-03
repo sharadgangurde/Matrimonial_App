@@ -65,11 +65,10 @@
                     <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
                 <ion-select interface="popover" placeholder="Annual Income" ([ngModel])="annual_income" formControlName="annual_income">
-                    <ion-option value="0-2lac">0 to 2 Lac</ion-option>
-                    <ion-option value="2-4lac">2 to 4 lac</ion-option>
-                    <ion-option value="4-6lac">4 to 6 lac</ion-option>
-                    <ion-option value="6-8lac">6 to 8 lac</ion-option>
-                    <ion-option value="8 and above">8 and above</ion-option>
+                    <ion-option value="lessThanEightLac">Less than 8 lac</ion-option>
+                    <ion-option value="8-10lac">8 to 10 lac</ion-option>
+                    <ion-option value="10-12lac">10 to 12 lac</ion-option>
+                    <ion-option value="moreThan12Lac">12 and above</ion-option>
                 </ion-select>
               </ion-item>
               <div *ngFor="let validation of validation_messages.annual_income" >
@@ -99,7 +98,8 @@
                     <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
                 <ion-select interface="popover" placeholder="Marital Status" ([ngModel])="marital_status" formControlName="marital_status">
-                    <ion-option value="Married">Married</ion-option>
+                  <ion-option value="Never_Married">Never Married</ion-option>  
+                  <ion-option value="Married">Married</ion-option>
                     <ion-option value="Unmarried">Unmarried</ion-option>
                     <ion-option value="Divorced">Divorced or widowed</ion-option>
                 </ion-select>
