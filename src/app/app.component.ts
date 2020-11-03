@@ -28,7 +28,8 @@ export class MyApp {
       }
       else {
         window.localStorage.clear();
-        this.rootPage = LoginPage;
+        //this.rootPage = LoginPage;
+         this.rootPage = TabsPage;
       }
     });
   }  
