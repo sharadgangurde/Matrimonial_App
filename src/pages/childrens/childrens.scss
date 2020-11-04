@@ -4,13 +4,13 @@ page-childrens {
     }
     .login-box-section {}
     .login-box {
-        z-index: 99;
-        position: absolute;
-        right: 0;
-        left: 0;
-        width: 100%;
-        top: 40%;               //top margin changed by sharad
-        transform: translate(0%, -50%);
+        // z-index: 99;
+        // position: absolute;
+        // right: 0;
+        // left: 0;
+        // width: 100%;
+        // top: 40%;               //top margin changed by sharad
+        // transform: translate(0%, -50%);
     }
     .login-user-info ion-item {
         background-color: transparent;
@@ -85,7 +85,10 @@ page-childrens {
         background-color: #fff;
     }
     ion-slide {
-        margin-top:  20%;
+        /* margin-top: 20%; */
+        height: auto !important;
+        position: static !important;
+        display: block !important;
     }
     //added by sharad
     .btnPrev {
