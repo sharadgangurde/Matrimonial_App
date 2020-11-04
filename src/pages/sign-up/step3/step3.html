@@ -40,11 +40,9 @@
                 <ion-input type="text" placeholder="Age" formControlName="age"
                   value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
               </ion-item>
-              <div *ngFor="let validation of validation_messages.age" >
-                <div *ngIf="signUpForm.get('age').hasError(validation.type) && signUpForm.get('age').touched">
-                  <div class="error-message">{{validation.message}}</div>
-                </div>
-              </div> 
+              <div *ngIf="invalidAgeMsg != 'undefined'" >
+                <div class="error-message">{{invalidAgeMsg}}</div>
+              </div>
 
               <ion-item>
                   <ion-label>

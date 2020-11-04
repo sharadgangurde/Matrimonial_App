@@ -18,6 +18,10 @@ export class ValidationMessageProvider {
       'commonmessage': [
         {type: 'required', message: 'This field should not be empty'}
       ],
+      'name': [
+        {type: 'required', message: 'Enter a name'},
+        {type: 'pattern', message: 'Enter a valid name'}
+      ],
       'firstName': [
         {type: 'required', message: 'Enter a name'},
         {type: 'pattern', message: 'Enter a valid name'}

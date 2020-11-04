@@ -90,10 +90,12 @@ export class Step4Page {
             dataArray: this.dataArray,
           })
         } else if(data.profession == 'Unemployed') {
+          this.splash.presentLoading()
           this.api.registration(this.dataArray).subscribe(res => {
             if(res.flag == 0) {
               this.splash.toast(res.message)        
             } else if(res.status == "true") {
+              this.splash.dismiss()
               this.splash.toast(res.message)
               this.navCtrl.push(HomePage, {dataArray: this.dataArray})
             } else if(res.flag == 7) {
@@ -127,7 +129,7 @@ export class Step4Page {
       inputs: [
         {
           name: 'hobby',
-          placeholder: 'Enter Hobby'
+          placeholder: 'Enter Hobby',
         }
       ],
       buttons: [
@@ -147,9 +149,9 @@ export class Step4Page {
               // invalid login
               console.log('add hobby',data.hobby)
               this.selecteHobby = data.hobby;
-              data.hobby = ''
-             this.listHobby.push(this.selecteHobby);
-              return false;
+              this.listHobby.push(this.selecteHobby);
+              
+              return true;
             }
           }
         }

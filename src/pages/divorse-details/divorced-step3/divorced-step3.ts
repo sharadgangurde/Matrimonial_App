@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../providers/service/service';
+import { SplashProvider } from '../../../providers/splash/splash';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { ChildrensPage } from '../../childrens/childrens';
 import { HomePage } from '../../home/home';
@@ -27,7 +28,8 @@ export class DivorcedStep3Page {
   divorcedForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public modalCtrl: ModalController, public api: ServiceProvider) {
+    public modalCtrl: ModalController, public api: ServiceProvider,
+    public splash: SplashProvider) {
     this.divorcedForm = new FormGroup({
       height: new FormControl(),
       weight: new FormControl(),
@@ -71,10 +73,20 @@ export class DivorcedStep3Page {
       } else if(this.dataArray['profession'] == 'Business') {
         this.navCtrl.push(BusinessStep1Page, {dataArray: this.dataArray})
       } else if(this.dataArray['profession'] == 'Unemployed') {
+
+        this.splash.presentLoading()
         this.api.registration(this.dataArray).subscribe(res => {
-          console.log(res)
-          this.navCtrl.push(HomePage, {dataArray: this.dataArray})
-        });
+          if(res.flag == 0) {
+            this.splash.toast(res.message)  
+           // this.global.setUser(res.data)  
+          } else if(res.status == "true") {
+            this.splash.dismiss()
+            this.splash.toast(res.message)
+            this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+          } else if(res.flag == 7) {
+            this.splash.toast('Registration failed')
+          }
+        })
       }      
     } else {
       console.log('form errr');

@@ -37,6 +37,18 @@
           <ion-label>
             <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
           </ion-label>
+          <ion-input type="text"  placeholder="Mother Name" formControlName="motherName"></ion-input>
+      </ion-item>
+      <div *ngFor="let validation of validation_messages.name" >
+        <div *ngIf="divorcedForm.get('motherName').hasError(validation.type) && divorcedForm.get('motherName').touched">
+          <div class="error-message">{{validation.message}}</div>
+        </div>
+      </div>
+
+        <ion-item>
+          <ion-label>
+            <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+          </ion-label>
           <ion-input type="number"  placeholder="Father Mobile No" formControlName="fatherMobileNo"></ion-input>
         </ion-item>
         <div *ngFor="let validation of validation_messages.mobile" >

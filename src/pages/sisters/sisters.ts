@@ -48,8 +48,16 @@ export class SistersPage {
   }
 
   next(data) {
-    if(data) {
+    if(this.sistersForm.valid) {
       this.sistersArray.push(data)
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.sistersForm.controls).forEach(field => {
+        const control = this.sistersForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
     
     this.slides.slideNext();
@@ -60,8 +68,16 @@ export class SistersPage {
   }
 
   close(data) {
-    if(data) {
+    if(this.sistersForm.valid) {
       this.sistersArray.push(data)
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.sistersForm.controls).forEach(field => {
+        const control = this.sistersForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
     console.log('-------------Data-------------', this.sistersArray);
     this.viewCtrl.dismiss(this.sistersArray)

@@ -13,8 +13,11 @@ page-brothers {
         // transform: translate(0%, -50%);
     }
     ion-slide {
-        margin-top:  20%;
-    }
+        /* margin-top: 20%; */
+        height: auto !important;
+        position: static !important;
+        display: block !important;
+      }
     .login-user-info ion-item {
         background-color: transparent;
         // border: none !important;
@@ -87,7 +90,9 @@ page-brothers {
         border-radius: 10px;
         background-color: #fff;
     }
-    //added by sharad
+    ion-slide {
+        margin-top: 20%;
+    }
     .btnPrev {
         margin-top: 0%;
     }

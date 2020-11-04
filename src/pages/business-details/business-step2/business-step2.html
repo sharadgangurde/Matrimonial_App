@@ -15,60 +15,81 @@
 
   <div class="login-box-section">
       <div class="login-box">
-          <div class="logo-box">
-              <img src="assets/imgs/logo-1.jpg">
-          </div>
+        <form [formGroup]="businessForm" (ngSubmit)="submitDetails(businessForm.value)">
+          <ion-list class="login-user-info">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
+              </ion-label>
+              <ion-input type="text" placeholder="GSTIN" ([ngModel])="gstin" formControlName="gstin"></ion-input>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('gstin').hasError(validation.type) && businessForm.get('gstin').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              </ion-label>
+                <ion-select interface="popover" placeholder="Business Type" ([ngModel])="business_type" formControlName="business_type">
+                  <ion-option value="Production">Production</ion-option>
+                  <ion-option value="Services">Services</ion-option>
+              </ion-select>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('business_type').hasError(validation.type) && businessForm.get('business_type').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
 
-          <form [formGroup]="businessForm" (ngSubmit)="submitDetails(businessForm.value)">
-            <ion-list class="login-user-info">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Products/Services" ([ngModel])="products" formControlName="products"></ion-input>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('products').hasError(validation.type) && businessForm.get('products').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+
               <ion-item>
                 <ion-label>
                   <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                 </ion-label>
-                <ion-input type="text" placeholder="GSTIN" ([ngModel])="gstin" formControlName="gstin"></ion-input>
+                <ion-input type="text" placeholder="About" ([ngModel])="about" formControlName="about"></ion-input>
               </ion-item>
-              <ion-item>
-                <ion-label>
-                  <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
-                </ion-label>
-                  <ion-select interface="popover" placeholder="Business Type" ([ngModel])="business_type" formControlName="business_type">
-                    <ion-option value="Production">Production</ion-option>
-                    <ion-option value="Services">Services</ion-option>
-                </ion-select>
-              </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="businessForm.get('about').hasError(validation.type) && businessForm.get('about').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
 
               <ion-item>
                 <ion-label>
-                  <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                 </ion-label>
-                <ion-input type="text" placeholder="Enter Products/Services" ([ngModel])="products" formControlName="products"></ion-input>
+                <ion-input type="text" placeholder="Annual Turnover" ([ngModel])="turnover" formControlName="turnover"></ion-input>
               </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="businessForm.get('turnover').hasError(validation.type) && businessForm.get('turnover').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
+            </ion-list>
 
-                <ion-item>
-                  <ion-label>
-                    <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
-                  </ion-label>
-                  <ion-input type="text" placeholder="About" ([ngModel])="about" formControlName="about"></ion-input>
-                </ion-item>
-
-                <ion-item>
-                  <ion-label>
-                    <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
-                  </ion-label>
-                  <ion-input type="text" placeholder="Annual Turnover" ([ngModel])="turnover" formControlName="turnover"></ion-input>
-                </ion-item>
-              </ion-list>
-
-              <ion-row>
-                <ion-col>
-                  <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
-                </ion-col>
-                <ion-col>
-                  <button ion-button round center class="login-btn">Next</button>
-                </ion-col>
-              </ion-row>
-          </form>
-        </div>
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn">Next</button>
+              </ion-col>
+            </ion-row>
+        </form>
       </div>
+    </div>
 
 </ion-content>

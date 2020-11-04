@@ -26,6 +26,7 @@ export class Step3Page {
   validation_messages: any;
   calculatedAge: any
   languages: any;
+  invalidAgeMsg: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public validation: ValidationMessageProvider, public api: ServiceProvider) {
     this.signUpForm = new FormGroup({
@@ -51,8 +52,12 @@ export class Step3Page {
   }
 
   public ageFromDateOfBirthday(birthdate: any): number {
+    if(moment().diff(birthdate, 'years') < 18) {
+      this.invalidAgeMsg = 'Only 18+ are allowed';
+    } else this.invalidAgeMsg = null;
     return moment().diff(birthdate, 'years');
   }
+  
 
   goBack() {
     this.navCtrl.pop()

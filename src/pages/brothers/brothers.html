@@ -6,7 +6,7 @@
 -->
 
 <ion-content padding>
-  <ion-slides (ionSlideDrag)="dragging()">
+  <ion-slides #slides>
     <ion-slide>
       <div class="login-box-section">
         <div class="login-box">
@@ -31,7 +31,7 @@
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
-                    formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
+                    formControlName="dob" displayFormat="DD-MM-YYYY" clearInput></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.date_of_birth" >
                   <div *ngIf="brothersForm.get('dob').hasError(validation.type) && brothersForm.get('dob').touched">
@@ -46,11 +46,6 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-                <div *ngFor="let validation of validation_messages.age" >
-                  <div *ngIf="brothersForm.get('age').hasError(validation.type) && brothersForm.get('age').touched">
-                    <div class="error-message">{{validation.message}}</div>
-                  </div>
-                </div>
     
                 <ion-item>
                   <ion-label>
@@ -76,7 +71,6 @@
                     <ion-option value="Business">Business</ion-option>
                     <ion-option value="private_job">Private Job</ion-option>
                     <ion-option value="government_job">Government Job</ion-option>
-                    <ion-option value="housewife">House wife</ion-option>
                     <ion-option value="other">other</ion-option>
                   </ion-select>
                 </ion-item>
@@ -151,11 +145,6 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-                <div *ngFor="let validation of validation_messages.age" >
-                  <div *ngIf="brothersForm.get('age').hasError(validation.type) && brothersForm.get('age').touched">
-                    <div class="error-message">{{validation.message}}</div>
-                  </div>
-                </div>
     
                 <ion-item>
                   <ion-label>
@@ -181,7 +170,6 @@
                     <ion-option value="Business">Business</ion-option>
                     <ion-option value="private_job">Private Job</ion-option>
                     <ion-option value="government_job">Government Job</ion-option>
-                    <ion-option value="housewife">House wife</ion-option>
                     <ion-option value="other">other</ion-option>
                   </ion-select>
                 </ion-item>
@@ -258,11 +246,6 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-                <div *ngFor="let validation of validation_messages.age" >
-                  <div *ngIf="brothersForm.get('age').hasError(validation.type) && brothersForm.get('age').touched">
-                    <div class="error-message">{{validation.message}}</div>
-                  </div>
-                </div>
     
                 <ion-item>
                   <ion-label>
@@ -288,7 +271,6 @@
                     <ion-option value="Business">Business</ion-option>
                     <ion-option value="private_job">Private Job</ion-option>
                     <ion-option value="government_job">Government Job</ion-option>
-                    <ion-option value="housewife">House wife</ion-option>
                     <ion-option value="other">other</ion-option>
                   </ion-select>
                 </ion-item>
@@ -365,11 +347,6 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-                <div *ngFor="let validation of validation_messages.age" >
-                  <div *ngIf="brothersForm.get('age').hasError(validation.type) && brothersForm.get('age').touched">
-                    <div class="error-message">{{validation.message}}</div>
-                  </div>
-                </div>
     
                 <ion-item>
                   <ion-label>
@@ -395,7 +372,6 @@
                     <ion-option value="Business">Business</ion-option>
                     <ion-option value="private_job">Private Job</ion-option>
                     <ion-option value="government_job">Government Job</ion-option>
-                    <ion-option value="housewife">House wife</ion-option>
                     <ion-option value="other">other</ion-option>
                   </ion-select>
                 </ion-item>
@@ -472,11 +448,6 @@
                   <ion-input type="text" placeholder="Age" formControlName="age"
                     value="{{ageFromDateOfBirthday(birthdate)}}" readonly></ion-input>
                 </ion-item>
-                <div *ngFor="let validation of validation_messages.age" >
-                  <div *ngIf="brothersForm.get('age').hasError(validation.type) && brothersForm.get('age').touched">
-                    <div class="error-message">{{validation.message}}</div>
-                  </div>
-                </div>
     
                 <ion-item>
                   <ion-label>
@@ -502,7 +473,6 @@
                     <ion-option value="Business">Business</ion-option>
                     <ion-option value="private_job">Private Job</ion-option>
                     <ion-option value="government_job">Government Job</ion-option>
-                    <ion-option value="housewife">House wife</ion-option>
                     <ion-option value="other">other</ion-option>
                   </ion-select>
                 </ion-item>

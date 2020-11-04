@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BusinessStep3Page } from '../business-step3/business-step3';
 
 /**
@@ -18,15 +19,18 @@ import { BusinessStep3Page } from '../business-step3/business-step3';
 export class BusinessStep2Page {
   businessForm: FormGroup;
   dataArray = {};
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  validation_messages: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public validation: ValidationMessageProvider) {
     this.businessForm = new FormGroup({
       gstin: new FormControl('', [Validators.required]),
       business_type: new FormControl('', [Validators.required]),
       products: new FormControl('', [Validators.required]),
       about: new FormControl('', [Validators.required]),
       turnover: new FormControl('', [Validators.required]),
-    })
+    });
+
+    this.validation_messages = this.validation.validationMessage();
   }
 
   ionViewDidLoad() {

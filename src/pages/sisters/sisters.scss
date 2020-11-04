@@ -4,14 +4,14 @@ page-sisters {
     }
     .login-box-section {}
     .login-box {
-        // z-index: 99;
-        // position: absolute;
-        // right: 0;
-        // left: 0;
-        // width: 100%;
-        // top: 40%;              
+        z-index: 99;
+        position: absolute;
+        right: 0;
+        left: 0;
+        width: 100%;
+        top: 40%;              
     
-        // transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
     }
     .login-user-info ion-item {
         background-color: transparent;

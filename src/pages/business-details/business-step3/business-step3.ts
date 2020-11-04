@@ -47,10 +47,12 @@ export class BusinessStep3Page {
       this.dataArray['facebook'] = data.facebook,
       this.dataArray['instagram'] = data.instagram,
 
+      this.splash.presentLoading()
       this.api.registration(this.dataArray).subscribe(res => {
         if(res.flag == 0) {
           this.splash.toast(res.message)
         } else if(res.status == "true") {
+          this.splash.dismiss()
           this.navCtrl.push(HomePage, {dataArray: this.dataArray})
         } else if(res.flag == 7) {
           this.splash.toast('Registration failed')

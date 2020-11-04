@@ -61,10 +61,12 @@ export class MarriageStep3Page {
       } else if(this.dataArray['profession'] == 'Business') {
         this.navCtrl.push(BusinessStep1Page, {dataArray: this.dataArray})
       } else if(this.dataArray['profession'] == 'Unemployed'){
+        this.splash.presentLoading()
         this.api.registration(this.dataArray).subscribe(res => {
           if(res.flag == 0) {
             this.splash.toast(res.message)
           } else if(res.status == "true") {
+            this.splash.dismiss()
             this.splash.toast(res.message)
             this.navCtrl.push(HomePage, {dataArray: this.dataArray})
           } else if(res.flag == 7) {

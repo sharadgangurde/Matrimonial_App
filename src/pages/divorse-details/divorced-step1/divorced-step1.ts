@@ -27,6 +27,7 @@ export class DivorcedStep1Page {
     this.divorcedForm = new FormGroup({
       otherpics: new FormControl(),
       fatherName: new FormControl('', [Validators.required]),
+      motherName: new FormControl('', [Validators.required]),
       fatherMobileNo: new FormControl('', [Validators.required]),
       fatherOccupation: new FormControl('', [Validators.required]),
       motherOccupation: new FormControl('', [Validators.required])
@@ -48,6 +49,7 @@ export class DivorcedStep1Page {
     if(this.divorcedForm.valid) {
       this.dataArray['otherpics'] = data.otherpics,
       this.dataArray['fatherName'] = data.fatherName,
+      this.dataArray['motherName'] = data.motherName,
       this.dataArray['fatherMobileNo'] = data.fatherMobileNo,
       this.dataArray['fatherOccupation'] = data.fatherOccupation,
       this.dataArray['motherOccupation'] = data.motherOccupation,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
@@ -25,7 +26,8 @@ export class JobDetailsPage {
   validation_messages: this;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public api: ServiceProvider, public splash: SplashProvider, public validation: ValidationMessageProvider) {
+    public api: ServiceProvider, public splash: SplashProvider, public validation: ValidationMessageProvider,
+    public global: GlobalServiceProvider) {
     this.jobDetailsForm = new FormGroup({
       experience: new FormControl('', [Validators.required]),
       company: new FormControl('', [Validators.required]),
@@ -59,11 +61,13 @@ export class JobDetailsPage {
       this.dataArray['currentSalary'] = data.currentSalary,
       this.dataArray['expectedSalary'] = data.expectedSalary,
       this.dataArray['awards'] = data.awards;
-      
+      this.splash.presentLoading()
       this.api.registration(this.dataArray).subscribe(res => {
         if(res.flag == 0) {
-          this.splash.toast(res.message)        
+          this.splash.toast(res.message)  
+         // this.global.setUser(res.data)  4444444444444e
         } else if(res.status == "true") {
+          this.splash.dismiss()
           this.splash.toast(res.message)
           this.navCtrl.push(HomePage, {dataArray: this.dataArray})
         } else if(res.flag == 7) {

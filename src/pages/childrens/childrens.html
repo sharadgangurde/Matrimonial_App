@@ -19,15 +19,25 @@
                   </ion-label>
                   <ion-input type="text"  placeholder="Enter childrens Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="childrensForm.get('name').hasError(validation.type) && childrensForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="childrensForm.get('dob').hasError(validation.type) && childrensForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -47,6 +57,11 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="childrensForm.get('marital_status').hasError(validation.type) && childrensForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -54,6 +69,11 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="childrensForm.get('mobile').hasError(validation.type) && childrensForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                 
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
@@ -79,17 +99,27 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 2nd childrens Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter childrens Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="childrensForm.get('name').hasError(validation.type) && childrensForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="childrensForm.get('dob').hasError(validation.type) && childrensForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -109,6 +139,11 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="childrensForm.get('marital_status').hasError(validation.type) && childrensForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -116,6 +151,11 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="childrensForm.get('mobile').hasError(validation.type) && childrensForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                 
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
@@ -143,17 +183,27 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 3rd childrens Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter childrens Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="childrensForm.get('name').hasError(validation.type) && childrensForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="childrensForm.get('dob').hasError(validation.type) && childrensForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -173,6 +223,11 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="childrensForm.get('marital_status').hasError(validation.type) && childrensForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -180,6 +235,11 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="childrensForm.get('mobile').hasError(validation.type) && childrensForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                 
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
@@ -207,17 +267,27 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 4th childrens Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter childrens Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="childrensForm.get('name').hasError(validation.type) && childrensForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
-                </ion-item> 
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="childrensForm.get('dob').hasError(validation.type) && childrensForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -237,6 +307,11 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="childrensForm.get('marital_status').hasError(validation.type) && childrensForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -244,6 +319,11 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="childrensForm.get('mobile').hasError(validation.type) && childrensForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                 
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->
@@ -271,17 +351,27 @@
                   <ion-label>
                     <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                   </ion-label>
-                  <ion-input type="text"  placeholder="Enter 5th childrens Name" formControlName="name" required></ion-input>
+                  <ion-input type="text"  placeholder="Enter childrens Name" formControlName="name" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.name" >
+                  <div *ngIf="childrensForm.get('name').hasError(validation.type) && childrensForm.get('name').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
-                      <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
+                    <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                   </ion-label>
                   <ion-input type="text" placeholder=" Select Date of Birth" class="textbox-n" 
                     onfocus="(this.type='date')"  [(ngModel)]="birthdate" id="date"
                     formControlName="dob" displayFormat="DD-MM-YYYY"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.date_of_birth" >
+                  <div *ngIf="childrensForm.get('dob').hasError(validation.type) && childrensForm.get('dob').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
   
                 <ion-item *ngIf="birthdate">
                   <ion-label>
@@ -301,6 +391,11 @@
                     <ion-option value="Divorced">Divorced</ion-option>
                   </ion-select>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="childrensForm.get('marital_status').hasError(validation.type) && childrensForm.get('marital_status').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
     
                 <ion-item>
                   <ion-label>
@@ -308,6 +403,11 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile Number" formControlName="mobile" required></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="childrensForm.get('mobile').hasError(validation.type) && childrensForm.get('mobile').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                 
               </ion-list>
               <!-- <button ion-button round center class="login-btn" type="submit">Add</button> -->

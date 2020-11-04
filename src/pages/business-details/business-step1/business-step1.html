@@ -57,6 +57,11 @@
                   </ion-label>
                   <ion-input type="text" placeholder="Company Name" ([ngModel])="company" formControlName="company"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="businessForm.get('company').hasError(validation.type) && businessForm.get('company').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -64,6 +69,11 @@
                   </ion-label>
                   <ion-input type="text" placeholder="Office Address" ([ngModel])="office_address" formControlName="office_address"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.commonmessage" >
+                  <div *ngIf="businessForm.get('office_address').hasError(validation.type) && businessForm.get('office_address').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -71,6 +81,11 @@
                   </ion-label>
                   <ion-input type="email" placeholder="Email Id" ([ngModel])="email" formControlName="email"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.email" >
+                  <div *ngIf="businessForm.get('email').hasError(validation.type) && businessForm.get('email').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
@@ -78,13 +93,23 @@
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile 1" ([ngModel])="mobile1" formControlName="mobile1"></ion-input>
                 </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="businessForm.get('mobile1').hasError(validation.type) && businessForm.get('mobile1').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
 
                 <ion-item>
                   <ion-label>
                     <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                   </ion-label>
                   <ion-input type="number" placeholder="Mobile 2" ([ngModel])="mobile2" formControlName="mobile2"></ion-input>
-                </ion-item> 
+                </ion-item>
+                <div *ngFor="let validation of validation_messages.mobile" >
+                  <div *ngIf="businessForm.get('mobile2').hasError(validation.type) && businessForm.get('mobile2').touched">
+                    <div class="error-message">{{validation.message}}</div>
+                  </div>
+                </div>
                
             </ion-list>
 

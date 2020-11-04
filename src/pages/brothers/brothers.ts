@@ -29,6 +29,7 @@ export class BrothersPage {
   calculateAge: any;
   validation_messages: any;
   @ViewChild('slides') slides: Slides;
+  invalidAgeMsg: string;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public validation: ValidationMessageProvider) {
@@ -37,7 +38,8 @@ export class BrothersPage {
       dob: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
       marital_status: new FormControl('', [Validators.required]),
-      mobile: new FormControl('', [Validators.required]),
+      brotheroccupation: new FormControl('', Validators.required),
+      mobile: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     });
     
     this.validation_messages = this.validation.validationMessage()
@@ -55,12 +57,23 @@ export class BrothersPage {
    
 
   public ageFromDateOfBirthday(birthdate: any): number {
+    // if(moment().diff(birthdate, 'years') < 18) {
+    //   this.invalidAgeMsg = 'You are not elligible';
+    // } else this.invalidAgeMsg = null;
     return moment().diff(birthdate, 'years');
   }
   
   next(data) {
-    if(data) {
+    if(this.brothersForm.valid) {
       this.brothersArray.push(data)
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.brothersForm.controls).forEach(field => {
+        const control = this.brothersForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
     
     this.slides.slideNext();
@@ -71,8 +84,16 @@ export class BrothersPage {
   }
 
   close(data) {
-    if(data) {
+    if(this.brothersForm.valid) {
       this.brothersArray.push(data)
+    } else {
+      console.log('form errr');
+
+      Object.keys(this.brothersForm.controls).forEach(field => {
+        const control = this.brothersForm.get(field);
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
     }
     console.log('-------------Data-------------', this.brothersArray);
     this.viewCtrl.dismiss(this.brothersArray)

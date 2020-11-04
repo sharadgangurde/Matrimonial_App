@@ -7,6 +7,7 @@ import { File, FileEntry } from '@ionic-native/file';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { ActionSheetController, NavController, NavParams } from 'ionic-angular';
 import { SplashProvider } from '../../../providers/splash/splash';
+import { ValidationMessageProvider } from '../../../providers/validation-message/validation-message';
 import { BusinessStep2Page } from '../business-step2/business-step2';
 
 /**
@@ -28,10 +29,12 @@ export class BusinessStep1Page {
   allImages = [];
   otherpics: any;
   selfie: any;
+  validation_messages: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public imagePicker: ImagePicker,
     public camera: Camera, public actionSheetCtrl: ActionSheetController,
     public sanitizer: DomSanitizer, public splash: SplashProvider, public base64: Base64,
+    public validation: ValidationMessageProvider,
     public file: File) {
     this.businessForm = new FormGroup({
       selfie: new FormControl(),
@@ -39,9 +42,11 @@ export class BusinessStep1Page {
       company: new FormControl('', [Validators.required]),
       office_address: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
-      mobile1: new FormControl('', [Validators.required]),
-      mobile2: new FormControl('', [Validators.required]),
-    })
+      mobile1: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      mobile2: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
+    });
+
+    this.validation_messages = this.validation.validationMessage()
   }
 
   ionViewDidLoad() {
@@ -58,16 +63,7 @@ export class BusinessStep1Page {
         handler: () => {
           this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
-      },
-      {
-        text: 'Camera',
-        icon: 'camera',
-        cssClass: 'actionSheetButon',
-        handler: () => {
-
-          this.takePicture(this.camera.PictureSourceType.CAMERA);
-        }
-      },]
+      }],
     });
     actionSheet.present();
   }
