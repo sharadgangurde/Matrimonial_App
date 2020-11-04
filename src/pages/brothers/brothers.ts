@@ -5,13 +5,6 @@ import moment from 'moment';
 import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
 
 
-/**
- * Generated class for the BrothersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 
 @Component({
   selector: 'page-brothers',
@@ -49,10 +42,10 @@ export class BrothersPage {
   }
 
   
-  dragging(){
+ /* dragging(){
     $("#contenitore").addClass("no-scroll")
    }
-   
+   */
 
   public ageFromDateOfBirthday(birthdate: any): number {
     return moment().diff(birthdate, 'years');
