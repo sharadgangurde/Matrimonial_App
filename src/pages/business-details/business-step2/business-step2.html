@@ -30,11 +30,25 @@
             </div>
             <ion-item>
               <ion-label>
-                <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+                  <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
               </ion-label>
-                <ion-select interface="popover" placeholder="Business Type" ([ngModel])="business_type" formControlName="business_type">
-                  <ion-option value="Production">Production</ion-option>
-                  <ion-option value="Services">Services</ion-option>
+              <ion-select interface="popover" placeholder="Select business type"  ([ngModel])="business_type" formControlName="business_type">
+                  <ion-option value="Management">Management services</ion-option>
+                  <ion-option value="Software">Software services</ion-option>
+                  <ion-option value="Consulting">Consulting services</ion-option>
+                  <ion-option value="Training">Training Services</ion-option>
+                   <ion-option value="Financial">Financial services</ion-option>
+                   <ion-option value="Marketing">Marketing Services</ion-option>
+                   <ion-option value="Travel">Travel services</ion-option>
+                   <ion-option value="Catering/restaurant">Catering or restaurant services</ion-option>
+                   <ion-option value="Trading">Trading Services</ion-option>
+                   <ion-option value="Designing">Designing</ion-option>
+                   <ion-option value="Construction">Construction Services</ion-option>
+                   <ion-option value="WasteManagement">Waste Management Services</ion-option>
+                   <ion-option value="Security">Security Services</ion-option>
+                   <ion-option value="Manufacturing">Manufacturing services</ion-option>
+                   <ion-option value="SelfEmployed">Personal Services (Self employed)</ion-option>
+                  <ion-option value="other">Other</ion-option>
               </ion-select>
             </ion-item>
             <div *ngFor="let validation of validation_messages.commonmessage" >

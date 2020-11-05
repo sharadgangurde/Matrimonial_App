@@ -16,7 +16,7 @@
   <div class="login-box-section">
       <div class="login-box">
 
-          <form [formGroup]="signUpForm" (ngSubmit)="signUp(signUpForm.value)">
+          <form [formGroup]="signUpForm">
             <ion-list class="login-user-info">
 
               <ion-item>
@@ -98,7 +98,7 @@
                 <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
               </ion-col>
               <ion-col>
-                <button ion-button round center class="login-btn">Next</button>
+                <button ion-button round center class="login-btn" (click)="signUp(signUpForm.value)">Next</button>
               </ion-col>
             </ion-row>
         </form>
