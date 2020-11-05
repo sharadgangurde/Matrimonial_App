@@ -5,7 +5,8 @@ import { GlobalServiceProvider } from '../../providers/global-service/global-ser
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../providers/validation-message/validation-message';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the JobDetailsPage page.
@@ -65,13 +66,23 @@ export class JobDetailsPage {
       this.api.registration(this.dataArray).subscribe(res => {
         if(res.flag == 0) {
           this.splash.toast(res.message)  
-         // this.global.setUser(res.data)  4444444444444e
+         // this.global.setUser(res.data)
         } else if(res.status == "true") {
           this.splash.dismiss()
+          this.global.setUser(res.userid)
           this.splash.toast(res.message)
-          this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+          let formdata = new FormData()
+          formdata.append('user_id', res.userid)
+          this.api.getAccountDetails(formdata).subscribe(res => {
+            console.log(res)
+            if(res.status == "true") {
+              this.global.setUser(res.data.id);
+              this.navCtrl.setRoot(TabsPage, {data: res.data})
+            }
+          })
         } else if(res.flag == 7) {
           this.splash.toast('Registration failed')
+          this.navCtrl.setRoot(LoginPage)
         }
       })
     } else {

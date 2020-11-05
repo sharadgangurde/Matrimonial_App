@@ -19,7 +19,7 @@
               <img src="assets/imgs/logo-1.jpg">
           </div>
 
-          <form [formGroup]="businessForm" (ngSubmit)="submitDetails(businessForm.value)">
+          <form [formGroup]="businessForm">
             <ion-list class="login-user-info">
                 
                 <ion-item>
@@ -58,7 +58,7 @@
                 <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
               </ion-col>
               <ion-col>
-                <button ion-button round center class="login-btn">Next</button>
+                <button ion-button round center class="login-btn" (click)="submitDetails(businessForm.value)">Next</button>
               </ion-col>
             </ion-row>
         </form>

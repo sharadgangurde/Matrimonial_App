@@ -116,7 +116,8 @@ export class OtpPage {
     console.log('server otp', this.serverOtp, ' ', data.otp)
     if(this.otpForm.valid) {
       if(this.serverOtp == data.otp) {
-        if(this.nonExistingUser) {
+        if(this.id == undefined) {
+          this.splash.toast('Otp verified successfully!')
           this.navCtrl.push(Step1Page, {
             email: this.email,
           })
@@ -126,9 +127,9 @@ export class OtpPage {
           formdata.append('user_id', this.id)
           this.api.getAccountDetails(formdata).subscribe(res => {
             console.log(res)
-            if(res) {
-              this.global.setUser(res.data);
-              this.navCtrl.push(TabsPage)
+            if(res.status == "true") {
+              this.global.setUser(this.id);
+              this.navCtrl.push(TabsPage, {data: res.data})
             }
           })
         }
