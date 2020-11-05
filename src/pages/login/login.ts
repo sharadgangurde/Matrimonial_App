@@ -27,7 +27,8 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public DefineProvider: DefineProvider, public global: GlobalServiceProvider, public events: Events,
-    public splash: SplashProvider, public validation: ValidationMessageProvider
+    public splash: SplashProvider, public validation: ValidationMessageProvider,
+   // private emailComposer: EmailComposer
     ) {
       this.loginForm = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -68,6 +69,7 @@ export class LoginPage {
           this.api.generateOtp(formdata).subscribe(res => {
             console.log(res)
             if (res.flag == 3) {
+              //this.sendOtpToEmail(data.email, res.otp)
             // this.splash.toast(res.data);
             this.navCtrl.push(OtpPage, {email: data.email, otp: res.otp, id: user_id});
             }
@@ -86,7 +88,6 @@ export class LoginPage {
               this.navCtrl.push(OtpPage, {
                 email: data.email,
                 otp: res.otp,
-                nonExistingUser: res.flag
               })
             }            
           })
@@ -111,5 +112,26 @@ export class LoginPage {
       })
     }
   }
+
+  // sendOtpToEmail(emailId, otp) {
+  //   this.emailComposer.isAvailable().then((available: boolean) =>{
+  //     if(available) {
+  //       //Now we know we can send
+  //     }
+  //    });
+     
+  //    let email = {
+  //      to: emailId,
+  //      attachments: [
+  //        `Your One Time Password for Matrimony is${otp}.`
+  //      ],
+  //      subject: 'Matrimony',
+  //      body: 'Please verify your otp using application',
+  //      isHtml: true
+  //    };
+     
+  //    // Send a text message using default options
+  //    this.emailComposer.open(email);
+  // }
 
 }

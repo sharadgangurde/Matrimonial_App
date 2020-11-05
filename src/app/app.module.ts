@@ -139,7 +139,8 @@ import { MyApp } from './app.component';
     Base64,
     FileChooser,
     FilePath,
-    ImagePicker
+    ImagePicker,
+   // EmailComposer
   ]
 })
 export class AppModule{ }

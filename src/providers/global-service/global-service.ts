@@ -6,9 +6,9 @@ export class User {
 
   id: any;
   
-  constructor(response) {
+  constructor(user_id) {
    
-    this.id = response.id;
+    this.id = user_id;
   }
 }
 @Injectable()
@@ -20,13 +20,13 @@ export class GlobalServiceProvider {
   constructor(public http: HttpClient) {
     console.log('Hello GlobleServiceProvider Provider');
   }
-  public setUser(response) {
-    console.log(response);
+  public setUser(user_id) {
+    console.log(user_id);
    
-    this.id = response.id;
-    window.localStorage.setItem('id', response.id);
-    window.localStorage.setItem('response', JSON.stringify(response));
-    this.currentUser = new User(response);
+    this.id = user_id;
+    window.localStorage.setItem('id', user_id);
+    window.localStorage.setItem('response', JSON.stringify(user_id));
+    this.currentUser = new User(user_id);
   }
   public getUserInfo(): User {
     return this.currentUser;
@@ -34,7 +34,7 @@ export class GlobalServiceProvider {
   public setGlobleVariable() {
 
     this.id = window.localStorage.getItem('id');
-    this.currentUser = new User(JSON.parse(window.localStorage.getItem('response')));
+    this.currentUser = new User(window.localStorage.getItem('response'));
   }
   public logout() {
     return Observable.create(observer => {
