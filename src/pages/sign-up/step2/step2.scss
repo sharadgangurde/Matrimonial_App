@@ -2,7 +2,7 @@ page-step2 {
     ion-content.content {
         background-color: #003466;
     }
-    .login-box-section {}
+    //.login-box-section {}
     .login-box {
         z-index: 99;
         position: absolute;
@@ -89,5 +89,15 @@ page-step2 {
         color: rgb(255, 1, 1);
         margin-left: 20px;
         margin-top: 2px;
+    }
+    //change pratik--05/11
+    .btn-next{
+        ///margin: 0px auto;
+        display: block;
+        font-size: 16px;
+        background-color: #003466;
+        width: 100px;
+        border: 1px solid #fff;
+        height: 35px;
     }
 }

@@ -82,6 +82,7 @@ export class Step2Page {
   }
 
   signUp(data) {
+   // this.navCtrl.push(Step3Page, {dataArray: this.dataArray})
     if(this.signUpForm.valid) {
       // let formdata = {
       //   country: data.country,

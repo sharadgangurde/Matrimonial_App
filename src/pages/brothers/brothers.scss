@@ -2,7 +2,7 @@ page-brothers {
     ion-content.content {
         background-color: #003466;
     }
-    .login-box-section {}
+   /* .login-box-section {}
     .login-box {
         // z-index: 99;
         // position: absolute;
@@ -11,7 +11,7 @@ page-brothers {
         // width: 100%;
         // top: 40%;              
         // transform: translate(0%, -50%);
-    }
+    }*/
     ion-slide {
         /* margin-top: 20%; */
         height: auto !important;
@@ -78,7 +78,7 @@ page-brothers {
         display: block;
         font-size: 16px;
         background-color: #003466;
-        width: 160px;
+        width: 100px;
         border: 1px solid #fff;
         height: 46px;
     }

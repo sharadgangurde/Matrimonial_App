@@ -65,7 +65,7 @@ export class JobDetailsPage {
       this.api.registration(this.dataArray).subscribe(res => {
         if(res.flag == 0) {
           this.splash.toast(res.message)  
-         // this.global.setUser(res.data)  4444444444444e
+         // this.global.setUser(res.data)
         } else if(res.status == "true") {
           this.splash.dismiss()
           this.splash.toast(res.message)

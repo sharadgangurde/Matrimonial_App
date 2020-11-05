@@ -51,10 +51,10 @@ export class BrothersPage {
   }
 
   
-  dragging(){
+ /* dragging(){
     $("#contenitore").addClass("no-scroll")
    }
-   
+   */
 
   public ageFromDateOfBirthday(birthdate: any): number {
     // if(moment().diff(birthdate, 'years') < 18) {
