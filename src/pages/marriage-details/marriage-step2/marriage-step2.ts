@@ -91,15 +91,20 @@ export class MarriageStep2Page {
   }
 
   haveSisters(value) {
-    this.modal = this.modalCtrl.create(SistersPage, {value: value});
-    this.modal.onDidDismiss((data) => {
-      // This is going to be executed when the modal is closed, so
-      // you can get the data here
-      this.sistersArray = data;
-      console.log('---------------Data from modal------------ ', this.dataFromModal);
-      
-    });
-    this.modal.present();
+    if(value > 0) {
+      this.modal = this.modalCtrl.create(SistersPage, {value: value});
+      this.modal.onDidDismiss((data) => {
+        // This is going to be executed when the modal is closed, so
+        // you can get the data here
+        this.sistersArray = data;
+        console.log('---------------Data from modal------------ ', this.dataFromModal);
+        
+      });
+      this.modal.present();
+    } else {
+      //No action
+    }
+    
   }
 
   submitDetails(data) {
