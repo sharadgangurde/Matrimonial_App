@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../../providers/global-service/global-service';
 import { ServiceProvider } from '../../../providers/service/service';
 import { SplashProvider } from '../../../providers/splash/splash';
 import { BusinessStep1Page } from '../../business-details/business-step1/business-step1';
 import { ChildrensPage } from '../../childrens/childrens';
-import { HomePage } from '../../home/home';
 import { JobDetailsPage } from '../../job-details/job-details';
+import { LoginPage } from '../../login/login';
+import { TabsPage } from '../../tabs/tabs';
 
 /**
  * Generated class for the DivorcedStep3Page page.
@@ -29,6 +31,7 @@ export class DivorcedStep3Page {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public modalCtrl: ModalController, public api: ServiceProvider,
+    public global: GlobalServiceProvider,
     public splash: SplashProvider) {
     this.divorcedForm = new FormGroup({
       height: new FormControl(),
@@ -50,12 +53,17 @@ export class DivorcedStep3Page {
   }
   
   haveChildrens(value) {
-    this.modal = this.modalCtrl.create(ChildrensPage, {value: value});
-    this.modal.onDidDismiss((data) => {
-      this.childrensArray = data;
-      console.log('---------------Data from modal------------ ', data);
-    });
-    this.modal.present();
+    if(value > 0) {
+      this.modal = this.modalCtrl.create(ChildrensPage, {value: value});
+      this.modal.onDidDismiss((data) => {
+        this.childrensArray = data;
+        console.log('---------------Data from modal------------ ', data);
+      });
+      this.modal.present();
+    } else {
+      //no action
+    }
+    
   }
 
   submitDetails(data) {
@@ -73,18 +81,27 @@ export class DivorcedStep3Page {
       } else if(this.dataArray['profession'] == 'Business') {
         this.navCtrl.push(BusinessStep1Page, {dataArray: this.dataArray})
       } else if(this.dataArray['profession'] == 'Unemployed') {
-
         this.splash.presentLoading()
         this.api.registration(this.dataArray).subscribe(res => {
           if(res.flag == 0) {
             this.splash.toast(res.message)  
-           // this.global.setUser(res.data)  
+           // this.global.setUser(res.data)
           } else if(res.status == "true") {
             this.splash.dismiss()
+            this.global.setUser(res.userid)
             this.splash.toast(res.message)
-            this.navCtrl.push(HomePage, {dataArray: this.dataArray})
+            let formdata = new FormData()
+            formdata.append('user_id', res.userid)
+            this.api.getAccountDetails(formdata).subscribe(res => {
+              console.log(res)
+              if(res.status == "true") {
+                this.global.setUser(res.data.id);
+                this.navCtrl.setRoot(TabsPage, {data: res.data})
+              }
+            })
           } else if(res.flag == 7) {
             this.splash.toast('Registration failed')
+            this.navCtrl.setRoot(LoginPage)
           }
         })
       }      

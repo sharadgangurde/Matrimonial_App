@@ -16,7 +16,6 @@
 
   
     <div  class="login-box-section">
-      <span *ngIf="email; else elseBlock ">
       <div class="login-box">
           <div class="logo-box">
 
@@ -48,11 +47,9 @@
           <button ion-button round center class="login-btn">Verify OTP</button>
         </form>
       </div>
-    </span>
   </div>
 
-<ng-template #elseBlock>
-  <div class="login-box-section">
+  <!-- <div class="login-box-section">
     <div class="login-box">
         <div class="logo-box">
 
@@ -71,12 +68,12 @@
                   <ion-input type="number" placeholder="Enter signup OTP" ([ngModel])="otp" formControlName="otp"></ion-input>
               </ion-item>
 
-              <!-- <ion-item>
+              <ion-item>
                   <ion-label>
                       <ion-icon item-left name="mail"></ion-icon>
                   </ion-label>
                   <ion-input type="password" placeholder="Username"></ion-input>
-              </ion-item> -->
+              </ion-item> 
           </ion-list>
 
 
@@ -84,7 +81,6 @@
             <button ion-button round center class="login-btn">OTP</button>
         </form>
         </div>
-    </div>
-</ng-template>
+    </div>  -->
 
 </ion-content>
