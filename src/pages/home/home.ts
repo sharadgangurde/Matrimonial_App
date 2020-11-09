@@ -32,9 +32,6 @@ export class HomePage {
       let formdata = new FormData();
       formdata.append('user_id', this.user_id)
 
-      this.api.getAccountDetails(formdata).subscribe(res => {
-        this.data = res.data;
-      })
     }
   }
   logout() {

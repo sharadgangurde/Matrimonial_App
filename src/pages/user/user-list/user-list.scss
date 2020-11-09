@@ -1,4 +1,4 @@
-page-news {
+page-user-list {
     .toolbar-background {
         border-bottom: 1px solid #C9C9C9;
         background: #003466;
@@ -91,7 +91,7 @@ page-news {
         float: right !important;
         width: calc(100% - 40px) !important;
         padding-left: 10px;
-        // margin-top: 10px;
+        margin-top: 10px;
     }
     .new-cuntent-box h3 {
         margin: 0px;
@@ -103,4 +103,5 @@ page-news {
         margin: 4px 0px 0px;
         font-size: 12px;
     }
+
 }

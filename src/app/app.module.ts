@@ -31,6 +31,7 @@ import { MarriageStep1Page } from '../pages/marriage-details/marriage-step1/marr
 import { MarriageStep2Page } from '../pages/marriage-details/marriage-step2/marriage-step2';
 import { MarriageStep3Page } from '../pages/marriage-details/marriage-step3/marriage-step3';
 import { MatchPage } from '../pages/match/match';
+import { NewsDetailsPage } from '../pages/news-details/news-details';
 import { NewsPage } from '../pages/news/news';
 import { OtpPage } from '../pages/otp/otp';
 import { SignUpPage } from '../pages/sign-up/sign-up';
@@ -41,6 +42,9 @@ import { Step4Page } from '../pages/sign-up/step4/step4';
 import { SistersPage } from '../pages/sisters/sisters';
 import { SliderPage } from '../pages/slider/slider';
 import { TabsPage } from '../pages/tabs/tabs';
+import { UserPage } from '../pages/user/user';
+import { UserInfoPage } from '../pages/user/user-info/user-info';
+import { UserListPage } from '../pages/user/user-list/user-list';
 import { DefineProvider } from '../providers/define/define';
 import { GlobalServiceProvider } from '../providers/global-service/global-service';
 import { ServiceProvider } from '../providers/service/service';
@@ -81,7 +85,11 @@ import { MyApp } from './app.component';
     DivorcedStep3Page,
     BrothersPage,
     SistersPage,
-    ChildrensPage
+    ChildrensPage,
+    UserPage,
+    UserListPage,
+    UserInfoPage,
+    NewsDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -121,7 +129,11 @@ import { MyApp } from './app.component';
     BusinessDetailsPage,
     DivorseDetailsPage,
     MarriageDetailsPage,
-    ChildrensPage
+    ChildrensPage,
+    UserPage,
+    UserListPage,
+    UserInfoPage,
+    NewsDetailsPage
 
   ],
   providers: [
