@@ -9,7 +9,7 @@ page-news-details {
     }
     h2.header-title-2 {
         margin: 0px;
-        text-align: center;
+       // text-align: center;
         color: #fff;
         font-size: 18px;
         line-height: 48px;
@@ -18,6 +18,11 @@ page-news-details {
         margin-top: 15px;
         width: 26px;
         float: right;
+    }
+    .back-icon-img {
+        margin-top: 10px;
+        width: 26px;
+        float: left;
     }
     .no-padding {
         padding: 0px;
@@ -40,11 +45,6 @@ page-news-details {
     .user-img img {
         width: 100%;
     }
-    .back-icon-img {
-        margin-top: 10px;
-        width: 26px;
-        float: left;
-    }
     .user-info-heaser small {
         color: #fff;
         font-size: 8px;
@@ -57,41 +57,13 @@ page-news-details {
     }
     .title-bg-blue {
         font-size: 20px;
-        padding: 10px 15px;
+        text-align: center;
+        padding: 10px;
         color: #fff;
         margin: 10px 0px;
     }
-    .slider-box {
-        display: block;
-        width: 100%;
-        overflow: hidden;
-        height: 100%;
-        border-radius: 20px !important;
-    }
-    .size-box {
-        border-radius: 20px !important;
-        overflow: hidden;
-    }
     .pad-page-10 {
         padding: 0px 10px !important;
-    }
-    .size-box-slider ion-img {
-        width: 100% !important;
-        min-height: 180px;
-        height: 180px;
-    }
-    .swiper-pagination {
-        display: none;
-    }
-    .size-box-slider ion-card {
-        border-radius: 20px !important;
-        box-shadow: none !important;
-        margin: 0px !important;
-        width: 100%;
-    }
-    .size-box-slider ion-img img {
-        width: 100% !important;
-        height: 100%;
     }
     // ===========================
     .new-box {
@@ -104,9 +76,9 @@ page-news-details {
     }
     .img-box {
         border: 2px solid #003466;
-        width: 80px;
+        width: 40px;
         border-radius: 10px;
-        height: 80px;
+        height: 40px;
         overflow: hidden;
         float: left;
     }
@@ -115,31 +87,20 @@ page-news-details {
         width: 100%;
         height: 100%;
     }
-    .user-info-box {
-        // width: calc(100% - 80px) !important;
-        // padding-left: 10px;
+    .new-cuntent-box {
+        float: right !important;
+        width: calc(100% - 40px) !important;
+        padding-left: 10px;
+        // margin-top: 10px;
     }
-    .user-info-box h3 {
+    .new-cuntent-box h3 {
         margin: 0px;
         font-size: 16px;
         color: #003466;
     }
-    .user-info-box p {
+    .new-cuntent-box p {
         color: #979593;
         margin: 4px 0px 0px;
-        font-size: 14px;
-        line-height: 20px;
-    }
-    .new-cuntent-box p span {
-        color: #003466;
-    }
-    .login-btn {
-        margin: 0px auto;
-        display: block;
-        font-size: 16px;
-        background-color: #003466;
-        max-width: 160px;
-        border: 1px solid #fff;
-        height: 46px;
+        font-size: 12px;
     }
 }
