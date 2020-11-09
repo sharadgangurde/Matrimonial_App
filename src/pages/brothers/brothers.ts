@@ -48,13 +48,7 @@ export class BrothersPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad BrothersPage');
     this.noOfBrothers = this.navParams.get('value');
-  }
-
-  
-  dragging(){
-    $("#contenitore").addClass("no-scroll")
-   }
-   
+  }   
 
   public ageFromDateOfBirthday(birthdate: any): number {
     // if(moment().diff(birthdate, 'years') < 18) {
