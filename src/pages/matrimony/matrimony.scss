@@ -1,0 +1,119 @@
+page-matrimony {
+    .toolbar-background {
+        border-bottom: 1px solid #C9C9C9;
+        background: #003466;
+    }
+    ion-header ion-col {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+    h2.header-title-2 {
+        margin: 0px;
+        text-align: center;
+        color: #fff;
+        font-size: 18px;
+        line-height: 48px;
+    }
+    .menu-list-img {
+        margin-top: 15px;
+        width: 26px;
+        float: right;
+    }
+    .back-icon-img {
+        margin-top: 10px;
+        width: 26px;
+        float: left;
+    }
+    .no-padding {
+        padding: 0px;
+    }
+    .user-info-heaser {}
+    // ion-grid {
+    //     padding: 0px !important;
+    // }
+    .user-info-heaser {
+        text-align: center;
+    }
+    .user-img {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        margin: 0px auto;
+        overflow: hidden;
+    }
+    .user-img img {
+        width: 100%;
+    }
+    .user-info-heaser small {
+        color: #fff;
+        font-size: 8px;
+    }
+    .bg-gray {
+        background-color: #c9c9c9;
+    }
+    .bg-blue {
+        background-color: #003466;
+    }
+    .title-bg-blue {
+        font-size: 20px;
+        text-align: center;
+        padding: 10px;
+        color: #fff;
+        margin: 10px 0px;
+    }
+    .pad-page-10 {
+        padding: 0px 10px !important;
+    }
+    .search-box {
+        background-color: #c9c9c9;
+        position: fixed;
+        width: 100%;
+        padding: 4px 0px;
+    }
+    .search-box input.searchbar-input {
+        border-radius: 30px !important;
+        border: none !important;
+    }
+    .mrg-t-65 {
+        margin-top: 70px;
+    }
+    // ===========================
+    .new-box {
+        box-shadow: rgba(180, 180, 180, 0.5) 0px 0px 10px;
+        padding: 15px;
+        width: 100%;
+        border-radius: 10px;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .img-box {
+        border: 2px solid #003466;
+        width: 40px;
+        border-radius: 10px;
+        height: 40px;
+        overflow: hidden;
+        float: left;
+    }
+    .img-box img {
+        object-fit: fill;
+        width: 100%;
+        height: 100%;
+    }
+    .new-cuntent-box {
+        float: right !important;
+        width: calc(100% - 40px) !important;
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+    .new-cuntent-box h3 {
+        margin: 0px;
+        font-size: 16px;
+        color: #003466;
+    }
+    .new-cuntent-box p {
+        color: #979593;
+        margin: 4px 0px 0px;
+        font-size: 12px;
+    }
+}

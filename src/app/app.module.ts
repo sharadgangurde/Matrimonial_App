@@ -17,6 +17,8 @@ import { BusinessDetailsPage } from '../pages/business-details/business-details'
 import { BusinessStep1Page } from '../pages/business-details/business-step1/business-step1';
 import { BusinessStep2Page } from '../pages/business-details/business-step2/business-step2';
 import { BusinessStep3Page } from '../pages/business-details/business-step3/business-step3';
+import { BusinessInfoPage } from '../pages/business-info/business-info';
+import { BusinessPage } from '../pages/business/business';
 import { ChildrensPage } from '../pages/childrens/childrens';
 import { ContactPage } from '../pages/contact/contact';
 import { DivorcedStep1Page } from '../pages/divorse-details/divorced-step1/divorced-step1';
@@ -31,6 +33,8 @@ import { MarriageStep1Page } from '../pages/marriage-details/marriage-step1/marr
 import { MarriageStep2Page } from '../pages/marriage-details/marriage-step2/marriage-step2';
 import { MarriageStep3Page } from '../pages/marriage-details/marriage-step3/marriage-step3';
 import { MatchPage } from '../pages/match/match';
+import { MatrimonyDetailsPage } from '../pages/matrimony-details/matrimony-details';
+import { MatrimonyPage } from '../pages/matrimony/matrimony';
 import { NewsDetailsPage } from '../pages/news-details/news-details';
 import { NewsPage } from '../pages/news/news';
 import { OtpPage } from '../pages/otp/otp';
@@ -89,7 +93,11 @@ import { MyApp } from './app.component';
     UserPage,
     UserListPage,
     UserInfoPage,
-    NewsDetailsPage
+    NewsDetailsPage,
+    MatrimonyPage,
+    MatrimonyDetailsPage,
+    BusinessPage,
+    BusinessInfoPage
   ],
   imports: [
     BrowserModule,
@@ -133,7 +141,11 @@ import { MyApp } from './app.component';
     UserPage,
     UserListPage,
     UserInfoPage,
-    NewsDetailsPage
+    NewsDetailsPage,
+    MatrimonyPage,
+    MatrimonyDetailsPage,
+    BusinessPage,
+    BusinessInfoPage
 
   ],
   providers: [
