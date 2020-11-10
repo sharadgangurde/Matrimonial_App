@@ -114,10 +114,8 @@ export class OtpPage {
     console.log('Login Flow');
     console.log('server otp', this.serverOtp, ' ', data.otp)
     if(this.otpForm.valid) {
-      this.splash.presentLoading()
       if(this.serverOtp == data.otp) {
         if(this.id == undefined) {
-          this.splash.dismiss()
           this.splash.toast('Otp verified successfully!')
           this.navCtrl.push(Step1Page, {
             email: this.email,
@@ -127,6 +125,7 @@ export class OtpPage {
           console.log(this.id);
           this.splash.toast('Otp verified successfully!')
           formdata.append('user_id', this.id)
+          this.splash.presentLoading()
           this.api.getAccountDetails(formdata).subscribe(res => {
             console.log(res)
             if(res.status == "true") {
