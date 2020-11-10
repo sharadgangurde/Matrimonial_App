@@ -81,10 +81,13 @@
                 <ion-label>
                   <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
                 </ion-label>
-                <ion-select [(ngModel)]="SelecteHobby" formControlName="hobbies" placeholder="Select Hobby"  multiple="true">
+                <ion-input type="text" placeholder="Add Hobby"
+                value="{{listHobby}}" multiple="true" readonly
+                formControlName="hobbies"></ion-input>
+               <!-- <ion-select [(ngModel)]="SelecteHobby" formControlName="hobbies" placeholder="Select Hobby"  multiple="true">
                   <ion-option  *ngFor="let hobby of listHobby">{{hobby}}</ion-option>
                   </ion-select>
-                  You Selected = {{SelecteHobby}}
+                  You Selected = {{SelecteHobby}}-->
                   <button item-end clear ion-button (click)="addHobby()"><ion-icon name="add"></ion-icon></button> 
               </ion-item>
               <div *ngFor="let validation of validation_messages.hobbies" >
