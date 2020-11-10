@@ -62,6 +62,8 @@ export class Step4Page {
   }
 
   public signUp(data) {
+
+  //  console.log('selected HOBBIES ARE----',this.listHobby);
     if(this.signUpForm.value) {
       // let formdata = new FormData();
       // formdata.append('email', data.email);
@@ -76,7 +78,7 @@ export class Step4Page {
       
       this.dataArray['languages'] = data.langKnown,
       this.dataArray['education'] = data.education,
-      this.dataArray['hobbies'] = data.hobbies,
+      this.dataArray['hobbies'] = this.listHobby,
       this.dataArray['annual_income'] = data.annual_income,
       this.dataArray['marital_status'] = data.marital_status,
       this.dataArray['profession'] = data.profession,

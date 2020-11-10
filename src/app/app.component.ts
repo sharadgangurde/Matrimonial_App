@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { App, Events, MenuController, Platform } from 'ionic-angular';
-import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GlobalServiceProvider } from '../providers/global-service/global-service';
 
@@ -28,6 +27,7 @@ export class MyApp {
       }
       else {
         window.localStorage.clear();
+       // this.rootPage = Step4Page;
          this.rootPage = LoginPage;
       }
     });
