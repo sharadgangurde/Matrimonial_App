@@ -103,5 +103,15 @@ page-user-list {
         margin: 4px 0px 0px;
         font-size: 12px;
     }
+    .search-box {
+        background-color: #c9c9c9;
+        position: fixed;
+        width: 100%;
+        padding: 4px 0px;
+    }
+    .search-box input.searchbar-input {
+        border-radius: 30px !important;
+        border: none !important;
+    }
 
 }
