@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ServiceProvider } from '../../../providers/service/service';
 
 /**
  * Generated class for the UserListPage page.
@@ -14,12 +15,21 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user-list.html',
 })
 export class UserListPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userlist: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: ServiceProvider) {
+  /// this.userlist = this.api.getUserList();
+    this.api.getUserList().subscribe(res => {
+      console.log('UserListPage',res.data);
+      if(res.status == "true") {
+        this.userlist = res.data;
+      }
+    })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserListPage');
+    console.log(' UserListPage',this.userlist);
+  //  console.log('ionViewDidLoad UserListPage',JSON.parse(this.userlist.data) );
   }
 
 }

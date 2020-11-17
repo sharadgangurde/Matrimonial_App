@@ -16,7 +16,9 @@ export class ServiceProvider {
   getCountriesUrl: any;
   getStatesUrl: any;
   getCitiesUrl: any;
-  getLanguagesUrl: any
+  getLanguagesUrl: any;
+  getUserListUrl: any;
+  getUserDetailsUrl: any;
   // headers: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(public http: HttpClient, public events: Events,
@@ -31,6 +33,8 @@ export class ServiceProvider {
     this.getStatesUrl = this.urlProvider.getStatesByCountry;
     this.getCitiesUrl = this.urlProvider.getCitiesByState;
     this.getLanguagesUrl = this.urlProvider.getLanguages;
+    this.getUserListUrl = this.urlProvider.getUserList;
+    this.getUserDetailsUrl = this.urlProvider.getUserDetails;
 
   }
   public checkApi() {
@@ -118,6 +122,22 @@ export class ServiceProvider {
     var result;
 
     result = this.http.post(this.serverURl + this.getCitiesUrl, (formdata)).map(this.checkApi());
+    return result;
+  }
+
+  public getUserList() {
+    var result;
+
+    result = this.http.post(this.serverURl + this.getUserListUrl, '');
+    //console.log('GET USER SERBICES------',JSON.stringify(result));
+   // console.log('GET USER SERBICES------',JSON.parse(result));
+   //console.log('GET USER SERBICES------',result);
+    return result;
+  }
+  public getUserDetails(formdata) {
+    var result;
+
+    result = this.http.post(this.serverURl + this.getUserDetailsUrl, (formdata)).map(this.checkApi());
     return result;
   }
   }
