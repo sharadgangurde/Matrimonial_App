@@ -54,7 +54,7 @@ export class MatrimonyPage {
 
   userDetails(id) {
     this.navCtrl.push(MatrimonyDetailsPage, {
-      id: id
+      id: id,
     })
   }
 
