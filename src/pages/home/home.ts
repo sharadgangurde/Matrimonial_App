@@ -19,10 +19,15 @@ export class HomePage {
   flag: number;
 
   constructor(public navCtrl: NavController,
+<<<<<<< HEAD
      public navParams: NavParams,  
     public app:App,  public splash: SplashProvider,
     public api: ServiceProvider, public global: GlobalServiceProvider) {
       this.DisplayNewsList();
+=======
+     public navParams: NavParams,  private splash: SplashProvider,
+    public app:App, public api: ServiceProvider, public global: GlobalServiceProvider) {
+>>>>>>> 9b89b31da7dbdc8b929590d61dc667f68cc1c3b7
   }
 
   ionViewWillEnter() {
@@ -39,6 +44,7 @@ export class HomePage {
     }
   }
 
+<<<<<<< HEAD
   DisplayNewsList() {
       this.splash.presentLoading()
       this.api.getNewsList().subscribe(res => {
@@ -60,6 +66,11 @@ export class HomePage {
       })
     }
     
+=======
+  openPopover() {
+    this.splash.presentPopover()
+  }
+>>>>>>> 9b89b31da7dbdc8b929590d61dc667f68cc1c3b7
   logout() {
     this.global.logout().subscribe(res => {
       console.log(res)

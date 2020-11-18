@@ -21,20 +21,54 @@
 
   </ion-navbar>
   <div class="search-box">
-      <ion-searchbar></ion-searchbar>
-
+    <ion-searchbar (ionInput)="searchUser($event)"></ion-searchbar>
   </div>
 </ion-header>
 <ion-content>
 
-
-
-
-
-
   <div class="pad-page-10 mrg-t-65">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngFor="let item of matrimonyUsers" (click)="userDetails(item.id)">
+              <div class="new-box">
+                  <div class="new-img-box">
+                      <div class="img-box">
+                          <img src="assets/imgs/new-img-1.jpg">
+                      </div>
+
+                      <div class="new-cuntent-box">
+                          <h3>{{item.firstname}} {{item.lastname}}</h3>
+
+                      </div>
+                  </div>
+
+              </div>
+              <!-- <div class="new-box">
+                  <div class="new-img-box">
+                      <div class="img-box">
+                          <img src="assets/imgs/new-img-1.jpg">
+                      </div>
+
+                      <div class="new-cuntent-box">
+                          <h3>Matrimony Headline</h3>
+
+                      </div>
+                  </div>
+
+              </div>
+              <div class="new-box">
+                  <div class="new-img-box">
+                      <div class="img-box">
+                          <img src="assets/imgs/new-img-1.jpg">
+                      </div>
+
+                      <div class="new-cuntent-box">
+                          <h3>Matrimony Headline</h3>
+
+                      </div>
+                  </div>
+
+              </div>
+
               <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
@@ -73,47 +107,7 @@
                       </div>
                   </div>
 
-              </div>
-
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Matrimony Headline</h3>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Matrimony Headline</h3>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Matrimony Headline</h3>
-
-                      </div>
-                  </div>
-
-              </div>
+              </div> -->
           </ion-row>
       </ion-grid>
 
