@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ServiceProvider } from '../../providers/service/service';
+import { SplashProvider } from '../../providers/splash/splash';
 import { NewsDetailsPage } from '../news-details/news-details';
 
 /**
@@ -15,16 +17,37 @@ import { NewsDetailsPage } from '../news-details/news-details';
   templateUrl: 'news.html',
 })
 export class NewsPage {
+  newslist: any;
+  flag: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: ServiceProvider, public splash: SplashProvider) {
+    this.DisplayNewsList();
+  }
+  
+  DisplayNewsList() {
+  //  this.splash.presentLoading()
+    this.api.getNewsList().subscribe(res => {
+      console.log('NewsListPage',res);
+      if(res.status == "true") {
+      //  this.splash.dismiss()
+        this.newslist = res.data;
+      } else {
+      //  this.splash.dismiss()
+        this.flag = 0;
+      }
+      return this.newslist;
+    })
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsPage');
+    console.log('ionViewDidLoad NewsPage',this.newslist);
   }
 
-  gotoDetails() {
-    this.navCtrl.push(NewsDetailsPage)
+  newsDetails(id) {
+    this.navCtrl.push(NewsDetailsPage,{
+      id: id
+    })
   }
 
 }

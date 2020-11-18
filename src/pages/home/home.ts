@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
+import { SplashProvider } from '../../providers/splash/splash';
 import { LoginPage } from '../login/login';
+import { NewsDetailsPage } from '../news-details/news-details';
 
 @Component({
   selector: 'page-home',
@@ -13,12 +15,14 @@ export class HomePage {
   user_id: any;
   data: any;
   dataArray = []
+  newslist: any;
+  flag: number;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,  
-    public app:App, 
+    public app:App,  public splash: SplashProvider,
     public api: ServiceProvider, public global: GlobalServiceProvider) {
-
+      this.DisplayNewsList();
   }
 
   ionViewWillEnter() {
@@ -34,6 +38,28 @@ export class HomePage {
 
     }
   }
+
+  DisplayNewsList() {
+      this.splash.presentLoading()
+      this.api.getNewsList().subscribe(res => {
+        console.log('NewsListPage',res);
+        if(res.status == "true") {
+          this.splash.dismiss()
+          this.newslist = res.data;
+        } else {
+          this.splash.dismiss()
+          this.flag = 0;
+        }
+        return this.newslist;
+      })
+    }
+  
+    newsDetails(id) {
+      this.navCtrl.push(NewsDetailsPage,{
+        id: id
+      })
+    }
+    
   logout() {
     this.global.logout().subscribe(res => {
       console.log(res)

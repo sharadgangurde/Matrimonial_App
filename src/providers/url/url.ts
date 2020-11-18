@@ -25,6 +25,7 @@ export class UrlProvider {
   getLanguages: any;
   getUserList: any;
   getUserDetails: any;
+  getNewsList: any;
   constructor(public http: HttpClient) {
 
     this.loginUrl = 'mobile/login';
@@ -38,8 +39,9 @@ export class UrlProvider {
     this.getLanguages = 'authentication/get_languages';
     this.getUserList = 'user/userList';
     this.getUserDetails = 'user/userDetails';
-    
-    //http://moderni-projects.in/projects/codeigniter/portfolio/api/user/get_user_post
+    this.getNewsList = 'user/get_newsList';
+  //  http://moderni-projects.in/projects/codeigniter/portfolio/api/user/get_newsList
+ 
   }
 
 }

@@ -90,8 +90,23 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngFor="let item of newslist">
               <div class="new-box">
+                  <div class="new-img-box" (click)="newsDetails(item.id)">
+                      <div class="img-box">
+                        <img src={{item.feature_img}}>
+                      </div>
+
+                      <div class="new-cuntent-box">
+                          <h3>{{item.title}}</h3>
+                          <div class="date-box"> <img src="assets/imgs/calendar-icon.png"><small> {{item.date}}</small></div>
+                          <p> {{item.description}}<span>Read More</span> </p>
+
+                      </div>
+                  </div>
+
+              </div>
+            <!--  <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
                           <img src="assets/imgs/new-img-1.jpg">
@@ -119,22 +134,7 @@
 
                       </div>
                   </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>News Heading title</h3>
-                          <div class="date-box"> <img src="assets/imgs/calendar-icon.png"><small> 30/09/2020</small></div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. <span>Read More</span> </p>
-
-                      </div>
-                  </div>
-              </div>
+              </div>-->
           </ion-row>
       </ion-grid>
 

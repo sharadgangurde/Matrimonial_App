@@ -19,6 +19,7 @@ export class ServiceProvider {
   getLanguagesUrl: any;
   getUserListUrl: any;
   getUserDetailsUrl: any;
+  getNewsListUrl: any;
   // headers: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(public http: HttpClient, public events: Events,
@@ -35,6 +36,7 @@ export class ServiceProvider {
     this.getLanguagesUrl = this.urlProvider.getLanguages;
     this.getUserListUrl = this.urlProvider.getUserList;
     this.getUserDetailsUrl = this.urlProvider.getUserDetails;
+    this.getNewsListUrl = this.urlProvider.getNewsList;
 
   }
   public checkApi() {
@@ -137,6 +139,14 @@ export class ServiceProvider {
     var result;
 
     result = this.http.post(this.serverURl + this.getUserDetailsUrl, (formdata)).map(this.checkApi());
+    return result;
+  }
+  
+  public getNewsList() {
+    var result;
+
+    result = this.http.post(this.serverURl + this.getNewsListUrl, '');
+    console.log('------- NEWS ',result)
     return result;
   }
   }
