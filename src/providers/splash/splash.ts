@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from 'ionic-angular';
+import { LoadingController, PopoverController, ToastController } from 'ionic-angular';
+import { PopoverPage } from '../../pages/popover/popover';
 
 
 @Injectable()
 export class SplashProvider {
   loading: any;
-  constructor(public http: HttpClient, private toastCtrl: ToastController, public loadingCtrl: LoadingController) {
+  constructor(public http: HttpClient, private toastCtrl: ToastController, public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController) {
 
   }
   toast(msg) {
@@ -50,6 +52,11 @@ export class SplashProvider {
         duration: 30000
     });
     this.loading.present();
+  }
+
+  presentPopover() {
+    const popover = this.popoverCtrl.create(PopoverPage);
+    popover.present();
   }
 
 }

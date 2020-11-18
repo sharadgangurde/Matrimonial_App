@@ -38,6 +38,7 @@ import { MatrimonyPage } from '../pages/matrimony/matrimony';
 import { NewsDetailsPage } from '../pages/news-details/news-details';
 import { NewsPage } from '../pages/news/news';
 import { OtpPage } from '../pages/otp/otp';
+import { PopoverPage } from '../pages/popover/popover';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { Step1Page } from '../pages/sign-up/step1/step1';
 import { Step2Page } from '../pages/sign-up/step2/step2';
@@ -97,7 +98,8 @@ import { MyApp } from './app.component';
     MatrimonyPage,
     MatrimonyDetailsPage,
     BusinessPage,
-    BusinessInfoPage
+    BusinessInfoPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -145,8 +147,8 @@ import { MyApp } from './app.component';
     MatrimonyPage,
     MatrimonyDetailsPage,
     BusinessPage,
-    BusinessInfoPage
-
+    BusinessInfoPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,

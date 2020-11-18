@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
+import { SplashProvider } from '../../providers/splash/splash';
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -15,10 +16,8 @@ export class HomePage {
   dataArray = []
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,  
-    public app:App, 
-    public api: ServiceProvider, public global: GlobalServiceProvider) {
-
+     public navParams: NavParams,  private splash: SplashProvider,
+    public app:App, public api: ServiceProvider, public global: GlobalServiceProvider) {
   }
 
   ionViewWillEnter() {
@@ -33,6 +32,10 @@ export class HomePage {
       formdata.append('user_id', this.user_id)
 
     }
+  }
+
+  openPopover() {
+    this.splash.presentPopover()
   }
   logout() {
     this.global.logout().subscribe(res => {
