@@ -13,7 +13,7 @@
               </ion-col>
               <ion-col col-2>
                   <div class="menu-list-img">
-                      <img src="assets/imgs/list-icon.png">
+                    <ion-icon name="exit" (click)="logout()"></ion-icon>
                   </div>
               </ion-col>
           </ion-row>
@@ -33,22 +33,21 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngFor="let item of news" (click)="gotoDetails(item)">
               <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
                           <img src="assets/imgs/new-img-1.jpg">
                       </div>
 
-                      <div class="new-cuntent-box" (click)="gotoDetails()">
-                          <h3>News Headline</h3>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                          </p>
+                      <div class="new-cuntent-box">
+                          <h3>{{item.title}}</h3>
+                          <p>{{item.description}}</p>
                       </div>
                   </div>
 
               </div>
-              <div class="new-box">
+              <!-- <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
                           <img src="assets/imgs/new-img-1.jpg">
@@ -118,7 +117,7 @@
                       </div>
                   </div>
 
-              </div>
+              </div> -->
           </ion-row>
       </ion-grid>
 

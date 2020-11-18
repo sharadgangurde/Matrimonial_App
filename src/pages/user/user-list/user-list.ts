@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../../providers/global-service/global-service';
 import { ServiceProvider } from '../../../providers/service/service';
 import { SplashProvider } from '../../../providers/splash/splash';
+import { LoginPage } from '../../login/login';
 import { UserInfoPage } from '../user-info/user-info';
 
 /**
@@ -21,7 +23,8 @@ export class UserListPage {
   userlist: any;
   flag: number;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public api: ServiceProvider, public splash: SplashProvider) {
+    public api: ServiceProvider, public splash: SplashProvider, public global: GlobalServiceProvider,
+    public app: App) {
     this.getUserList();
   }
   
@@ -62,5 +65,12 @@ export class UserListPage {
       id: id
     })
   }
+
+  logout() {
+    this.global.logout().subscribe(res => {
+      console.log(res)
+    });
+    this.app.getRootNav().setRoot(LoginPage);
+    }
 
 }

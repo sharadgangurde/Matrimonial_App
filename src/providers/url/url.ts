@@ -27,6 +27,7 @@ export class UrlProvider {
   getUserDetails: any;
   getBusinessUsers: any;
   getMatrimonyUsers: any;
+  getNews: any;
   constructor(public http: HttpClient) {
 
     this.loginUrl = 'mobile/login';
@@ -42,7 +43,7 @@ export class UrlProvider {
     this.getUserDetails = 'user/userDetails';
     this.getBusinessUsers = 'user/get_businessUsers';
     this.getMatrimonyUsers = 'user/get_unmarriedUsers';
-    
+    this.getNews = 'user/get_newsList';
     //http://moderni-projects.in/projects/codeigniter/portfolio/api/user/get_user_post
   }
 

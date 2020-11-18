@@ -64,7 +64,7 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngIf="userDetails">
               <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
@@ -72,7 +72,7 @@
                       </div>
 
                       <div class="new-cuntent-box">
-                          <h3>Matrimony Heading title</h3>
+                          <h3>{{userDetails.firstname}} {{userDetails.lastname}}</h3>
                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
 
                       </div>

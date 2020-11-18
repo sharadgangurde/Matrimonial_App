@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
+import { ServiceProvider } from '../../providers/service/service';
+import { LoginPage } from '../login/login';
 import { NewsDetailsPage } from '../news-details/news-details';
 
 /**
@@ -15,16 +18,33 @@ import { NewsDetailsPage } from '../news-details/news-details';
   templateUrl: 'news.html',
 })
 export class NewsPage {
+  news: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
+    public global: GlobalServiceProvider, public app: App) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.api.getNews().subscribe(res => {
+      if(res.status == "true") {
+        this.news = res.data;
+      } else {
+        //
+      }
+    })
     console.log('ionViewDidLoad NewsPage');
   }
 
-  gotoDetails() {
-    this.navCtrl.push(NewsDetailsPage)
+  gotoDetails(item) {
+    this.navCtrl.push(NewsDetailsPage, {
+      news: item,
+    })
   }
 
+  logout() {
+    this.global.logout().subscribe(res => {
+      console.log(res)
+    });
+    this.app.getRootNav().setRoot(LoginPage);
+    }
 }

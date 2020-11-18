@@ -21,6 +21,7 @@ export class ServiceProvider {
   getUserDetailsUrl: any;
   getMatrimonyUsersUrl: any;
   getBusinessUsersUrl: any;
+  getNewsUrl: any;
   // headers: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(public http: HttpClient, public events: Events,
@@ -39,6 +40,7 @@ export class ServiceProvider {
     this.getUserDetailsUrl = this.urlProvider.getUserDetails;
     this.getMatrimonyUsersUrl = this.urlProvider.getMatrimonyUsers;
     this.getBusinessUsersUrl = this.urlProvider.getBusinessUsers;
+    this.getNewsUrl = this.urlProvider.getNews;
 
   }
   public checkApi() {
@@ -155,6 +157,13 @@ export class ServiceProvider {
     var result;
 
     result = this.http.post(this.serverURl + this.getBusinessUsersUrl, '');
+    return result;
+  }
+
+  public getNews() {
+    var result;
+
+    result = this.http.post(this.serverURl + this.getNewsUrl, '');
     return result;
   }
 }

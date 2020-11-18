@@ -45,19 +45,16 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngIf="news">
               <div class="new-box">
                   <div class="new-img-box">
-                      <!-- <div class="img-box">
+                      <div class="img-box">
                         <img src="assets/imgs/new-img-1.jpg">
-                    </div> -->
+                    </div>
 
-                      <div class="user-info-box">
-                          <h3>News Heading title</h3>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                              a type specimen book.
-
-                          </p>
+                      <div class="new-cuntent-box">
+                          <h3>{{news.title}}</h3>
+                          <p>{{news.description}}</p>
 
                       </div>
                   </div>

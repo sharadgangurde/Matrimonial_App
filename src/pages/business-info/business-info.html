@@ -64,7 +64,7 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row>
+          <ion-row *ngIf="userDetails">
               <div class="new-box">
                   <div class="new-img-box">
                       <div class="img-box">
@@ -72,81 +72,15 @@
                       </div>
 
                       <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
+                          <h3>{{userDetails.firstname}} {{userDetails.lastname}}</h3>
+                          <p>Company Name: </p>
+                          <p>Address: {{userDetails.present_address}} {{userDetails.city}}</p>
+                          <p>Email-id: {{userDetails.emailid}}</p>
+                          <p>Profession: {{userDetails.profession}}</p>
 
                       </div>
                   </div>
 
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
-
-                      </div>
-                  </div>
-
-              </div>
-              <div class="new-box">
-                  <div class="new-img-box">
-                      <div class="img-box">
-                          <img src="assets/imgs/new-img-1.jpg">
-                      </div>
-
-                      <div class="new-cuntent-box">
-                          <h3>Business Heading title</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse luctus dui sed leo cursus dignissim. </p>
-
-                      </div>
-                  </div>
               </div>
           </ion-row>
       </ion-grid>

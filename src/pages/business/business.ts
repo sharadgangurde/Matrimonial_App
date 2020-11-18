@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
+import { SplashProvider } from '../../providers/splash/splash';
 import { BusinessInfoPage } from '../business-info/business-info';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the BusinessPage page.
@@ -18,7 +21,8 @@ import { BusinessInfoPage } from '../business-info/business-info';
 export class BusinessPage {
   businessUsers: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
+    public global: GlobalServiceProvider, public splash: SplashProvider, public app: App) {
     this.getBusinessUsers()
   }
 
@@ -55,5 +59,14 @@ export class BusinessPage {
       id: id
     })
   }
+
+  logout() {
+    this.splash.presentLoading()
+    this.global.logout().subscribe(res => {
+      console.log(res)
+      this.splash.dismiss()
+    });
+    this.app.getRootNav().setRoot(LoginPage);
+    }
 
 }

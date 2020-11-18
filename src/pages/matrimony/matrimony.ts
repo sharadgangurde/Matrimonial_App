@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { App, NavController, NavParams } from 'ionic-angular';
+import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
+import { LoginPage } from '../login/login';
 import { MatrimonyDetailsPage } from '../matrimony-details/matrimony-details';
 
 /**
@@ -20,7 +22,8 @@ export class MatrimonyPage {
   searchQuery: string = '';
   matrimonyUsers: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public splash: SplashProvider, public api: ServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public splash: SplashProvider,
+    public api: ServiceProvider, public global: GlobalServiceProvider, public app: App) {
     this.getMatrimonyUsers()
   }
 
@@ -57,5 +60,12 @@ export class MatrimonyPage {
       id: id,
     })
   }
+
+  logout() {
+    this.global.logout().subscribe(res => {
+      console.log(res)
+    });
+    this.app.getRootNav().setRoot(LoginPage);
+    }
 
 }

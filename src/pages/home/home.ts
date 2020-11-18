@@ -4,6 +4,7 @@ import { GlobalServiceProvider } from '../../providers/global-service/global-ser
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { LoginPage } from '../login/login';
+import { NewsDetailsPage } from '../news-details/news-details';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,7 @@ export class HomePage {
   user_id: any;
   data: any;
   dataArray = []
+  news: any;
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,  private splash: SplashProvider,
@@ -30,13 +32,25 @@ export class HomePage {
 
       let formdata = new FormData();
       formdata.append('user_id', this.user_id)
-
+      //get news
+      this.api.getNews().subscribe(res => {
+        if(res.status == "true") {
+          this.news = res.data;
+        }
+      })
     }
   }
 
   openPopover() {
     this.splash.presentPopover()
   }
+
+  newsDetails(id) {
+    this.navCtrl.push(NewsDetailsPage, {
+      news: this.news
+    })
+  }
+  
   logout() {
     this.global.logout().subscribe(res => {
       console.log(res)
