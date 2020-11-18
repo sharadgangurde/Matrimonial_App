@@ -3,9 +3,9 @@
       <ion-grid class="no-padding">
           <ion-row>
               <ion-col col-2>
-                  <div class="back-icon-img">
+                  <!-- <div class="back-icon-img">
                       <img src="assets/imgs/back-arrow.png">
-                  </div>
+                  </div> -->
               </ion-col>
               <ion-col col-8>
                   <h2 class="header-title-2">App Name</h2>
@@ -23,6 +23,7 @@
 </ion-header>
 
 <ion-content>
+    
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="ion-no-padding">
           <ion-row>
@@ -40,7 +41,7 @@
   </div>
 
   <div class="bg-blue">
-      <h3 class="title-bg-blue">User Name</h3>
+      <h3 class="title-bg-blue" *ngIf="userInfo">{{userInfo.firstname}} {{userInfo.lastname}}</h3>
   </div>
 
 

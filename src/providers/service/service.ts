@@ -129,11 +129,10 @@ export class ServiceProvider {
     var result;
 
     result = this.http.post(this.serverURl + this.getUserListUrl, '');
-    //console.log('GET USER SERBICES------',JSON.stringify(result));
-   // console.log('GET USER SERBICES------',JSON.parse(result));
-   //console.log('GET USER SERBICES------',result);
+    console.log('------- UserList ',result)
     return result;
   }
+  
   public getUserDetails(formdata) {
     var result;
 

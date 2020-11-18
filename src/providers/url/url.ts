@@ -36,8 +36,8 @@ export class UrlProvider {
     this.getStatesByCountry = 'authentication/get_state';
     this.getCitiesByState = 'authentication/get_city';
     this.getLanguages = 'authentication/get_languages';
-    this.getUserList = 'user/get_user_post';
-    this.getUserDetails = 'user/get_user_details_post';
+    this.getUserList = 'user/userList';
+    this.getUserDetails = 'user/userDetails';
     
     //http://moderni-projects.in/projects/codeigniter/portfolio/api/user/get_user_post
   }

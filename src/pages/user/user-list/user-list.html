@@ -21,7 +21,7 @@
 
   </ion-navbar>
   <div class="search-box">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar (ionInput)="searchUser($event)"></ion-searchbar>
 
 </div>
 </ion-header>
@@ -37,15 +37,15 @@
 
   <div class="pad-page-10 mrg-t-15">
       <ion-grid class="">
-          <ion-row><!-- *ngFor="let item of userlist"-->>
+          <ion-row *ngFor="let item of userlist">
               <div class="new-box">
-                  <div class="new-img-box">
+                  <div class="new-img-box" (click)="userDetails(item.id)">
                       <div class="img-box">
                           <img src="assets/imgs/new-img-1.jpg">
                       </div>
 
                       <div class="new-cuntent-box">
-                          <h3>User Name</h3><!--{{item.email}}-->
+                          <h3>User Name: {{item.firstname}}</h3><!---->
                           <div class="date-box"> </div>
                       </div>
                   </div>
