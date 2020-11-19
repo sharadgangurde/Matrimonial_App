@@ -13,7 +13,7 @@
               </ion-col>
               <ion-col col-2>
                   <div class="menu-list-img">
-                    <ion-icon name="exit" (click)="logout()"></ion-icon>
+                    <ion-icon name="exit" (click)="logoutAlert()"></ion-icon>
                   </div>
               </ion-col>
           </ion-row>
@@ -41,9 +41,12 @@
                       </div>
 
                       <div class="new-cuntent-box">
-                          <h3>{{item.title}}</h3>
-                          <p>{{item.description}}</p>
-                      </div>
+                        <h3>Lauren ipsum</h3>
+                        <div class="date-box"> <img src="assets/imgs/calendar-icon.png"><small> {{item.created}}</small></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s..<span>Read More</span> </p>
+
+                    </div>
                   </div>
 
               </div>

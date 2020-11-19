@@ -135,7 +135,6 @@ export class ServiceProvider {
     var result;
 
     result = this.http.post(this.serverURl + this.getUserListUrl, '');
-    console.log('------- UserList ',result)
     return result;
   }
   

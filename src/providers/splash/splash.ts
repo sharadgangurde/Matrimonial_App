@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, PopoverController, ToastController } from 'ionic-angular';
+import { AlertController, App, LoadingController, PopoverController, ToastController } from 'ionic-angular';
 import { PopoverPage } from '../../pages/popover/popover';
+import { GlobalServiceProvider } from '../global-service/global-service';
 
 
 @Injectable()
 export class SplashProvider {
   loading: any;
-  constructor(public http: HttpClient, private toastCtrl: ToastController, public loadingCtrl: LoadingController,
-    public popoverCtrl: PopoverController) {
+  constructor(public http: HttpClient, private toastCtrl: ToastController, public alertCtrl: AlertController, public loadingCtrl: LoadingController,
+    public popoverCtrl: PopoverController, public global: GlobalServiceProvider, public app: App) {
 
   }
   toast(msg) {

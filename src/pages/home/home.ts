@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
@@ -13,25 +13,30 @@ import { NewsDetailsPage } from '../news-details/news-details';
 export class HomePage {
 
   user_id: any;
-  data: any;
-  dataArray = []
   news: any;
+  user: any;
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,  private splash: SplashProvider,
-    public app:App, public api: ServiceProvider, public global: GlobalServiceProvider) {
+    public navParams: NavParams,  public splash: SplashProvider,
+    public app:App, public api: ServiceProvider, public global: GlobalServiceProvider,
+    public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
-   
-    this.dataArray = this.navParams.get('dataArray')
-    console.log('------- All Data --------', this.dataArray)
-
     if (window.localStorage.getItem('id')) {
       this.user_id = window.localStorage.getItem('id');
 
       let formdata = new FormData();
       formdata.append('user_id', this.user_id)
+      this.api.getUserDetails(formdata).subscribe(res => {
+        if(res.status == "true") {
+          this.user = res.data
+          console.log('login user', this.user);
+          
+        } else {
+          this.splash.toast('Unable to load your information')
+        }
+      })
       //get news
       this.api.getNews().subscribe(res => {
         if(res.status == "true") {
@@ -45,17 +50,37 @@ export class HomePage {
     this.splash.presentPopover()
   }
 
-  newsDetails(id) {
+  newsDetails(news) {
     this.navCtrl.push(NewsDetailsPage, {
-      news: this.news
+      news: news
     })
   }
-  
-  logout() {
-    this.global.logout().subscribe(res => {
-      console.log(res)
+
+  public logoutAlert() {
+    let alert = this.alertCtrl.create({
+      message: 'Do you want logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            alert.dismiss()
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.global.logout().subscribe(res => {
+              console.log(res);
+              
+            });
+            this.app.getRootNav().setRoot(LoginPage);
+          }
+        }
+      ]
     });
-    this.app.getRootNav().setRoot(LoginPage);
-    }
+    alert.present();
+  }
 
 }

@@ -13,7 +13,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UrlProvider {
-  serverUrl: string = 'https://moderni-projects.in/projects/codeigniter/portfolio/api/'
+  serverUrl: string = 'https://moderni-projects.in/projects/codeigniter/portfolio/api/';
+  imageUrl: string = 'http://moderni-projects.in/projects/codeigniter/portfolio/uploads/profile_images/'
   loginUrl: string;
   emailVerify: any;
   generateOtp: any;
@@ -40,7 +41,7 @@ export class UrlProvider {
     this.getCitiesByState = 'authentication/get_city';
     this.getLanguages = 'authentication/get_languages';
     this.getUserList = 'user/userList';
-    this.getUserDetails = 'user/userDetails';
+    this.getUserDetails = 'user/get_UsersDetailsByProfession';
     this.getBusinessUsers = 'user/get_businessUsers';
     this.getMatrimonyUsers = 'user/get_unmarriedUsers';
     this.getNews = 'user/get_newsList';

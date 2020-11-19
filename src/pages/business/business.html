@@ -13,7 +13,7 @@
               </ion-col>
               <ion-col col-2>
                   <div class="menu-list-img">
-                    <ion-icon name="exit" (click)="logout()"></ion-icon>
+                    <ion-icon name="exit" (click)="logoutAlert()"></ion-icon>
                   </div>
               </ion-col>
           </ion-row>
@@ -21,7 +21,7 @@
 
   </ion-navbar>
   <div class="search-box">
-    <ion-searchbar (ionInput)="searchUser($event)"></ion-searchbar>
+    <ion-searchbar (click)="searchUser($event)"></ion-searchbar>
 
   </div>
 </ion-header>

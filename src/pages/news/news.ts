@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { LoginPage } from '../login/login';
@@ -21,7 +21,8 @@ export class NewsPage {
   news: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
-    public global: GlobalServiceProvider, public app: App) {
+    public global: GlobalServiceProvider, public app: App,
+    public alertCtrl: AlertController) {
   }
 
   ionViewWillEnter() {
@@ -41,10 +42,30 @@ export class NewsPage {
     })
   }
 
-  logout() {
-    this.global.logout().subscribe(res => {
-      console.log(res)
+  public logoutAlert() {
+    let alert = this.alertCtrl.create({
+      message: 'Do you want logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            alert.dismiss()
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.global.logout().subscribe(res => {
+              console.log(res);
+              
+            });
+            this.app.getRootNav().setRoot(LoginPage);
+          }
+        }
+      ]
     });
-    this.app.getRootNav().setRoot(LoginPage);
-    }
+    alert.present();
+  }
 }

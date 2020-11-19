@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { BusinessInfoPage } from '../business-info/business-info';
 import { LoginPage } from '../login/login';
+import { SearchPage } from '../search/search';
 
 /**
  * Generated class for the BusinessPage page.
@@ -22,7 +23,8 @@ export class BusinessPage {
   businessUsers: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
-    public global: GlobalServiceProvider, public splash: SplashProvider, public app: App) {
+    public global: GlobalServiceProvider, public splash: SplashProvider, public app: App,
+    public alertCtrl: AlertController) {
     this.getBusinessUsers()
   }
 
@@ -43,15 +45,9 @@ export class BusinessPage {
   }
 
   searchUser(ev: any) {
-    const val = ev.target.value;
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.businessUsers = this.businessUsers.filter((item) => {
-        return (item.firstname.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.businessUsers = this.getBusinessUsers()
-    }
+    this.navCtrl.push(SearchPage, {
+      userType: 2
+    })
   }
 
   userDetails(id) {
@@ -60,13 +56,31 @@ export class BusinessPage {
     })
   }
 
-  logout() {
-    this.splash.presentLoading()
-    this.global.logout().subscribe(res => {
-      console.log(res)
-      this.splash.dismiss()
+  public logoutAlert() {
+    let alert = this.alertCtrl.create({
+      message: 'Do you want logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            alert.dismiss()
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.global.logout().subscribe(res => {
+              console.log(res);
+              
+            });
+            this.app.getRootNav().setRoot(LoginPage);
+          }
+        }
+      ]
     });
-    this.app.getRootNav().setRoot(LoginPage);
-    }
+    alert.present();
+  }
 
 }

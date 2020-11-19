@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { App, NavController, NavParams } from 'ionic-angular';
+import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../../providers/global-service/global-service';
 import { ServiceProvider } from '../../../providers/service/service';
 import { SplashProvider } from '../../../providers/splash/splash';
+import { UrlProvider } from '../../../providers/url/url';
 import { LoginPage } from '../../login/login';
+import { SearchPage } from '../../search/search';
 import { UserInfoPage } from '../user-info/user-info';
 
 /**
@@ -22,10 +24,12 @@ export class UserListPage {
   searchQuery: string = '';
   userlist: any;
   flag: number;
+  imageURL: string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public api: ServiceProvider, public splash: SplashProvider, public global: GlobalServiceProvider,
-    public app: App) {
+    public app: App, public alertCtrl: AlertController, public url: UrlProvider) {
     this.getUserList();
+    this.imageURL = 'http://moderni-projects.in/projects/codeigniter/portfolio/uploads/profile_images/'
   }
   
   getUserList() {
@@ -44,20 +48,24 @@ export class UserListPage {
   }
   ionViewWillEnter() {
     
+    
     console.log(' UserListPage',this.userlist);
   //  console.log('ionViewDidLoad UserListPage',JSON.parse(this.userlist.data) );
   }
-
+  // useType 1 = AllUSers, 2 = BusinessUsers, 3 = MatrimonyUsers
   searchUser(ev: any) {
-    const val = ev.target.value;
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.userlist = this.userlist.filter((item) => {
-        return (item.firstname.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    } else {
-      this.userlist = this.getUserList()
-    }
+    this.navCtrl.push(SearchPage, {
+      userType: 1
+    })
+    // const val = ev.target.value;
+    // // if the value is an empty string don't filter the items
+    // if (val && val.trim() != '') {
+    //   this.userlist = this.userlist.filter((item) => {
+    //     return (item.firstname.toLowerCase().indexOf(val.toLowerCase()) > -1);
+    //   })
+    // } else {
+    //   this.userlist = this.getUserList()
+    // }
   }
 
   userDetails(id) {
@@ -66,11 +74,31 @@ export class UserListPage {
     })
   }
 
-  logout() {
-    this.global.logout().subscribe(res => {
-      console.log(res)
+  public logoutAlert() {
+    let alert = this.alertCtrl.create({
+      message: 'Do you want logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+            alert.dismiss()
+          }
+        },
+        {
+          text: 'Logout',
+          handler: () => {
+            this.global.logout().subscribe(res => {
+              console.log(res);
+              
+            });
+            this.app.getRootNav().setRoot(LoginPage);
+          }
+        }
+      ]
     });
-    this.app.getRootNav().setRoot(LoginPage);
-    }
+    alert.present();
+  }
 
 }
