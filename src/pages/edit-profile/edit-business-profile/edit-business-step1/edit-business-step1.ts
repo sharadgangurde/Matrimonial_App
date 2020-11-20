@@ -152,7 +152,7 @@ private convertImageToBase64(base64: string, side) {
 }
   
 goBack() {
-  this.app.getRootNav().setRoot(BusinessPage);
+  this.app.getRootNav().pop(BusinessPage);
   //this.navCtrl.pop()
 }
 

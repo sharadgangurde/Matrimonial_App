@@ -64,7 +64,7 @@ export class EditMatrimonyStep1Page {
   }
 
   goBack() {
-    this.app.getRootNav().setRoot(MatrimonyPage);
+    this.app.getRootNav().pop(MatrimonyPage);
     //this.navCtrl.pop()
   }
   

@@ -66,7 +66,7 @@ export class BusinessPage {
 
   }
   gotoProfile() {
-    this.app.getRootNav().setRoot(EditBusinessStep1Page);
+    this.app.getRootNav().push(EditBusinessStep1Page);
    /* this.app.getRootNav().setRoot(LoginPage);
     this.navCtrl.push(EditMatrimonyStep1Page, {
       user_id: this.user_id
