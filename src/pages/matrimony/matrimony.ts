@@ -52,7 +52,14 @@ export class MatrimonyPage {
 
   }
   gotoProfile() {
-    this.app.getRootNav().push(EditMatrimonyStep1Page);
+    if(this.user.marital_status= "Unmarried"){
+      this.app.getRootNav().push(EditMatrimonyStep1Page);
+    }else if(this.user.marital_status= "Divorced"){
+      this.app.getRootNav().push(EditMatrimonyStep1Page);
+    }else{
+      this.user.marital_status = undefined;
+    }
+    
    /* this.app.getRootNav().setRoot(LoginPage);
     this.navCtrl.push(EditMatrimonyStep1Page, {
       user_id: this.user_id

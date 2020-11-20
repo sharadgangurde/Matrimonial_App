@@ -66,7 +66,14 @@ export class BusinessPage {
 
   }
   gotoProfile() {
-    this.app.getRootNav().push(EditBusinessStep1Page);
+    if(this.user.profession= "Business"){
+      this.app.getRootNav().push(EditBusinessStep1Page);
+    }else if(this.user.profession= "Job"){
+      //this.app.getRootNav().push(EditMatrimonyStep1Page);
+    }else{
+      this.user.profession = undefined;
+    }
+   // this.app.getRootNav().push(EditBusinessStep1Page);
    /* this.app.getRootNav().setRoot(LoginPage);
     this.navCtrl.push(EditMatrimonyStep1Page, {
       user_id: this.user_id

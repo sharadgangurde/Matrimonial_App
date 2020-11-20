@@ -40,7 +40,7 @@ export class UrlProvider {
     this.getCitiesByState = 'api/authentication/get_city';
     this.getLanguages = 'api/authentication/get_languages';
     this.getUserList = 'api/user/userList';
-    this.getUserDetails = 'api/user/get_UsersDetailsByProfession';
+    this.getUserDetails = 'api/user/userDetails';
     this.getBusinessUsers = 'api/user/get_businessUsers';
     this.getMatrimonyUsers = 'api/user/get_unmarriedUsers';
     this.getNews = 'api/user/get_newsList';
