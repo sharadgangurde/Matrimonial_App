@@ -24,7 +24,7 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
   editProfile() {
-    this.app.getRootNav().setRoot(EditStep1Page)
+    this.app.getRootNav().push(EditStep1Page)
   }
 
 }

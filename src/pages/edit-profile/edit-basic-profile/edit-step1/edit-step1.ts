@@ -4,10 +4,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Base64 } from '@ionic-native/base64';
 import { Camera } from '@ionic-native/camera';
 import { File, FileEntry } from '@ionic-native/file';
-import { ActionSheetController, AlertController, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { ServiceProvider } from '../../../../providers/service/service';
 import { SplashProvider } from '../../../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../../../providers/validation-message/validation-message';
+import { ProfilePage } from '../../../profile/profile';
 import { EditStep2Page } from '../edit-step2/edit-step2';
 
 /**
@@ -23,6 +24,7 @@ import { EditStep2Page } from '../edit-step2/edit-step2';
   templateUrl: 'edit-step1.html',
 })
 export class EditStep1Page {
+
   signUpForm: FormGroup;
   email: any;
   languages: any;
@@ -36,6 +38,7 @@ export class EditStep1Page {
   user: any;
   
   constructor(
+    public app: App,
     public file: File,
     public camera: Camera,
     public base64: Base64,
@@ -86,7 +89,7 @@ export class EditStep1Page {
   }
 
   goBack() {
-    this.navCtrl.pop()
+    this.app.getRootNav().pop(ProfilePage)
   }
   
   public getPhoto(side) {
