@@ -4,12 +4,101 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-  <ion-navbar>
-    <ion-title>edit-business-step2</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
+
+
+  <div class="login-box-section">
+      <div class="login-box">
+        <form [formGroup]="businessForm">
+          <ion-list class="login-user-info">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
+              </ion-label>
+              <ion-input type="text" placeholder="GSTIN" ([ngModel])="gstin" formControlName="gstin"></ion-input>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('gstin').hasError(validation.type) && businessForm.get('gstin').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+            <ion-item>
+              <ion-label>
+                  <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Select business type"  ([ngModel])="business_type" formControlName="business_type">
+                  <ion-option value="Management">Management services</ion-option>
+                  <ion-option value="Software">Software services</ion-option>
+                  <ion-option value="Consulting">Consulting services</ion-option>
+                  <ion-option value="Training">Training Services</ion-option>
+                   <ion-option value="Financial">Financial services</ion-option>
+                   <ion-option value="Marketing">Marketing Services</ion-option>
+                   <ion-option value="Travel">Travel services</ion-option>
+                   <ion-option value="Catering/restaurant">Catering or restaurant services</ion-option>
+                   <ion-option value="Trading">Trading Services</ion-option>
+                   <ion-option value="Designing">Designing</ion-option>
+                   <ion-option value="Construction">Construction Services</ion-option>
+                   <ion-option value="WasteManagement">Waste Management Services</ion-option>
+                   <ion-option value="Security">Security Services</ion-option>
+                   <ion-option value="Manufacturing">Manufacturing services</ion-option>
+                   <ion-option value="SelfEmployed">Personal Services (Self employed)</ion-option>
+                  <ion-option value="other">Other</ion-option>
+              </ion-select>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('business_type').hasError(validation.type) && businessForm.get('business_type').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+              </ion-label>
+              <ion-input type="text" placeholder="Enter Products/Services" ([ngModel])="products" formControlName="products"></ion-input>
+            </ion-item>
+            <div *ngFor="let validation of validation_messages.commonmessage" >
+              <div *ngIf="businessForm.get('products').hasError(validation.type) && businessForm.get('products').touched">
+                <div class="error-message">{{validation.message}}</div>
+              </div>
+            </div>
+
+              <ion-item>
+                <ion-label>
+                  <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder="About" ([ngModel])="about" formControlName="about"></ion-input>
+              </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="businessForm.get('about').hasError(validation.type) && businessForm.get('about').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
+
+              <ion-item>
+                <ion-label>
+                  <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder="Annual Turnover" ([ngModel])="turnover" formControlName="turnover"></ion-input>
+              </ion-item>
+              <div *ngFor="let validation of validation_messages.commonmessage" >
+                <div *ngIf="businessForm.get('turnover').hasError(validation.type) && businessForm.get('turnover').touched">
+                  <div class="error-message">{{validation.message}}</div>
+                </div>
+              </div>
+            </ion-list>
+
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn" (click)="submitDetails(businessForm.value)">Next</button>
+              </ion-col>
+            </ion-row>
+        </form>
+      </div>
+    </div>
 
 </ion-content>

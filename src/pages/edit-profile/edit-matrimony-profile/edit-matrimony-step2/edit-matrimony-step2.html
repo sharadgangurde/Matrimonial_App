@@ -1,15 +1,126 @@
 <!--
-  Generated template for the EditMatrimonyStep2Page page.
+  Generated template for the MarriedRegisterPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-  <ion-navbar>
-    <ion-title>edit-matrimony-step2</ion-title>
-  </ion-navbar>
-</ion-header>
 
 <ion-content padding>
+  <div class="login-box-section">
+    <div class="login-box">
+
+      <form [formGroup]="marriageForm">
+        <ion-list class="login-user-info">
+
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-input type="text"  placeholder="Kul Devi" formControlName="kuldevi" required></ion-input>
+          </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('kuldevi').hasError(validation.type) && marriageForm.get('kuldevi').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-input type="text"  placeholder="Gotra" formControlName="gotra" required></ion-input>
+          </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('gotra').hasError(validation.type) && marriageForm.get('gotra').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+
+          <div formControlName="manglik" radio-group>
+            <p>Manglik</p>
+            <ion-row>
+              <ion-col>
+                <span>YES</span>
+                <ion-radio value="Y">Yes</ion-radio>
+              </ion-col>
+              <ion-col>
+                <ion-col>
+                  <span>No</span>
+                  <ion-radio value="N">No</ion-radio>
+                </ion-col>
+              </ion-col>
+            </ion-row>           
+          </div>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('manglik').hasError(validation.type) && marriageForm.get('manglik').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-select interface="popover" placeholder="Select No of brothers" formControlName="noOfBrothers" (ionChange)="haveBrothers($event)">
+              <ion-option value="0">0</ion-option>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('noOfBrothers').hasError(validation.type) && marriageForm.get('noOfBrothers').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+         
+          <!-- <span *ngIf="isBrothers == 'Yes';">
+            <ion-item>
+              <ion-label>
+                <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+              </ion-label>
+              <ion-select interface="popover" placeholder="Select No of brothers">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+              </ion-select>
+            </ion-item>
+          </span> -->
+
+          <ion-item>
+            <ion-label>
+              <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
+            </ion-label>
+            <ion-select interface="popover" placeholder="Select No of Sisters" formControlName="noOfSisters" (ionChange)="haveSisters($event)">
+              <ion-option value="0">0</ion-option>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
+          <div *ngFor="let validation of validation_messages.commonmessage" >
+            <div *ngIf="marriageForm.get('noOfSisters').hasError(validation.type) && marriageForm.get('noOfSisters').touched">
+              <div class="error-message">{{validation.message}}</div>
+            </div>
+          </div>
+          
+        </ion-list> 
+        <ion-row>
+          <ion-col>
+            <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
+          </ion-col>
+          <ion-col>
+            <button ion-button round center class="login-btn" (click)="submitDetails(marriageForm.value)">Next</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+  </div>
 
 </ion-content>
