@@ -79,10 +79,10 @@
       "com-badrit-base64": {},
       "cordova-plugin-filechooser": {},
       "cordova-plugin-filepath": {},
+      "cordova-plugin-email-composer": {},
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "your usage message"
-      },
-      "cordova-plugin-email-composer": {}
+      }
     },
     "platforms": [
       "android"
