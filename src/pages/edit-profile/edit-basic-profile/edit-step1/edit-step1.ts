@@ -32,6 +32,8 @@ export class EditStep1Page {
   fileExtenstion: string;
   base64image: any;
   selfie: any;
+  user_id: string;
+  user: any;
   
   constructor(
     public file: File,
@@ -59,20 +61,33 @@ export class EditStep1Page {
     this.validation_messages = this.validation.validationMessage()
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad RegisterPage');
-    //this.initForm();
-    this.email = this.navParams.get('email');
+    if (window.localStorage.getItem('id')) {
+      this.user_id = window.localStorage.getItem('id');
 
+      let formdata = new FormData();
+      formdata.append('user_id', this.user_id)
+      this.api.getUserDetails(formdata).subscribe(res => {
+        if(res.status == "true") {
+          this.user = res.data
+          console.log('User ', this.user);
+          
+        } else {
+          this.splash.toast('Unable to load your information')
+        }
+      })
+      //get news
+    }
     this.api.getAllCountries().subscribe(res => {
       console.log(res);
      this.countries = res.data;
     })
   }
 
-  // initForm() {
-    
-  // }
+  goBack() {
+    this.navCtrl.pop()
+  }
   
   public getPhoto(side) {
     let actionSheet = this.actionSheetCtrl.create({
@@ -148,9 +163,9 @@ export class EditStep1Page {
       this.dataArray['phone1'] = data.phone1,
       this.dataArray['phone2'] = data.phone2,
       this.dataArray['email'] = data.email,
-      this.dataArray['photo'] = this.selfie.changingThisBreaksApplicationSecurity,
+      // this.dataArray['photo'] = this.selfie.changingThisBreaksApplicationSecurity,
 
-      this.navCtrl.push(EditStep2Page, {dataArray: this.dataArray, country: this.countries})
+      this.navCtrl.push(EditStep2Page, {dataArray: this.dataArray, country: this.countries, user: this.user})
     }
     else {
       console.log('form errr');

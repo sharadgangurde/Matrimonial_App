@@ -39,12 +39,12 @@ export class HomePage {
         }
       })
       //get news
-      this.api.getNews().subscribe(res => {
-        if(res.status == "true") {
-          this.news = res.data;
-        }
-      })
     }
+    this.api.getNews().subscribe(res => {
+      if(res.status == "true") {
+        this.news = res.data;
+      }
+    })
   }
 
   openPopover() {

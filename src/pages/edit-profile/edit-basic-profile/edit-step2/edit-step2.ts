@@ -28,6 +28,7 @@ export class EditStep2Page {
   cities: any;
   validation_messages: any;
   languages: any;
+  user: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public validation: ValidationMessageProvider, public splash: SplashProvider
     ) {
@@ -45,6 +46,7 @@ export class EditStep2Page {
   ionViewDidLoad() {
     console.log('ionViewDidLoad Step2Page');
     this.dataArray = this.navParams.get('dataArray');
+    this.user = this.navParams.get('user')
     console.log('-----------Step1 data-------------',this.dataArray)
     this.countries = this.navParams.get('country')
     // this.api.getAllCountries().subscribe(res => {
@@ -98,7 +100,7 @@ export class EditStep2Page {
       this.dataArray['present_address'] = data.present_address,
       this.dataArray['permanent_address'] = data.permanent_address
       
-      this.navCtrl.push(EditStep3Page, {dataArray: this.dataArray})
+      this.navCtrl.push(EditStep3Page, {dataArray: this.dataArray, user: this.user})
     }
     else {
       console.log('form errr');

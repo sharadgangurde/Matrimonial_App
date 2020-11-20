@@ -36,8 +36,8 @@ export class EditStep4Page {
       education: new FormControl('', [Validators.required]),
       annual_income: new FormControl('', [Validators.required]),
       hobbies: new FormControl('', [Validators.required]),
-      marital_status: new FormControl('', [Validators.required]),
-      profession: new FormControl('', [Validators.required])
+      // marital_status: new FormControl('', [Validators.required]),
+      // profession: new FormControl('', [Validators.required])
     });
     this.validation_messages = this.validation.validationMessage();
     console.log(this.validation_messages)
@@ -74,8 +74,8 @@ export class EditStep4Page {
       this.dataArray['education'] = data.education,
       this.dataArray['hobbies'] = this.listHobby,
       this.dataArray['annual_income'] = data.annual_income,
-      this.dataArray['marital_status'] = data.marital_status,
-      this.dataArray['profession'] = data.profession,
+      // this.dataArray['marital_status'] = data.marital_status,
+      // this.dataArray['profession'] = data.profession,
 
       console.log('--------------------data till--------------- ', this.dataArray)
       if(data.marital_status == 'Unmarried') {

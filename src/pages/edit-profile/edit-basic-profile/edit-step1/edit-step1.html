@@ -16,7 +16,7 @@
   <div class="login-box-section">
       <div class="login-box">
 
-          <form (ngSubmit)="signUp(signUpForm.value)" [formGroup]="signUpForm">
+          <form [formGroup]="signUpForm" *ngIf="user">
             <ion-list class="login-user-info">
               
               <ion-row class="gender-box">
@@ -38,7 +38,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                     </ion-label>
-                    <ion-input type="text" placeholder="First Name" ([ngModel])="firstName" formControlName="firstName"></ion-input>
+                    <ion-input type="text" placeholder="First Name" ([ngModel])="firstName" value="{{user.firstname}}" formControlName="firstName"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.firstName" >
                     <div *ngIf="signUpForm.get('firstName').hasError(validation.type) && signUpForm.get('firstName').touched">
@@ -50,7 +50,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                     </ion-label>
-                    <ion-input type="text" placeholder="Middle Name" ([ngModel])="middleName" formControlName="middleName"></ion-input>
+                    <ion-input type="text" placeholder="Middle Name" ([ngModel])="middleName" value="{{user.middlename}}" formControlName="middleName"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.middleName" >
                     <div *ngIf="signUpForm.get('middleName').hasError(validation.type) && signUpForm.get('middleName').touched">
@@ -62,7 +62,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
                     </ion-label>
-                    <ion-input type="text" placeholder="Last Name" ([ngModel])="lastName" formControlName="lastName"></ion-input>
+                    <ion-input type="text" placeholder="Last Name" ([ngModel])="lastName" value="{{user.lastname}}" formControlName="lastName"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.lastName" >
                     <div *ngIf="signUpForm.get('lastName').hasError(validation.type) && signUpForm.get('lastName').touched">
@@ -74,7 +74,7 @@
                     <ion-label>
                         <ion-icon item-left name="mail"></ion-icon>
                     </ion-label>
-                    <ion-input type="email" placeholder="Email" value="{{email}}" ([ngModel])="email" formControlName="email"></ion-input>
+                    <ion-input type="email" placeholder="Email" value="{{user.emailid}}" ([ngModel])="email" formControlName="email"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.email" >
                     <div *ngIf="signUpForm.get('email').hasError(validation.type) && signUpForm.get('email').touched">
@@ -87,7 +87,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-call" md="md-call"></ion-icon>
                     </ion-label>
-                    <ion-input type="number" placeholder="Mobile No 1" ([ngModel])="phone1" formControlName="phone1"></ion-input>
+                    <ion-input type="number" placeholder="Mobile No 1" ([ngModel])="phone1" value="{{user.mobile1}}" formControlName="phone1"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.phone1" >
                     <div *ngIf="signUpForm.get('phone1').hasError(validation.type) && signUpForm.get('phone1').touched">
@@ -109,7 +109,14 @@
 
             </ion-list>
 
-          <button ion-button round center class="login-btn">Next</button>
+            <ion-row>
+              <ion-col>
+                <button ion-button start round center class="login-btn" (click)="goBack()">Close</button>
+              </ion-col>
+              <ion-col>
+                <button ion-button round center class="login-btn" (click)="signUp(signUpForm.value)">Next</button>
+              </ion-col>
+            </ion-row>
         </form>
       </div>
   </div>

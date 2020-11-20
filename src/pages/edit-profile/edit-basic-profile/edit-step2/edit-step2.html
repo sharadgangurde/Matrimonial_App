@@ -16,7 +16,7 @@
   <div class="login-box-section">
       <div class="login-box">
 
-          <form [formGroup]="signUpForm">
+          <form [formGroup]="signUpForm" *ngIf="user">
             <ion-list class="login-user-info">
                 <ion-item>
                     <ion-label>
@@ -64,7 +64,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                     </ion-label>
-                    <ion-input type="text" placeholder="Present Address" ([ngModel])="present_address" formControlName="present_address"></ion-input>
+                    <ion-input type="text" placeholder="Present Address" ([ngModel])="present_address" value="{{user.present_address}}" formControlName="present_address"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.present_address" >
                     <div *ngIf="signUpForm.get('present_address').hasError(validation.type) && signUpForm.get('present_address').touched">
@@ -76,7 +76,7 @@
                     <ion-label>
                         <ion-icon item-left ios="ios-calendar" md="md-calendar"></ion-icon>
                     </ion-label>
-                    <ion-input type="text" placeholder="Permanent Address" ([ngModel])="permanent_address" formControlName="permanent_address"></ion-input>
+                    <ion-input type="text" placeholder="Permanent Address" ([ngModel])="permanent_address" value="{{user.permanent_address}}" formControlName="permanent_address"></ion-input>
                 </ion-item>
                 <div *ngFor="let validation of validation_messages.permanent_address" >
                     <div *ngIf="signUpForm.get('permanent_address').hasError(validation.type) && signUpForm.get('permanent_address').touched">
