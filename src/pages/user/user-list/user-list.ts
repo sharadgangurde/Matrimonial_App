@@ -29,7 +29,6 @@ export class UserListPage {
     public api: ServiceProvider, public splash: SplashProvider, public global: GlobalServiceProvider,
     public app: App, public alertCtrl: AlertController, public url: UrlProvider) {
     this.getUserList();
-    this.imageURL = 'http://moderni-projects.in/projects/codeigniter/portfolio/uploads/profile_images/'
   }
   
   getUserList() {

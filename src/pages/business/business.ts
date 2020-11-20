@@ -3,6 +3,7 @@ import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
+import { UrlProvider } from '../../providers/url/url';
 import { BusinessInfoPage } from '../business-info/business-info';
 import { LoginPage } from '../login/login';
 import { SearchPage } from '../search/search';
@@ -24,7 +25,7 @@ export class BusinessPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ServiceProvider,
     public global: GlobalServiceProvider, public splash: SplashProvider, public app: App,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, public url: UrlProvider) {
     this.getBusinessUsers()
   }
 

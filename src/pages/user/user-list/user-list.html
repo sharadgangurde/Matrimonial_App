@@ -41,7 +41,7 @@
               <div class="new-box">
                   <div class="new-img-box" (click)="userDetails(item.id)">
                       <div class="img-box">
-                          <img src="{{imageURL}}{{item.profile_photo}}">
+                          <img [src]="url?.serverUrl + 'uploads/profile_images/' + item.profile_photo">
                       </div>
                       <!-- https://s3-sa-east-1.amazonaws.com/mybucket/cp${this.client.id}.jpg -->
                       <div class="new-cuntent-box">

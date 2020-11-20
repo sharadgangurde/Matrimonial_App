@@ -77,4 +77,8 @@ export class SearchPage {
     })
   }
 
+  goBack() {
+    this.navCtrl.pop()
+  }
+
 }

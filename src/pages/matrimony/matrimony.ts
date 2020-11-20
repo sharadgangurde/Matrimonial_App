@@ -3,6 +3,7 @@ import { AlertController, App, NavController, NavParams } from 'ionic-angular';
 import { GlobalServiceProvider } from '../../providers/global-service/global-service';
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
+import { UrlProvider } from '../../providers/url/url';
 import { LoginPage } from '../login/login';
 import { MatrimonyDetailsPage } from '../matrimony-details/matrimony-details';
 import { SearchPage } from '../search/search';
@@ -25,7 +26,7 @@ export class MatrimonyPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public splash: SplashProvider,
     public api: ServiceProvider, public global: GlobalServiceProvider, public app: App,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, public url: UrlProvider) {
     this.getMatrimonyUsers()
   }
 

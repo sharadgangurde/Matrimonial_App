@@ -13,8 +13,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UrlProvider {
-  serverUrl: string = 'https://moderni-projects.in/projects/codeigniter/portfolio/api/';
-  imageUrl: string = 'http://moderni-projects.in/projects/codeigniter/portfolio/uploads/profile_images/'
+  serverUrl: string = 'https://moderni-projects.in/projects/codeigniter/portfolio/';
   loginUrl: string;
   emailVerify: any;
   generateOtp: any;
@@ -31,20 +30,20 @@ export class UrlProvider {
   getNews: any;
   constructor(public http: HttpClient) {
 
-    this.loginUrl = 'mobile/login';
-    this.emailVerify = 'authentication/check_email_exist';    //email exist check
-    this.generateOtp = 'authentication/generate_otp';
-    this.registration = 'authentication/registration';
-    this.getAccountDetails = 'authentication/get_account_details';
-    this.getCountries = 'authentication/get_countries';
-    this.getStatesByCountry = 'authentication/get_state';
-    this.getCitiesByState = 'authentication/get_city';
-    this.getLanguages = 'authentication/get_languages';
-    this.getUserList = 'user/userList';
-    this.getUserDetails = 'user/get_UsersDetailsByProfession';
-    this.getBusinessUsers = 'user/get_businessUsers';
-    this.getMatrimonyUsers = 'user/get_unmarriedUsers';
-    this.getNews = 'user/get_newsList';
+    this.loginUrl = 'api/mobile/login';
+    this.emailVerify = 'api/authentication/check_email_exist';    //email exist check
+    this.generateOtp = 'api/authentication/generate_otp';
+    this.registration = 'api/authentication/registration';
+    this.getAccountDetails = 'api/authentication/get_account_details';
+    this.getCountries = 'api/authentication/get_countries';
+    this.getStatesByCountry = 'api/authentication/get_state';
+    this.getCitiesByState = 'api/authentication/get_city';
+    this.getLanguages = 'api/authentication/get_languages';
+    this.getUserList = 'api/user/userList';
+    this.getUserDetails = 'api/user/get_UsersDetailsByProfession';
+    this.getBusinessUsers = 'api/user/get_businessUsers';
+    this.getMatrimonyUsers = 'api/user/get_unmarriedUsers';
+    this.getNews = 'api/user/get_newsList';
     //http://moderni-projects.in/projects/codeigniter/portfolio/api/user/get_user_post
   }
 
