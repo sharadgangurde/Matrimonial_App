@@ -4,6 +4,7 @@ import { GlobalServiceProvider } from '../../providers/global-service/global-ser
 import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { UrlProvider } from '../../providers/url/url';
+import { EditMatrimonyStep1Page } from '../edit-profile/edit-matrimony-profile/edit-matrimony-step1/edit-matrimony-step1';
 import { LoginPage } from '../login/login';
 import { MatrimonyDetailsPage } from '../matrimony-details/matrimony-details';
 import { SearchPage } from '../search/search';
@@ -23,11 +24,39 @@ import { SearchPage } from '../search/search';
 export class MatrimonyPage {
   searchQuery: string = '';
   matrimonyUsers: any;
+  user_id: any;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public splash: SplashProvider,
     public api: ServiceProvider, public global: GlobalServiceProvider, public app: App,
     public alertCtrl: AlertController, public url: UrlProvider) {
     this.getMatrimonyUsers()
+  }
+
+  ionViewWillEnter(){
+    if (window.localStorage.getItem('id')) {
+      this.user_id = window.localStorage.getItem('id');
+
+      let formdata = new FormData();
+      formdata.append('user_id', this.user_id)
+      this.api.getUserDetails(formdata).subscribe(res => {
+        if(res.status == "true") {
+          this.user = res.data
+          console.log('login user', this.user);
+          
+        } else {
+          this.splash.toast('Unable to load your information')
+        }
+      })
+    }
+
+  }
+  gotoProfile() {
+    this.app.getRootNav().setRoot(EditMatrimonyStep1Page);
+   /* this.app.getRootNav().setRoot(LoginPage);
+    this.navCtrl.push(EditMatrimonyStep1Page, {
+      user_id: this.user_id
+    })*/
   }
 
   getMatrimonyUsers() {
@@ -57,7 +86,7 @@ export class MatrimonyPage {
       id: id,
     })
   }
-
+  
   public logoutAlert() {
     let alert = this.alertCtrl.create({
       message: 'Do you want logout?',

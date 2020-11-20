@@ -6,8 +6,10 @@ import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
 import { ActionSheetController, NavController, NavParams } from 'ionic-angular';
+import { App } from 'ionic-angular/components/app/app';
 import { SplashProvider } from '../../../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../../../providers/validation-message/validation-message';
+import { MatrimonyPage } from '../../../matrimony/matrimony';
 import { EditMatrimonyStep2Page } from '../edit-matrimony-step2/edit-matrimony-step2';
 
 /**
@@ -38,7 +40,7 @@ export class EditMatrimonyStep1Page {
     public splash: SplashProvider,
     public sanitizer: DomSanitizer,
     private imagePicker: ImagePicker,
-    public base64: Base64,
+    public base64: Base64, public app: App,
     public camera: Camera,
     public file: File
     ) {
@@ -55,13 +57,15 @@ export class EditMatrimonyStep1Page {
   }
 
   ionViewDidLoad() {
+  
     console.log('ionViewDidLoad MarriageStep1Page');
     this.dataArray = this.navParams.get('dataArray');
     console.log('---------------Data at Marriage Step1----------------- ',this.dataArray)
   }
 
   goBack() {
-    this.navCtrl.pop()
+    this.app.getRootNav().setRoot(MatrimonyPage);
+    //this.navCtrl.pop()
   }
   
   public getPhoto() {

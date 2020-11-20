@@ -5,9 +5,10 @@ import { Base64 } from '@ionic-native/base64';
 import { Camera } from '@ionic-native/camera';
 import { File, FileEntry } from '@ionic-native/file';
 import { ImagePicker, ImagePickerOptions } from '@ionic-native/image-picker';
-import { ActionSheetController, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, App, NavController, NavParams } from 'ionic-angular';
 import { SplashProvider } from '../../../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../../../providers/validation-message/validation-message';
+import { BusinessPage } from '../../../business/business';
 import { EditBusinessStep2Page } from '../edit-business-step2/edit-business-step2';
 
 /**
@@ -35,7 +36,7 @@ export class EditBusinessStep1Page {
   constructor(public navCtrl: NavController, public navParams: NavParams, public imagePicker: ImagePicker,
     public camera: Camera, public actionSheetCtrl: ActionSheetController,
     public sanitizer: DomSanitizer, public splash: SplashProvider, public base64: Base64,
-    public validation: ValidationMessageProvider,
+    public validation: ValidationMessageProvider, public app: App,
     public file: File) {
     this.businessForm = new FormGroup({
       selfie: new FormControl(),
@@ -69,6 +70,7 @@ export class EditBusinessStep1Page {
     actionSheet.present();
   }
   
+ 
   takePicture(sourceType: number) {
     var options:ImagePickerOptions = {
       maximumImagesCount:3,
@@ -149,9 +151,10 @@ private convertImageToBase64(base64: string, side) {
   });
 }
   
-  goBack() {
-    this.navCtrl.pop()
-  }
+goBack() {
+  this.app.getRootNav().setRoot(BusinessPage);
+  //this.navCtrl.pop()
+}
 
   submitDetails(data) {
     if(this.businessForm.valid) {
