@@ -47,7 +47,7 @@ export class MarriageStep1Page {
       allImages: new FormControl(),
       fathername: new FormControl('', [Validators.required]),
       mothername: new FormControl('', [Validators.required]),
-      fathermobileno: new FormControl('', [Validators.required]),
+      fathermobileno: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       fatherOccupation: new FormControl('', [Validators.required]),
       motherOccupation: new FormControl('', [Validators.required])
     });

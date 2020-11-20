@@ -10,7 +10,6 @@ import { App } from 'ionic-angular/components/app/app';
 import { SplashProvider } from '../../../../providers/splash/splash';
 import { ValidationMessageProvider } from '../../../../providers/validation-message/validation-message';
 import { MatrimonyPage } from '../../../matrimony/matrimony';
-import { EditMatrimonyStep2Page } from '../edit-matrimony-step2/edit-matrimony-step2';
 
 /**
  * Generated class for the EditMatrimonyStep1Page page.
@@ -46,11 +45,12 @@ export class EditMatrimonyStep1Page {
     ) {
     this.marriageForm = new FormGroup({
       allImages: new FormControl(),
-      fathername: new FormControl('', [Validators.required]),
-      mothername: new FormControl('', [Validators.required]),
-      fathermobileno: new FormControl('', [Validators.required]),
-      fatherOccupation: new FormControl('', [Validators.required]),
-      motherOccupation: new FormControl('', [Validators.required])
+      marital_status: new FormControl('', [Validators.required])
+      // fathername: new FormControl('', [Validators.required]),
+      // mothername: new FormControl('', [Validators.required]),
+      // fathermobileno: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+      // fatherOccupation: new FormControl('', [Validators.required]),
+      // motherOccupation: new FormControl('', [Validators.required])
     });
 
     this.validation_messages = this.validation.validationMessage()
@@ -131,15 +131,16 @@ export class EditMatrimonyStep1Page {
     if(this.marriageForm.valid) {
 
       this.dataArray['otherpics'] = this.allImages,
-      this.dataArray['fathername'] = data.fathername,
-      this.dataArray['mothername'] = data.mothername,
-      this.dataArray['fatherMobileNo'] = data.fathermobileno,
-      this.dataArray['fatherOccupation'] = data.fatherOccupation,
-      this.dataArray['motherOccupation'] = data.motherOccupation,
+      this.dataArray['marital_status'] = data.marital_status
+      // this.dataArray['fathername'] = data.fathername,
+      // this.dataArray['mothername'] = data.mothername,
+      // this.dataArray['fatherMobileNo'] = data.fathermobileno,
+      // this.dataArray['fatherOccupation'] = data.fatherOccupation,
+      // this.dataArray['motherOccupation'] = data.motherOccupation,
 
-      this.navCtrl.push(EditMatrimonyStep2Page, {
-        dataArray: this.dataArray
-      })
+      // this.navCtrl.push(EditMatrimonyStep2Page, {
+      //   dataArray: this.dataArray
+      // })
     } else {
       console.log('form errr');
 

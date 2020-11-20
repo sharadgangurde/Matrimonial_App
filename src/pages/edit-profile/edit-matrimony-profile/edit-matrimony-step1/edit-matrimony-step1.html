@@ -46,7 +46,22 @@
 
       <ion-input formControlName="allImages" [(ngModel)]="allImages" type="text" hidden></ion-input>
 
-            <ion-item>
+      <ion-item>
+        <ion-label>
+            <ion-icon item-left ios="ios-transgender" md="md-transgender"></ion-icon>
+        </ion-label>
+        <ion-select interface="popover" placeholder="Marital Status" ([ngModel])="marital_status" formControlName="marital_status">
+          <ion-option value="Never_Married">Never Married</ion-option>
+          <ion-option value="Married">Married</ion-option>
+        </ion-select>
+      </ion-item>
+      <div *ngFor="let validation of validation_messages.marital_status" >
+        <div *ngIf="marriageForm.get('marital_status').hasError(validation.type) && marriageForm.get('marital_status').touched">
+          <div class="error-message">{{validation.message}}</div>
+        </div>
+      </div>
+
+            <!-- <ion-item>
               <ion-label>
                 <ion-icon item-left ios="ios-person" md="md-person"></ion-icon>
               </ion-label>
@@ -115,7 +130,7 @@
               <div *ngIf="marriageForm.get('motherOccupation').hasError(validation.type) && marriageForm.get('motherOccupation').touched">
                 <div class="error-message">{{validation.message}}</div>
               </div>
-            </div>
+            </div> -->
             
           </ion-list>
           <ion-row>
@@ -123,7 +138,7 @@
               <button ion-button start round center class="login-btn" (click)="goBack()">Prev</button>
             </ion-col>
             <ion-col>
-              <button ion-button round center class="login-btn" (click)="submitDetails(marriageForm.value)">Next</button>
+              <button ion-button round center class="login-btn" (click)="submitDetails(marriageForm.value)">Update</button>
             </ion-col>
           </ion-row>
         </form>
