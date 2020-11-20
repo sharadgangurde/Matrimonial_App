@@ -5,6 +5,7 @@ import { ServiceProvider } from '../../providers/service/service';
 import { SplashProvider } from '../../providers/splash/splash';
 import { LoginPage } from '../login/login';
 import { NewsDetailsPage } from '../news-details/news-details';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-home',
@@ -53,6 +54,12 @@ export class HomePage {
   newsDetails(news) {
     this.navCtrl.push(NewsDetailsPage, {
       news: news
+    })
+  }
+
+  gotoProfile() {
+    this.navCtrl.push(ProfilePage, {
+      user_id: this.user_id
     })
   }
 

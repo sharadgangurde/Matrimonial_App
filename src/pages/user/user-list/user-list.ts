@@ -56,15 +56,6 @@ export class UserListPage {
     this.navCtrl.push(SearchPage, {
       userType: 1
     })
-    // const val = ev.target.value;
-    // // if the value is an empty string don't filter the items
-    // if (val && val.trim() != '') {
-    //   this.userlist = this.userlist.filter((item) => {
-    //     return (item.firstname.toLowerCase().indexOf(val.toLowerCase()) > -1);
-    //   })
-    // } else {
-    //   this.userlist = this.getUserList()
-    // }
   }
 
   userDetails(id) {

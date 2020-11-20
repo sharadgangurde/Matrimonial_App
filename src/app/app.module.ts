@@ -25,6 +25,18 @@ import { DivorcedStep1Page } from '../pages/divorse-details/divorced-step1/divor
 import { DivorcedStep2Page } from '../pages/divorse-details/divorced-step2/divorced-step2';
 import { DivorcedStep3Page } from '../pages/divorse-details/divorced-step3/divorced-step3';
 import { DivorseDetailsPage } from '../pages/divorse-details/divorse-details';
+import { EditStep1Page } from '../pages/edit-profile/edit-basic-profile/edit-step1/edit-step1';
+import { EditStep2Page } from '../pages/edit-profile/edit-basic-profile/edit-step2/edit-step2';
+import { EditStep3Page } from '../pages/edit-profile/edit-basic-profile/edit-step3/edit-step3';
+import { EditStep4Page } from '../pages/edit-profile/edit-basic-profile/edit-step4/edit-step4';
+import { EditBusinessStep1Page } from '../pages/edit-profile/edit-business-profile/edit-business-step1/edit-business-step1';
+import { EditBusinessStep2Page } from '../pages/edit-profile/edit-business-profile/edit-business-step2/edit-business-step2';
+import { EditBusinessStep3Page } from '../pages/edit-profile/edit-business-profile/edit-business-step3/edit-business-step3';
+import { EditBusinessStep4Page } from '../pages/edit-profile/edit-business-profile/edit-business-step4/edit-business-step4';
+import { EditMatrimonyStep1Page } from '../pages/edit-profile/edit-matrimony-profile/edit-matrimony-step1/edit-matrimony-step1';
+import { EditMatrimonyStep2Page } from '../pages/edit-profile/edit-matrimony-profile/edit-matrimony-step2/edit-matrimony-step2';
+import { EditMatrimonyStep3Page } from '../pages/edit-profile/edit-matrimony-profile/edit-matrimony-step3/edit-matrimony-step3';
+import { EditMatrimonyStep4Page } from '../pages/edit-profile/edit-matrimony-profile/edit-matrimony-step4/edit-matrimony-step4';
 import { HomePage } from '../pages/home/home';
 import { JobDetailsPage } from '../pages/job-details/job-details';
 import { LoginPage } from '../pages/login/login';
@@ -39,6 +51,7 @@ import { NewsDetailsPage } from '../pages/news-details/news-details';
 import { NewsPage } from '../pages/news/news';
 import { OtpPage } from '../pages/otp/otp';
 import { PopoverPage } from '../pages/popover/popover';
+import { ProfilePage } from '../pages/profile/profile';
 import { SearchPage } from '../pages/search/search';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { Step1Page } from '../pages/sign-up/step1/step1';
@@ -101,7 +114,20 @@ import { MyApp } from './app.component';
     BusinessPage,
     BusinessInfoPage,
     PopoverPage,
-    SearchPage
+    SearchPage,
+    ProfilePage,
+    EditStep1Page,
+    EditStep2Page,
+    EditStep3Page,
+    EditStep4Page,
+    EditBusinessStep1Page,
+    EditBusinessStep2Page,
+    EditBusinessStep3Page,
+    EditBusinessStep4Page,
+    EditMatrimonyStep1Page,
+    EditMatrimonyStep2Page,
+    EditMatrimonyStep3Page,
+    EditMatrimonyStep4Page
   ],
   imports: [
     BrowserModule,
@@ -151,7 +177,20 @@ import { MyApp } from './app.component';
     BusinessPage,
     BusinessInfoPage,
     PopoverPage,
-    SearchPage
+    SearchPage,
+    ProfilePage,
+    EditStep1Page,
+    EditStep2Page,
+    EditStep3Page,
+    EditStep4Page,
+    EditBusinessStep1Page,
+    EditBusinessStep2Page,
+    EditBusinessStep3Page,
+    EditBusinessStep4Page,
+    EditMatrimonyStep1Page,
+    EditMatrimonyStep2Page,
+    EditMatrimonyStep3Page,
+    EditMatrimonyStep4Page
   ],
   providers: [
     StatusBar,
